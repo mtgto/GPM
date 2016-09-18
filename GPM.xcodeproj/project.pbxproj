@@ -22,6 +22,10 @@
 		CEC9C5FF1D8D9D64002C218F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE891AB71D8CD998000A9711 /* Alamofire.framework */; };
 		CEC9C6001D8D9D64002C218F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE891AB71D8CD998000A9711 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEC9C6031D8DA845002C218F /* response_repos_owner_repo_projects_project_number_columns.json in Resources */ = {isa = PBXBuildFile; fileRef = CEC9C6021D8DA845002C218F /* response_repos_owner_repo_projects_project_number_columns.json */; };
+		CEC9C6051D8DB441002C218F /* response_repos_owner_repo_projects_columns_column_id_cards.json in Resources */ = {isa = PBXBuildFile; fileRef = CEC9C6041D8DB441002C218F /* response_repos_owner_repo_projects_columns_column_id_cards.json */; };
+		CEC9C6071D8E316F002C218F /* GitHubService+Issues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6061D8E316F002C218F /* GitHubService+Issues.swift */; };
+		CEC9C6091D8E324A002C218F /* GitHubIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6081D8E324A002C218F /* GitHubIssue.swift */; };
+		CEC9C60B1D8E3373002C218F /* response_repos_owner_repo_issues_number.json in Resources */ = {isa = PBXBuildFile; fileRef = CEC9C60A1D8E3373002C218F /* response_repos_owner_repo_issues_number.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,10 @@
 		CEC9C5F61D8D9708002C218F /* GitHubTestsSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubTestsSupport.swift; sourceTree = "<group>"; };
 		CEC9C5F81D8D990F002C218F /* response_repos_owner_repo_projects.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_repos_owner_repo_projects.json; sourceTree = "<group>"; };
 		CEC9C6021D8DA845002C218F /* response_repos_owner_repo_projects_project_number_columns.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_repos_owner_repo_projects_project_number_columns.json; sourceTree = "<group>"; };
+		CEC9C6041D8DB441002C218F /* response_repos_owner_repo_projects_columns_column_id_cards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_repos_owner_repo_projects_columns_column_id_cards.json; sourceTree = "<group>"; };
+		CEC9C6061D8E316F002C218F /* GitHubService+Issues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubService+Issues.swift"; sourceTree = "<group>"; };
+		CEC9C6081D8E324A002C218F /* GitHubIssue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubIssue.swift; sourceTree = "<group>"; };
+		CEC9C60A1D8E3373002C218F /* response_repos_owner_repo_issues_number.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_repos_owner_repo_issues_number.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +152,9 @@
 			children = (
 				CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */,
 				CEC9C5F11D8D7CFF002C218F /* GitHubService+Projects.swift */,
+				CEC9C6061D8E316F002C218F /* GitHubService+Issues.swift */,
 				CEC9C5EE1D8CF53C002C218F /* GitHubProject.swift */,
+				CEC9C6081D8E324A002C218F /* GitHubIssue.swift */,
 			);
 			path = github;
 			sourceTree = "<group>";
@@ -156,6 +166,8 @@
 				CEC9C5F41D8D9635002C218F /* GitHubServiceTests.swift */,
 				CEC9C5F81D8D990F002C218F /* response_repos_owner_repo_projects.json */,
 				CEC9C6021D8DA845002C218F /* response_repos_owner_repo_projects_project_number_columns.json */,
+				CEC9C6041D8DB441002C218F /* response_repos_owner_repo_projects_columns_column_id_cards.json */,
+				CEC9C60A1D8E3373002C218F /* response_repos_owner_repo_issues_number.json */,
 			);
 			path = github;
 			sourceTree = "<group>";
@@ -255,6 +267,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC9C6051D8DB441002C218F /* response_repos_owner_repo_projects_columns_column_id_cards.json in Resources */,
+				CEC9C60B1D8E3373002C218F /* response_repos_owner_repo_issues_number.json in Resources */,
 				CEC9C5F91D8D990F002C218F /* response_repos_owner_repo_projects.json in Resources */,
 				CEC9C6031D8DA845002C218F /* response_repos_owner_repo_projects_project_number_columns.json in Resources */,
 			);
@@ -267,6 +281,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC9C6091D8E324A002C218F /* GitHubIssue.swift in Sources */,
+				CEC9C6071D8E316F002C218F /* GitHubService+Issues.swift in Sources */,
 				CE891A951D8CC7EB000A9711 /* ViewController.swift in Sources */,
 				CE891A931D8CC7EB000A9711 /* AppDelegate.swift in Sources */,
 				CEC9C5ED1D8CF42B002C218F /* GitHubService.swift in Sources */,

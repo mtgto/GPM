@@ -16,10 +16,29 @@ public class GitHubProject: NSObject {
     let body: String
 
     public class Column: NSObject {
+        let id: Int
+
         let name: String
 
-        init(name: String) {
+        init(id: Int, name: String) {
+            self.id = id
             self.name = name
+        }
+    }
+
+    public class Card: NSObject {
+        public enum ContentType: String {
+            case Issue = "Issue"
+            case PullRequest = "PullRequest"
+        }
+
+        let contentId: Int
+
+        let note: String
+
+        init(contentId: Int, note: String) {
+            self.contentId = contentId
+            self.note = note
         }
     }
 
