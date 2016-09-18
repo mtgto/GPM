@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CE891A931D8CC7EB000A9711 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE891A921D8CC7EB000A9711 /* AppDelegate.swift */; };
-		CE891A951D8CC7EB000A9711 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE891A941D8CC7EB000A9711 /* ViewController.swift */; };
-		CE891A971D8CC7EB000A9711 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE891A961D8CC7EB000A9711 /* Document.swift */; };
 		CE891A991D8CC7EB000A9711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE891A981D8CC7EB000A9711 /* Assets.xcassets */; };
 		CE891A9C1D8CC7EB000A9711 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE891A9A1D8CC7EB000A9711 /* Main.storyboard */; };
 		CE891AA71D8CC7EB000A9711 /* GPMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE891AA61D8CC7EB000A9711 /* GPMTests.swift */; };
@@ -26,6 +24,10 @@
 		CEC9C6071D8E316F002C218F /* GitHubService+Issues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6061D8E316F002C218F /* GitHubService+Issues.swift */; };
 		CEC9C6091D8E324A002C218F /* GitHubIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6081D8E324A002C218F /* GitHubIssue.swift */; };
 		CEC9C60B1D8E3373002C218F /* response_repos_owner_repo_issues_number.json in Resources */ = {isa = PBXBuildFile; fileRef = CEC9C60A1D8E3373002C218F /* response_repos_owner_repo_issues_number.json */; };
+		CEC9C60D1D8E3719002C218F /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C60C1D8E3719002C218F /* BookmarkViewController.swift */; };
+		CEC9C6101D8E372B002C218F /* KanbanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C60E1D8E372B002C218F /* KanbanViewController.swift */; };
+		CEC9C6131D8E3B2C002C218F /* Kanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6121D8E3B2C002C218F /* Kanban.swift */; };
+		CEC9C6151D8E4154002C218F /* KanbanService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6141D8E4154002C218F /* KanbanService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +57,6 @@
 /* Begin PBXFileReference section */
 		CE891A8F1D8CC7EB000A9711 /* GPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE891A921D8CC7EB000A9711 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE891A941D8CC7EB000A9711 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CE891A961D8CC7EB000A9711 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		CE891A981D8CC7EB000A9711 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE891A9B1D8CC7EB000A9711 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE891A9D1D8CC7EB000A9711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +75,11 @@
 		CEC9C6061D8E316F002C218F /* GitHubService+Issues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubService+Issues.swift"; sourceTree = "<group>"; };
 		CEC9C6081D8E324A002C218F /* GitHubIssue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubIssue.swift; sourceTree = "<group>"; };
 		CEC9C60A1D8E3373002C218F /* response_repos_owner_repo_issues_number.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_repos_owner_repo_issues_number.json; sourceTree = "<group>"; };
+		CEC9C60C1D8E3719002C218F /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		CEC9C60E1D8E372B002C218F /* KanbanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanbanViewController.swift; sourceTree = "<group>"; };
+		CEC9C6121D8E3B2C002C218F /* Kanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kanban.swift; sourceTree = "<group>"; };
+		CEC9C6141D8E4154002C218F /* KanbanService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanbanService.swift; sourceTree = "<group>"; };
+		CEC9C6161D8E4BE6002C218F /* GPM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GPM.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,10 +123,13 @@
 		CE891A911D8CC7EB000A9711 /* GPM */ = {
 			isa = PBXGroup;
 			children = (
+				CEC9C6161D8E4BE6002C218F /* GPM.entitlements */,
 				CEC9C5EB1D8CF40E002C218F /* github */,
 				CE891A921D8CC7EB000A9711 /* AppDelegate.swift */,
-				CE891A941D8CC7EB000A9711 /* ViewController.swift */,
-				CE891A961D8CC7EB000A9711 /* Document.swift */,
+				CEC9C60C1D8E3719002C218F /* BookmarkViewController.swift */,
+				CEC9C60E1D8E372B002C218F /* KanbanViewController.swift */,
+				CEC9C6141D8E4154002C218F /* KanbanService.swift */,
+				CEC9C6121D8E3B2C002C218F /* Kanban.swift */,
 				CE891A981D8CC7EB000A9711 /* Assets.xcassets */,
 				CE891A9A1D8CC7EB000A9711 /* Main.storyboard */,
 				CE891A9D1D8CC7EB000A9711 /* Info.plist */,
@@ -225,6 +233,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = W3A6B7FDC7;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					CE891AA11D8CC7EB000A9711 = {
 						CreatedOnToolsVersion = 8.0;
@@ -283,12 +296,14 @@
 			files = (
 				CEC9C6091D8E324A002C218F /* GitHubIssue.swift in Sources */,
 				CEC9C6071D8E316F002C218F /* GitHubService+Issues.swift in Sources */,
-				CE891A951D8CC7EB000A9711 /* ViewController.swift in Sources */,
 				CE891A931D8CC7EB000A9711 /* AppDelegate.swift in Sources */,
 				CEC9C5ED1D8CF42B002C218F /* GitHubService.swift in Sources */,
+				CEC9C60D1D8E3719002C218F /* BookmarkViewController.swift in Sources */,
 				CEC9C5EF1D8CF53C002C218F /* GitHubProject.swift in Sources */,
 				CEC9C5F21D8D7CFF002C218F /* GitHubService+Projects.swift in Sources */,
-				CE891A971D8CC7EB000A9711 /* Document.swift in Sources */,
+				CEC9C6101D8E372B002C218F /* KanbanViewController.swift in Sources */,
+				CEC9C6151D8E4154002C218F /* KanbanService.swift in Sources */,
+				CEC9C6131D8E3B2C002C218F /* Kanban.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +433,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GPM/GPM.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = W3A6B7FDC7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -436,6 +452,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GPM/GPM.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = W3A6B7FDC7;
 				FRAMEWORK_SEARCH_PATHS = (
