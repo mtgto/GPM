@@ -28,6 +28,11 @@
 		CEC9C6101D8E372B002C218F /* KanbanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C60E1D8E372B002C218F /* KanbanViewController.swift */; };
 		CEC9C6131D8E3B2C002C218F /* Kanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6121D8E3B2C002C218F /* Kanban.swift */; };
 		CEC9C6151D8E4154002C218F /* KanbanService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6141D8E4154002C218F /* KanbanService.swift */; };
+		CEC9C6191D8E8744002C218F /* CardViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6171D8E8744002C218F /* CardViewItem.swift */; };
+		CEC9C61A1D8E8744002C218F /* CardViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC9C6181D8E8744002C218F /* CardViewItem.xib */; };
+		CEC9C61D1D8EC968002C218F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C61C1D8EC968002C218F /* Card.swift */; };
+		CEC9C61F1D8EE758002C218F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C61E1D8EE758002C218F /* SplitViewController.swift */; };
+		CEC9C6211D8EF045002C218F /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6201D8EF045002C218F /* Column.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +85,11 @@
 		CEC9C6121D8E3B2C002C218F /* Kanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kanban.swift; sourceTree = "<group>"; };
 		CEC9C6141D8E4154002C218F /* KanbanService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanbanService.swift; sourceTree = "<group>"; };
 		CEC9C6161D8E4BE6002C218F /* GPM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GPM.entitlements; sourceTree = "<group>"; };
+		CEC9C6171D8E8744002C218F /* CardViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewItem.swift; sourceTree = "<group>"; };
+		CEC9C6181D8E8744002C218F /* CardViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardViewItem.xib; sourceTree = "<group>"; };
+		CEC9C61C1D8EC968002C218F /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		CEC9C61E1D8EE758002C218F /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		CEC9C6201D8EF045002C218F /* Column.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +136,13 @@
 				CEC9C6161D8E4BE6002C218F /* GPM.entitlements */,
 				CEC9C5EB1D8CF40E002C218F /* github */,
 				CE891A921D8CC7EB000A9711 /* AppDelegate.swift */,
+				CEC9C61E1D8EE758002C218F /* SplitViewController.swift */,
 				CEC9C60C1D8E3719002C218F /* BookmarkViewController.swift */,
 				CEC9C60E1D8E372B002C218F /* KanbanViewController.swift */,
+				CEC9C6201D8EF045002C218F /* Column.swift */,
+				CEC9C61C1D8EC968002C218F /* Card.swift */,
+				CEC9C6171D8E8744002C218F /* CardViewItem.swift */,
+				CEC9C6181D8E8744002C218F /* CardViewItem.xib */,
 				CEC9C6141D8E4154002C218F /* KanbanService.swift */,
 				CEC9C6121D8E3B2C002C218F /* Kanban.swift */,
 				CE891A981D8CC7EB000A9711 /* Assets.xcassets */,
@@ -271,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC9C61A1D8E8744002C218F /* CardViewItem.xib in Resources */,
 				CE891A991D8CC7EB000A9711 /* Assets.xcassets in Resources */,
 				CE891A9C1D8CC7EB000A9711 /* Main.storyboard in Resources */,
 			);
@@ -297,11 +313,15 @@
 				CEC9C6091D8E324A002C218F /* GitHubIssue.swift in Sources */,
 				CEC9C6071D8E316F002C218F /* GitHubService+Issues.swift in Sources */,
 				CE891A931D8CC7EB000A9711 /* AppDelegate.swift in Sources */,
+				CEC9C6211D8EF045002C218F /* Column.swift in Sources */,
 				CEC9C5ED1D8CF42B002C218F /* GitHubService.swift in Sources */,
 				CEC9C60D1D8E3719002C218F /* BookmarkViewController.swift in Sources */,
 				CEC9C5EF1D8CF53C002C218F /* GitHubProject.swift in Sources */,
 				CEC9C5F21D8D7CFF002C218F /* GitHubService+Projects.swift in Sources */,
+				CEC9C61D1D8EC968002C218F /* Card.swift in Sources */,
 				CEC9C6101D8E372B002C218F /* KanbanViewController.swift in Sources */,
+				CEC9C61F1D8EE758002C218F /* SplitViewController.swift in Sources */,
+				CEC9C6191D8E8744002C218F /* CardViewItem.swift in Sources */,
 				CEC9C6151D8E4154002C218F /* KanbanService.swift in Sources */,
 				CEC9C6131D8E3B2C002C218F /* Kanban.swift in Sources */,
 			);

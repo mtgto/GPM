@@ -37,7 +37,7 @@ class GitHubServiceTests: XCTestCase, GitHubTestsSupport {
     func testParseIssueResponse() {
         let data = self.dataFromResourceFile("response_repos_owner_repo_issues_number.json")
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
-        let issue = service.parseIssueResponse(json)
+        let issue = service.parseIssueResponse(json, owner: "octocat", repo: "Hello-World")
         XCTAssertNotNil(issue)
     }
 }

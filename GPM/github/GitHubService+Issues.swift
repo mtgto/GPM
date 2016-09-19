@@ -16,7 +16,7 @@ public extension GitHubService {
                 switch response.result {
                 case .success(let value):
                     // TODO: Check status code (200 or other)
-                    if let issue = self.parseIssueResponse(value) {
+                    if let issue = self.parseIssueResponse(value, owner: owner, repo: repo) {
                         handler(GitHubResponse.Success(issue))
                     }
                 case .failure(let error):
@@ -26,10 +26,11 @@ public extension GitHubService {
         }
     }
 
-    func parseIssueResponse(_ data: Any) -> GitHubIssue? {
+    func parseIssueResponse(_ data: Any, owner: String, repo: String) -> GitHubIssue? {
         if let issue = data as? [String:Any] {
             if let number = issue["number"] as? Int, let title = issue["title"] as? String, let body = issue["body"] as? String {
-                return GitHubIssue(number: number, title: title, body: body)
+                let issueType = issue["pull_request"] != nil ? GitHubIssueType.PullRequest : GitHubIssueType.Issue
+                return GitHubIssue(id: GitHubIssueId(owner: owner, repo: repo, number: number), type: issueType, title: title, body: body)
             } else {
                 return nil
             }

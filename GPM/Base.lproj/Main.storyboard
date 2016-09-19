@@ -696,7 +696,7 @@
         <!--Split View Controller-->
         <scene sceneID="rZx-c9-J84">
             <objects>
-                <splitViewController id="xXQ-xC-PV2" sceneMemberID="viewController">
+                <splitViewController id="xXQ-xC-PV2" customClass="SplitViewController" customModule="GPM" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem holdingPriority="255" behavior="contentList" id="kLa-ZW-tCw"/>
                         <splitViewItem id="m4Q-Tk-2aU"/>
@@ -813,10 +813,13 @@
                                     <rect key="frame" x="1" y="1" width="448" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView id="Fwp-7t-Pg1">
+                                        <collectionView selectable="YES" id="Fwp-7t-Pg1">
                                             <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="8H6-ds-OXH">
+                                                <size key="itemSize" width="230" height="60"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="Lgg-aU-Ak6" id="3Ny-Ny-jbG"/>
                                                 <outlet property="delegate" destination="Lgg-aU-Ak6" id="S3h-jn-gvj"/>
@@ -846,19 +849,6 @@
                 <customObject id="t3y-xF-q5z" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="548" y="615"/>
-        </scene>
-        <!--Collection View Item-->
-        <scene sceneID="wcm-Ko-u4O">
-            <objects>
-                <collectionViewItem id="5Wb-L8-pb3" sceneMemberID="viewController">
-                    <view key="view" id="BUT-EH-xNT">
-                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </collectionViewItem>
-                <customObject id="Y11-jJ-BxW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="548" y="998"/>
         </scene>
     </scenes>
 </document>

@@ -12,6 +12,7 @@ class Kanban: NSObject {
     let owner: String
     let repo: String
     let number: Int
+    var cards: [(GitHubProject.Column, [GitHubProject.Card])] = []
 
     init(owner: String, repo: String, number: Int) {
         self.owner = owner

@@ -6,7 +6,7 @@
 //  Copyright © 2016 mtgto. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 import Alamofire
 
 public extension GitHubService {
@@ -43,7 +43,7 @@ public extension GitHubService {
     }
 
     public func fetchProjectColumnsForProject(owner: String, repo: String, projectNumber: Int, handler: @escaping (GitHubResponse<[GitHubProject.Column]>) -> Void) {
-        Alamofire.request(self.baseURL.appendingPathComponent("repos/\(owner)/\(repo)/projects/columns")!, headers: self.authenticateHeaders())
+        Alamofire.request(self.baseURL.appendingPathComponent("repos/\(owner)/\(repo)/projects/\(projectNumber)/columns")!, headers: self.authenticateHeaders())
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -110,8 +110,22 @@ public extension GitHubService {
     func parseProjectCardsResponse(_ data: Any) -> [GitHubProject.Card]? {
         if let array = data as? Array<[String:Any]> {
             return array.flatMap({ (card) -> GitHubProject.Card? in
-                if let contentId = card["id"] as? Int, let note = card["note"] as? String {
-                    return GitHubProject.Card(contentId: contentId, note: note)
+                //if let id = card["id"] as? Int, let note = card["note"] as? String?, let contentURL = (card["content_url"] as? String?).flatMap({$0.map({NSURL(string: $0)})}) 
+                if let id = card["id"] as? Int, let note = card["note"] as? String? {
+                    let contentURL = (card["content_url"] as? String).flatMap({NSURL(string: $0)})
+                    let issueId = contentURL.flatMap({ (contentURL) -> GitHubIssueId? in
+                        if let pathComponents = contentURL.pathComponents {
+                            let count = pathComponents.count
+                            if count >= 5 && pathComponents[count - 5] == "repos" {
+                                let owner = pathComponents[count - 4]
+                                let repo = pathComponents[count - 3]
+                                let number = Int(pathComponents[count - 1])!
+                                return GitHubIssueId(owner: owner, repo: repo, number: number)
+                            }
+                        }
+                        return nil
+                    })
+                    return GitHubProject.Card(id: id, note: note, issueId: issueId)
                 } else {
                     return nil
                 }

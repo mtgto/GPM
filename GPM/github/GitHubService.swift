@@ -21,7 +21,7 @@ public enum GitHubError: Error {
 public class GitHubService: NSObject {
     static let sharedInstance: GitHubService = GitHubService()
 
-    var accessToken: String?
+    var accessToken: String = ""
 
     /**
      * API endpoint URL. This url must end with a slash.
@@ -29,6 +29,9 @@ public class GitHubService: NSObject {
     var baseURL: NSURL = NSURL(string: "https://api.github.com/")!
 
     internal func authenticateHeaders() -> [String:String] {
-        return ["Authorization": "token \(self.accessToken)"]
+        return [
+            "Authorization": "token \(self.accessToken)",
+            "Accept": "application/vnd.github.inertia-preview+json" // Projects API is still in Early Access. See https://developer.github.com/v3/repos/projects/
+        ]
     }
 }

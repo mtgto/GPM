@@ -9,6 +9,7 @@
 import Cocoa
 
 class BookmarkViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+    var delegate: KanbanDelegate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,13 @@ class BookmarkViewController: NSViewController, NSTableViewDelegate, NSTableView
             debugPrint(view)
         }
         return nil
+    }
+
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if let tableView = notification.object as? NSTableView {
+            let kanban = KanbanService.sharedInstance.kanbans[tableView.selectedRow]
+            self.delegate?.kanbanDidSelected(kanban)
+        }
     }
 
     // MARK: - NSTableViewDataSource

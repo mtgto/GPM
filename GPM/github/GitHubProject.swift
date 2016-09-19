@@ -27,18 +27,17 @@ public class GitHubProject: NSObject {
     }
 
     public class Card: NSObject {
-        public enum ContentType: String {
-            case Issue = "Issue"
-            case PullRequest = "PullRequest"
-        }
 
-        let contentId: Int
+        let id: Int
 
-        let note: String
+        let note: String?
 
-        init(contentId: Int, note: String) {
-            self.contentId = contentId
+        let issueId: GitHubIssueId?
+
+        init(id: Int, note: String?, issueId: GitHubIssueId?) {
+            self.id = id
             self.note = note
+            self.issueId = issueId
         }
     }
 
