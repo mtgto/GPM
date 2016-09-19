@@ -27,7 +27,7 @@ class KanbanService: NSObject {
         }
     }
 
-    func fetchKanban(_ kanban: Kanban) {
+    func fetchKanban(_ kanban: Kanban, handler: @escaping ([(Column, [Card])]) -> Void) {
         debugPrint("Start to fetch kanban: \(kanban).")
         var cards: [(Column, [Card])] = []
         let group = DispatchGroup()
@@ -41,10 +41,11 @@ class KanbanService: NSObject {
                 cards = columns.map { ($0, []) }
                 for column in columns {
                     group.enter()
-                    GitHubService.sharedInstance.fetchProjectCardsForProjectColumn(owner: kanban.owner, repo: kanban.repo, columnId: column.id, handler: { (response) in
+                    GitHubService.sharedInstance.fetchProjectCardsForProjectColumn(owner: kanban.owner, repo: kanban.repo, columnId: column.id) { (response) in
                         switch response {
                         case GitHubResponse.Success(let githubCards):
                             debugPrint("Succeeded to fetch cards: \(githubCards)")
+                            group.enter()
                             self.fetchIssues(cards: githubCards, handler: { (cardIssues) in
                                 cards = cards.map({ (columnCards: (Column, [Card])) -> (Column, [Card]) in
                                     if column == columnCards.0 {
@@ -53,12 +54,13 @@ class KanbanService: NSObject {
                                         return columnCards
                                     }
                                 })
+                                group.leave()
                             })
                         case GitHubResponse.Failure(let error):
                             print(error)
                         }
                         group.leave()
-                    })
+                    }
                 }
             case GitHubResponse.Failure(let error):
                 print(error)
@@ -68,6 +70,7 @@ class KanbanService: NSObject {
 
         group.notify(queue: DispatchQueue.main) { 
             debugPrint("All download done. \(cards)")
+            handler(cards)
         }
     }
 

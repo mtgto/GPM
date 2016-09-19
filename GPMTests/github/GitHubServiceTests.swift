@@ -30,8 +30,8 @@ class GitHubServiceTests: XCTestCase, GitHubTestsSupport {
     func testParseProjectCardsResponse() {
         let data = self.dataFromResourceFile("response_repos_owner_repo_projects_columns_column_id_cards.json")
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
-        let columns = service.parseProjectCardsResponse(json)
-        XCTAssertEqual(columns.map({ $0.count }), Optional(1))
+        let cards = service.parseProjectCardsResponse(json)
+        XCTAssertEqual(cards.map({ $0.count }), Optional(2))
     }
 
     func testParseIssueResponse() {

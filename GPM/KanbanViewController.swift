@@ -13,7 +13,10 @@ protocol KanbanDelegate {
 }
 
 class KanbanViewController: NSViewController, NSCollectionViewDelegate, NSCollectionViewDataSource, KanbanDelegate {
+    private var columnCards: [(Column, [Card])] = []
 
+    @IBOutlet weak var collectionView: NSCollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -21,26 +24,29 @@ class KanbanViewController: NSViewController, NSCollectionViewDelegate, NSCollec
 
     // MARK: - KanbanDelegate
     func kanbanDidSelected(_ kanban: Kanban) {
-        KanbanService.sharedInstance.fetchKanban(kanban)
+        KanbanService.sharedInstance.fetchKanban(kanban) { (columnCards) in
+            self.columnCards = columnCards
+            self.collectionView.reloadData()
+        }
     }
 
     // MARK: - NSCollectionViewDelegate
     // MARK: - NSCollectionViewDataSource
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
         debugPrint("numberOfSections")
-        return 2
+        return self.columnCards.count
     }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         debugPrint("numberOfItemsInSection:\(section)")
-        return 10
+        return self.columnCards[section].1.count
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        debugPrint("itemForRepresentedObjectAt:\(indexPath)")
+        //debugPrint("itemForRepresentedObjectAt:\(indexPath)")
         //debugPrint(collectionView.makeItem(withIdentifier: "CardViewItem", for: indexPath))
         let item = collectionView.makeItem(withIdentifier: "CardViewItem", for: indexPath)
-        item.representedObject = Card(id: indexPath.item, note: "title \(indexPath.section),\(indexPath.item)", issue: nil)
+        item.representedObject = self.columnCards[indexPath.section].1[indexPath.item]
         return item
     }
 }

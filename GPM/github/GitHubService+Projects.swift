@@ -110,8 +110,8 @@ public extension GitHubService {
     func parseProjectCardsResponse(_ data: Any) -> [GitHubProject.Card]? {
         if let array = data as? Array<[String:Any]> {
             return array.flatMap({ (card) -> GitHubProject.Card? in
-                //if let id = card["id"] as? Int, let note = card["note"] as? String?, let contentURL = (card["content_url"] as? String?).flatMap({$0.map({NSURL(string: $0)})}) 
-                if let id = card["id"] as? Int, let note = card["note"] as? String? {
+                if let id = card["id"] as? Int {
+                    let note = card["note"] as? String
                     let contentURL = (card["content_url"] as? String).flatMap({NSURL(string: $0)})
                     let issueId = contentURL.flatMap({ (contentURL) -> GitHubIssueId? in
                         if let pathComponents = contentURL.pathComponents {

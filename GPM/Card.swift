@@ -15,6 +15,8 @@ class Card: NSObject {
 
     let issue: GitHubIssue?
 
+    var title: String? { return note ?? issue?.title }
+
     init(id: Int, note: String?, issue: GitHubIssue?) {
         self.id = id
         self.note = note

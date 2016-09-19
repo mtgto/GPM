@@ -30,7 +30,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="VIA-LD-9Me" name="value" keyPath="representedObject.note" id="63q-m2-g10"/>
+                        <binding destination="VIA-LD-9Me" name="value" keyPath="representedObject.title" id="ZXr-jC-v7X"/>
                     </connections>
                 </textField>
             </subviews>

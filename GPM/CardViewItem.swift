@@ -9,6 +9,8 @@
 import Cocoa
 
 class CardViewItem: NSCollectionViewItem {
+    static let width: CGFloat = 230.0
+    static let height: CGFloat = 60.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
