@@ -34,6 +34,8 @@
 		CEC9C61F1D8EE758002C218F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C61E1D8EE758002C218F /* SplitViewController.swift */; };
 		CEC9C6211D8EF045002C218F /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6201D8EF045002C218F /* Column.swift */; };
 		CEC9C6231D8F79C3002C218F /* KanbanCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6221D8F79C3002C218F /* KanbanCollectionViewLayout.swift */; };
+		CEC9C6251D902E45002C218F /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6241D902E45002C218F /* WindowController.swift */; };
+		CEC9C6271D903749002C218F /* KanbanRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C6261D903749002C218F /* KanbanRegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		CEC9C61E1D8EE758002C218F /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		CEC9C6201D8EF045002C218F /* Column.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		CEC9C6221D8F79C3002C218F /* KanbanCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanbanCollectionViewLayout.swift; sourceTree = "<group>"; };
+		CEC9C6241D902E45002C218F /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		CEC9C6261D903749002C218F /* KanbanRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanbanRegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +142,10 @@
 				CEC9C6161D8E4BE6002C218F /* GPM.entitlements */,
 				CEC9C5EB1D8CF40E002C218F /* github */,
 				CE891A921D8CC7EB000A9711 /* AppDelegate.swift */,
+				CEC9C6241D902E45002C218F /* WindowController.swift */,
 				CEC9C61E1D8EE758002C218F /* SplitViewController.swift */,
 				CEC9C60C1D8E3719002C218F /* BookmarkViewController.swift */,
+				CEC9C6261D903749002C218F /* KanbanRegisterViewController.swift */,
 				CEC9C60E1D8E372B002C218F /* KanbanViewController.swift */,
 				CEC9C6221D8F79C3002C218F /* KanbanCollectionViewLayout.swift */,
 				CEC9C6201D8EF045002C218F /* Column.swift */,
@@ -320,12 +326,14 @@
 				CEC9C5ED1D8CF42B002C218F /* GitHubService.swift in Sources */,
 				CEC9C60D1D8E3719002C218F /* BookmarkViewController.swift in Sources */,
 				CEC9C6231D8F79C3002C218F /* KanbanCollectionViewLayout.swift in Sources */,
+				CEC9C6271D903749002C218F /* KanbanRegisterViewController.swift in Sources */,
 				CEC9C5EF1D8CF53C002C218F /* GitHubProject.swift in Sources */,
 				CEC9C5F21D8D7CFF002C218F /* GitHubService+Projects.swift in Sources */,
 				CEC9C61D1D8EC968002C218F /* Card.swift in Sources */,
 				CEC9C6101D8E372B002C218F /* KanbanViewController.swift in Sources */,
 				CEC9C61F1D8EE758002C218F /* SplitViewController.swift in Sources */,
 				CEC9C6191D8E8744002C218F /* CardViewItem.swift in Sources */,
+				CEC9C6251D902E45002C218F /* WindowController.swift in Sources */,
 				CEC9C6151D8E4154002C218F /* KanbanService.swift in Sources */,
 				CEC9C6131D8E3B2C002C218F /* Kanban.swift in Sources */,
 			);

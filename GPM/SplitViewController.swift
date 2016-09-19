@@ -17,5 +17,4 @@ class SplitViewController: NSSplitViewController {
             bookmarkViewController.delegate = kanbanViewController
         }
     }
-    
 }

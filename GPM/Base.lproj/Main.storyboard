@@ -657,12 +657,59 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="GPM" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="641" y="71"/>
+            <point key="canvasLocation" x="21" y="-133"/>
+        </scene>
+        <!--Kanban Register View Controller-->
+        <scene sceneID="vAL-46-74F">
+            <objects>
+                <viewController id="urd-YJ-Gef" customClass="KanbanRegisterViewController" customModule="GPM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="qvH-Jd-9Cn">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="119"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfi-up-6SV">
+                                <rect key="frame" x="20" y="50" width="391" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2Ul-Wv-45s">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M7A-gH-236">
+                                <rect key="frame" x="18" y="82" width="414" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter kanban url (ex: https://github.com/mtgto/GTM/projects/1 )" id="bGr-CN-XqL">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Maz-1y-NEY">
+                                <rect key="frame" x="305" y="13" width="112" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Add kanban" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0DI-Fb-yP1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addKanban:" target="urd-YJ-Gef" id="MKM-E4-AQI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="cfi-up-6SV" id="nP3-jN-KLt"/>
+                    </connections>
+                </viewController>
+                <customObject id="zrJ-hz-FyN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="576" y="-1.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" customClass="WindowController" customModule="GPM" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -676,8 +723,14 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="rPH-IS-rbb"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="J7L-ob-UaM"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Mkt-Hy-WGT"/>
+                                <toolbarItem implicitItemIdentifier="9068BC88-AE15-4F17-83CB-A4E1B40775E0" label="Add kanban" paletteLabel="Add kanban" tag="-1" image="NSAddTemplate" id="oOo-1b-tpV">
+                                    <connections>
+                                        <segue destination="urd-YJ-Gef" kind="popover" popoverAnchorView="oOo-1b-tpV" popoverBehavior="t" preferredEdge="minX" id="a16-0T-R6e"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
+                                <toolbarItem reference="oOo-1b-tpV"/>
                                 <toolbarItem reference="FRm-E7-TVc"/>
                                 <toolbarItem reference="aZa-lY-5pk"/>
                                 <toolbarItem reference="Mkt-Hy-WGT"/>
@@ -741,7 +794,7 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="eHu-dC-IXH">
+                                                    <textFieldCell key="dataCell" lineBreakMode="charWrapping" selectable="YES" editable="YES" title="Text Cell" usesSingleLineMode="YES" id="eHu-dC-IXH">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -793,6 +846,9 @@
                             <constraint firstAttribute="trailing" secondItem="n1I-Bs-ORw" secondAttribute="trailing" id="okx-zD-F2J"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="bJe-dP-kKo" id="mwl-df-T0q"/>
+                    </connections>
                 </viewController>
                 <customObject id="dP7-88-Njd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="khZ-SW-X5Z"/>
@@ -852,4 +908,7 @@
             <point key="canvasLocation" x="548" y="615"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+    </resources>
 </document>

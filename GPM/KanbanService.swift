@@ -27,6 +27,16 @@ class KanbanService: NSObject {
         }
     }
 
+    // Return whether success to add or already exists.
+    func addKanban(_ kanban: Kanban) -> Bool {
+        if self.kanbans.index(of: kanban) == nil {
+            self.kanbans += kanbans
+            return true
+        } else {
+            return false
+        }
+    }
+
     func fetchKanban(_ kanban: Kanban, handler: @escaping ([(Column, [Card])]) -> Void) {
         debugPrint("Start to fetch kanban: \(kanban).")
         var cards: [(Column, [Card])] = []

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Kanban: NSObject {
+class Kanban: Hashable, Equatable {
     let owner: String
     let repo: String
     let number: Int
@@ -19,4 +19,12 @@ class Kanban: NSObject {
         self.repo = repo
         self.number = number
     }
+
+    var hashValue: Int {
+        return "\(owner)/\(repo)/\(number)".hashValue
+    }
+}
+
+func ==(lhs: Kanban, rhs: Kanban) -> Bool {
+    return lhs.owner == rhs.owner && lhs.repo == rhs.repo && lhs.number == rhs.number
 }
