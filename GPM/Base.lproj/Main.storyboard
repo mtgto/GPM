@@ -664,7 +664,7 @@
             <objects>
                 <viewController id="urd-YJ-Gef" customClass="KanbanRegisterViewController" customModule="GPM" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="qvH-Jd-9Cn">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="119"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="119"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfi-up-6SV">
@@ -696,15 +696,25 @@
                                     <action selector="addKanban:" target="urd-YJ-Gef" id="MKM-E4-AQI"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wP1-iZ-RPm">
+                                <rect key="frame" x="18" y="20" width="287" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="MeW-Rr-YEt">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="alertTextField" destination="wP1-iZ-RPm" id="6b5-ha-ibx"/>
                         <outlet property="textField" destination="cfi-up-6SV" id="nP3-jN-KLt"/>
                     </connections>
                 </viewController>
                 <customObject id="zrJ-hz-FyN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="576" y="-1.5"/>
+            <point key="canvasLocation" x="566" y="-1.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
