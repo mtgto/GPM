@@ -716,6 +716,81 @@
             </objects>
             <point key="canvasLocation" x="566" y="-1.5"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="l7U-Ib-N5d">
+            <objects>
+                <viewController id="fPL-09-4Hf" customClass="LoginViewController" customModule="GPM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Gy6-jP-iDm">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="116"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coR-hK-WxX">
+                                <rect key="frame" x="18" y="79" width="421" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter your GitHub OAuth token (note: must have public_repo or repo)" id="Nsg-Xr-g36">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AXA-9t-Yk3">
+                                <rect key="frame" x="20" y="49" width="410" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="lpX-Fg-9yi">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="fPL-09-4Hf" id="1NG-Zo-Zw3"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6nO-Sm-IpQ">
+                                <rect key="frame" x="355" y="13" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="acA-H9-Ptr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addAccessToken:" target="fPL-09-4Hf" id="l4o-eb-R9h"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAJ-a0-Isv">
+                                <rect key="frame" x="274" y="13" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f3m-oC-Bmx">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="quit:" target="fPL-09-4Hf" id="kUf-cP-mY3"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6w0-s7-DHs">
+                                <rect key="frame" x="18" y="20" width="256" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="aew-V8-IU3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="alertTextField" destination="6w0-s7-DHs" id="g5K-hz-02X"/>
+                        <outlet property="okButton" destination="6nO-Sm-IpQ" id="VAy-cj-nBf"/>
+                        <outlet property="tokenTextField" destination="AXA-9t-Yk3" id="PBp-pK-nUW"/>
+                    </connections>
+                </viewController>
+                <customObject id="0lL-7A-3bg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="576" y="161"/>
+        </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
@@ -858,6 +933,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="bJe-dP-kKo" id="mwl-df-T0q"/>
+                        <segue destination="fPL-09-4Hf" kind="sheet" identifier="LoginSegue" id="Yzn-xZ-CBS"/>
                     </connections>
                 </viewController>
                 <customObject id="dP7-88-Njd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

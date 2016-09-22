@@ -11,19 +11,10 @@ import Alamofire
 
 public extension GitHubService {
     public func fetchIssue(owner: String, repo: String, number: Int, handler: @escaping (GitHubResponse<GitHubIssue>) -> Void) {
-        Alamofire.request(self.baseURL.appendingPathComponent("repos/\(owner)/\(repo)/issues/\(number)")!, headers: self.authenticateHeaders())
-            .responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    // TODO: Check status code (200 or other)
-                    if let issue = self.parseIssueResponse(value, owner: owner, repo: repo) {
-                        handler(GitHubResponse.Success(issue))
-                    }
-                case .failure(let error):
-                    print(error)
-                    handler(GitHubResponse.Failure(GitHubError.NetworkError))
-                }
-        }
+        self.fetch(
+            path: "repos/\(owner)/\(repo)/issues/\(number)",
+            parser: { self.parseIssueResponse($0, owner: owner, repo: repo) },
+            handler: handler)
     }
 
     func parseIssueResponse(_ data: Any, owner: String, repo: String) -> GitHubIssue? {

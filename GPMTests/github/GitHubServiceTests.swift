@@ -40,4 +40,11 @@ class GitHubServiceTests: XCTestCase, GitHubTestsSupport {
         let issue = service.parseIssueResponse(json, owner: "octocat", repo: "Hello-World")
         XCTAssertNotNil(issue)
     }
+
+    func testParseUserResponse() {
+        let data = self.dataFromResourceFile("response_user.json")
+        let json = try! JSONSerialization.jsonObject(with: data, options: [])
+        let user = service.parseUser(json)
+        XCTAssertEqual(user.map({ $0.login }), Optional("octocat"))
+    }
 }

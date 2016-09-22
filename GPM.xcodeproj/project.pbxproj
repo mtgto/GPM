@@ -11,6 +11,14 @@
 		CE891A991D8CC7EB000A9711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE891A981D8CC7EB000A9711 /* Assets.xcassets */; };
 		CE891A9C1D8CC7EB000A9711 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE891A9A1D8CC7EB000A9711 /* Main.storyboard */; };
 		CE891AA71D8CC7EB000A9711 /* GPMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE891AA61D8CC7EB000A9711 /* GPMTests.swift */; };
+		CE91FB4E1D92E9E000D5079F /* GitHubService+Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FB4D1D92E9E000D5079F /* GitHubService+Users.swift */; };
+		CE91FB501D92EB2300D5079F /* GitHubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FB4F1D92EB2300D5079F /* GitHubUser.swift */; };
+		CE91FB521D92EF6C00D5079F /* response_user.json in Resources */ = {isa = PBXBuildFile; fileRef = CE91FB511D92EF6C00D5079F /* response_user.json */; };
+		CE91FB541D92F2A800D5079F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FB531D92F2A800D5079F /* LoginViewController.swift */; };
+		CE91FB561D9418E400D5079F /* GitHubScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FB551D9418E400D5079F /* GitHubScope.swift */; };
+		CE951D381D921743004D99F3 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE951D371D921743004D99F3 /* KeychainAccess.framework */; };
+		CE951D391D921743004D99F3 /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE951D371D921743004D99F3 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE951D3B1D92191F004D99F3 /* AccessTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */; };
 		CEC9C5ED1D8CF42B002C218F /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */; };
 		CEC9C5EF1D8CF53C002C218F /* GitHubProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C5EE1D8CF53C002C218F /* GitHubProject.swift */; };
 		CEC9C5F21D8D7CFF002C218F /* GitHubService+Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C5F11D8D7CFF002C218F /* GitHubService+Projects.swift */; };
@@ -55,6 +63,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CE951D391D921743004D99F3 /* KeychainAccess.framework in Embed Frameworks */,
 				CEC9C6001D8D9D64002C218F /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -72,6 +81,13 @@
 		CE891AA61D8CC7EB000A9711 /* GPMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPMTests.swift; sourceTree = "<group>"; };
 		CE891AA81D8CC7EB000A9711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE891AB71D8CD998000A9711 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
+		CE91FB4D1D92E9E000D5079F /* GitHubService+Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubService+Users.swift"; sourceTree = "<group>"; };
+		CE91FB4F1D92EB2300D5079F /* GitHubUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubUser.swift; sourceTree = "<group>"; };
+		CE91FB511D92EF6C00D5079F /* response_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_user.json; sourceTree = "<group>"; };
+		CE91FB531D92F2A800D5079F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CE91FB551D9418E400D5079F /* GitHubScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubScope.swift; sourceTree = "<group>"; };
+		CE951D371D921743004D99F3 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/Mac/KeychainAccess.framework; sourceTree = "<group>"; };
+		CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenService.swift; sourceTree = "<group>"; };
 		CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		CEC9C5EE1D8CF53C002C218F /* GitHubProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubProject.swift; sourceTree = "<group>"; };
 		CEC9C5F11D8D7CFF002C218F /* GitHubService+Projects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubService+Projects.swift"; sourceTree = "<group>"; };
@@ -103,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE951D381D921743004D99F3 /* KeychainAccess.framework in Frameworks */,
 				CEC9C5FF1D8D9D64002C218F /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,15 +156,16 @@
 		CE891A911D8CC7EB000A9711 /* GPM */ = {
 			isa = PBXGroup;
 			children = (
-				CEC9C6161D8E4BE6002C218F /* GPM.entitlements */,
 				CEC9C5EB1D8CF40E002C218F /* github */,
 				CE891A921D8CC7EB000A9711 /* AppDelegate.swift */,
 				CEC9C6241D902E45002C218F /* WindowController.swift */,
 				CEC9C61E1D8EE758002C218F /* SplitViewController.swift */,
 				CEC9C60C1D8E3719002C218F /* BookmarkViewController.swift */,
-				CEC9C6261D903749002C218F /* KanbanRegisterViewController.swift */,
 				CEC9C60E1D8E372B002C218F /* KanbanViewController.swift */,
 				CEC9C6221D8F79C3002C218F /* KanbanCollectionViewLayout.swift */,
+				CEC9C6261D903749002C218F /* KanbanRegisterViewController.swift */,
+				CE91FB531D92F2A800D5079F /* LoginViewController.swift */,
+				CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */,
 				CEC9C6201D8EF045002C218F /* Column.swift */,
 				CEC9C61C1D8EC968002C218F /* Card.swift */,
 				CEC9C6171D8E8744002C218F /* CardViewItem.swift */,
@@ -157,6 +175,7 @@
 				CE891A981D8CC7EB000A9711 /* Assets.xcassets */,
 				CE891A9A1D8CC7EB000A9711 /* Main.storyboard */,
 				CE891A9D1D8CC7EB000A9711 /* Info.plist */,
+				CEC9C6161D8E4BE6002C218F /* GPM.entitlements */,
 			);
 			path = GPM;
 			sourceTree = "<group>";
@@ -175,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				CE891AB71D8CD998000A9711 /* Alamofire.framework */,
+				CE951D371D921743004D99F3 /* KeychainAccess.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,8 +205,11 @@
 				CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */,
 				CEC9C5F11D8D7CFF002C218F /* GitHubService+Projects.swift */,
 				CEC9C6061D8E316F002C218F /* GitHubService+Issues.swift */,
+				CE91FB4D1D92E9E000D5079F /* GitHubService+Users.swift */,
 				CEC9C5EE1D8CF53C002C218F /* GitHubProject.swift */,
 				CEC9C6081D8E324A002C218F /* GitHubIssue.swift */,
+				CE91FB4F1D92EB2300D5079F /* GitHubUser.swift */,
+				CE91FB551D9418E400D5079F /* GitHubScope.swift */,
 			);
 			path = github;
 			sourceTree = "<group>";
@@ -200,6 +223,7 @@
 				CEC9C6021D8DA845002C218F /* response_repos_owner_repo_projects_project_number_columns.json */,
 				CEC9C6041D8DB441002C218F /* response_repos_owner_repo_projects_columns_column_id_cards.json */,
 				CEC9C60A1D8E3373002C218F /* response_repos_owner_repo_issues_number.json */,
+				CE91FB511D92EF6C00D5079F /* response_user.json */,
 			);
 			path = github;
 			sourceTree = "<group>";
@@ -258,6 +282,9 @@
 						DevelopmentTeam = W3A6B7FDC7;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
 							com.apple.Sandbox = {
 								enabled = 1;
 							};
@@ -307,6 +334,7 @@
 			files = (
 				CEC9C6051D8DB441002C218F /* response_repos_owner_repo_projects_columns_column_id_cards.json in Resources */,
 				CEC9C60B1D8E3373002C218F /* response_repos_owner_repo_issues_number.json in Resources */,
+				CE91FB521D92EF6C00D5079F /* response_user.json in Resources */,
 				CEC9C5F91D8D990F002C218F /* response_repos_owner_repo_projects.json in Resources */,
 				CEC9C6031D8DA845002C218F /* response_repos_owner_repo_projects_project_number_columns.json in Resources */,
 			);
@@ -319,7 +347,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE91FB541D92F2A800D5079F /* LoginViewController.swift in Sources */,
+				CE91FB4E1D92E9E000D5079F /* GitHubService+Users.swift in Sources */,
 				CEC9C6091D8E324A002C218F /* GitHubIssue.swift in Sources */,
+				CE951D3B1D92191F004D99F3 /* AccessTokenService.swift in Sources */,
+				CE91FB501D92EB2300D5079F /* GitHubUser.swift in Sources */,
 				CEC9C6071D8E316F002C218F /* GitHubService+Issues.swift in Sources */,
 				CE891A931D8CC7EB000A9711 /* AppDelegate.swift in Sources */,
 				CEC9C6211D8EF045002C218F /* Column.swift in Sources */,
@@ -332,6 +364,7 @@
 				CEC9C61D1D8EC968002C218F /* Card.swift in Sources */,
 				CEC9C6101D8E372B002C218F /* KanbanViewController.swift in Sources */,
 				CEC9C61F1D8EE758002C218F /* SplitViewController.swift in Sources */,
+				CE91FB561D9418E400D5079F /* GitHubScope.swift in Sources */,
 				CEC9C6191D8E8744002C218F /* CardViewItem.swift in Sources */,
 				CEC9C6251D902E45002C218F /* WindowController.swift in Sources */,
 				CEC9C6151D8E4154002C218F /* KanbanService.swift in Sources */,

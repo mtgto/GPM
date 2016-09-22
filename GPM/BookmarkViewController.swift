@@ -15,10 +15,19 @@ class BookmarkViewController: NSViewController, NSTableViewDelegate, NSTableView
     
     static let AddKanbanNotificationName = Notification.Name("AddKanbanNotificationName")
 
+    private static let LoginSegueName = "LoginSegue"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         NotificationCenter.default.addObserver(self, selector: #selector(addKanbanNotification(_:)), name: BookmarkViewController.AddKanbanNotificationName, object: nil)
+    }
+
+    override func viewDidAppear() {
+        if AccessTokenService.sharedInstance.accessToken() == nil {
+            debugPrint("viewDidAppear")
+            self.performSegue(withIdentifier: BookmarkViewController.LoginSegueName, sender: self)
+        }
     }
 
     func addKanbanNotification(_ notification: Notification) {

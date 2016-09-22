@@ -11,67 +11,19 @@ import Alamofire
 
 public extension GitHubService {
     public func fetchProjectsForRepository(owner: String, repo: String, handler: @escaping (GitHubResponse<[GitHubProject]>) -> Void) {
-        Alamofire.request(self.baseURL.appendingPathComponent("repos/\(owner)/\(repo)/projects")!, headers: self.authenticateHeaders())
-            .responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    // TODO: Check status code (200 or other)
-                    if let projects = self.parseProjectsResponse(value) {
-                        handler(GitHubResponse.Success(projects))
-                    }
-                case .failure(let error):
-                    print(error)
-                    handler(GitHubResponse.Failure(GitHubError.NetworkError))
-                }
-        }
+        self.fetch(path: "repos/\(owner)/\(repo)/projects", parser: self.parseProjectsResponse, handler: handler)
     }
 
     public func fetchProject(owner: String, repo: String, projectNumber: Int, handler: @escaping (GitHubResponse<GitHubProject>) -> Void) {
-        Alamofire.request(self.baseURL.appendingPathComponent("repos/\(owner)/\(repo)/projects/\(projectNumber)")!, headers: self.authenticateHeaders())
-            .responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    // TODO: Check status code (200 or other)
-                    if let project = self.parseProjectResponse(value) {
-                        handler(GitHubResponse.Success(project))
-                    }
-                case .failure(let error):
-                    print(error)
-                    handler(GitHubResponse.Failure(GitHubError.NetworkError))
-                }
-        }
+        self.fetch(path: "repos/\(owner)/\(repo)/projects/\(projectNumber)", parser: self.parseProjectResponse, handler: handler)
     }
 
     public func fetchProjectColumnsForProject(owner: String, repo: String, projectNumber: Int, handler: @escaping (GitHubResponse<[GitHubProject.Column]>) -> Void) {
-        Alamofire.request(self.baseURL.appendingPathComponent("repos/\(owner)/\(repo)/projects/\(projectNumber)/columns")!, headers: self.authenticateHeaders())
-            .responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    // TODO: Check status code (200 or other)
-                    if let columns = self.parseProjectColumnsResponse(value) {
-                        handler(GitHubResponse.Success(columns))
-                    }
-                case .failure(let error):
-                    print(error)
-                    handler(GitHubResponse.Failure(GitHubError.NetworkError))
-                }
-            }
+        self.fetch(path: "repos/\(owner)/\(repo)/projects/\(projectNumber)/columns", parser: self.parseProjectColumnsResponse, handler: handler)
     }
 
     public func fetchProjectCardsForProjectColumn(owner: String, repo: String, columnId: Int, handler: @escaping (GitHubResponse<[GitHubProject.Card]>) -> Void) {
-        Alamofire.request(self.baseURL.appendingPathComponent("repos/\(owner)/\(repo)/projects/columns/\(columnId)/cards")!, headers: self.authenticateHeaders())
-            .responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    // TODO: Check status code (200 or other)
-                    if let cards = self.parseProjectCardsResponse(value) {
-                        handler(GitHubResponse.Success(cards))
-                    }
-                case .failure(let error):
-                    print(error)
-                    handler(GitHubResponse.Failure(GitHubError.NetworkError))
-                }
-        }
+        self.fetch(path: "repos/\(owner)/\(repo)/projects/columns/\(columnId)/cards", parser: self.parseProjectCardsResponse, handler: handler)
     }
 
     func parseProjectsResponse(_ data: Any) -> [GitHubProject]? {

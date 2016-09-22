@@ -44,16 +44,16 @@ class KanbanService: NSObject {
 
         group.enter()
         GitHubService.sharedInstance.fetchProjectColumnsForProject(owner: kanban.owner, repo: kanban.repo, projectNumber: kanban.number) { (response) in
-            switch response {
-            case GitHubResponse.Success(let githubColumns):
+            switch response.result {
+            case GitHubResult.Success(let githubColumns):
                 debugPrint("Succeeded to fetch columns: \(githubColumns)")
                 let columns = githubColumns.map({Column(id: $0.id, name: $0.name)})
                 cards = columns.map { ($0, []) }
                 for column in columns {
                     group.enter()
                     GitHubService.sharedInstance.fetchProjectCardsForProjectColumn(owner: kanban.owner, repo: kanban.repo, columnId: column.id) { (response) in
-                        switch response {
-                        case GitHubResponse.Success(let githubCards):
+                        switch response.result {
+                        case GitHubResult.Success(let githubCards):
                             debugPrint("Succeeded to fetch cards: \(githubCards)")
                             group.enter()
                             self.fetchIssues(cards: githubCards, handler: { (cardIssues) in
@@ -66,13 +66,13 @@ class KanbanService: NSObject {
                                 })
                                 group.leave()
                             })
-                        case GitHubResponse.Failure(let error):
+                        case GitHubResult.Failure(let error):
                             print(error)
                         }
                         group.leave()
                     }
                 }
-            case GitHubResponse.Failure(let error):
+            case GitHubResult.Failure(let error):
                 print(error)
             }
             group.leave()
@@ -93,10 +93,10 @@ class KanbanService: NSObject {
                 let last: [GitHubProject.Card] = Array(cards.dropFirst(1))
                 if let issueId = card.issueId {
                     GitHubService.sharedInstance.fetchIssue(owner: issueId.owner, repo: issueId.repo, number: issueId.number) { (response) in
-                        switch response {
-                        case GitHubResponse.Success(let issue):
+                        switch response.result {
+                        case GitHubResult.Success(let issue):
                             loop(cards: last, current: current + [(card, issue)])
-                        case GitHubResponse.Failure(let error):
+                        case GitHubResult.Failure(let error):
                             print(error)
                             loop(cards: last, current: current + [(card, nil)])
                         }
