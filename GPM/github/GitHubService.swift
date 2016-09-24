@@ -20,6 +20,7 @@ public enum GitHubResult<T> {
 }
 
 public enum GitHubError: Error {
+    case NoTokenError
     case NetworkError
     case ParseError
 }
@@ -27,22 +28,49 @@ public enum GitHubError: Error {
 public class GitHubService: NSObject {
     static let sharedInstance: GitHubService = GitHubService()
 
-    var accessToken: String = ""
+    var accessToken: String? = nil
 
-    /**
-     * API endpoint URL. This url must end with a slash.
-     */
-    var baseURL: NSURL = NSURL(string: "https://api.github.com/")!
+    var server: GitHubServer = GitHubServer(
+        apiBaseURL: NSURL(string: "https://api.github.com/")!,
+        webBaseURL: NSURL(string: "https://github.com/")!
+    )
 
-    internal func authenticateHeaders() -> [String:String] {
+    internal func authenticateHeaders(_ accessToken: String) -> [String:String] {
         return [
-            "Authorization": "token \(self.accessToken)",
+            "Authorization": "token \(accessToken)",
             "Accept": "application/vnd.github.inertia-preview+json" // Projects API is still in Early Access. See https://developer.github.com/v3/repos/projects/
         ]
     }
 
     internal func fetch<T>(path: String, parser: @escaping (Any) -> T?, handler: @escaping (GitHubResponse<T>) -> Void) {
-        Alamofire.request(self.baseURL.appendingPathComponent(path)!, headers: self.authenticateHeaders())
+        guard let accessToken = self.accessToken else {
+            handler(GitHubResponse(scopes: [], result: GitHubResult.Failure(.NoTokenError)))
+            return
+        }
+        Alamofire.request(self.server.apiBaseURL.appendingPathComponent(path)!, headers: self.authenticateHeaders(accessToken))
+            .responseJSON { response in
+                let scopes = self.parseScopesFromResponse(response.response)
+                switch response.result {
+                case .success(let value):
+                    // TODO: Check status code (200 or other)
+                    if let parsedValue = parser(value) {
+                        handler(GitHubResponse(scopes: scopes, result: GitHubResult.Success(parsedValue)))
+                    } else {
+                        handler(GitHubResponse(scopes: scopes, result: GitHubResult.Failure(GitHubError.ParseError)))
+                    }
+                case .failure(let error):
+                    print(error)
+                    handler(GitHubResponse(scopes: scopes, result: GitHubResult.Failure(GitHubError.NetworkError)))
+                }
+        }
+    }
+
+    internal func post<T>(path: String, parameters: [String:Any]? = nil, parser: @escaping (Any) -> T?, handler: @escaping (GitHubResponse<T>) -> Void) {
+        guard let accessToken = self.accessToken else {
+            handler(GitHubResponse(scopes: [], result: GitHubResult.Failure(.NoTokenError)))
+            return
+        }
+        Alamofire.request(self.server.apiBaseURL.appendingPathComponent(path)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: self.authenticateHeaders(accessToken))
             .responseJSON { response in
                 let scopes = self.parseScopesFromResponse(response.response)
                 switch response.result {

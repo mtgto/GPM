@@ -27,6 +27,11 @@ public class GitHubProject: NSObject {
     }
 
     public class Card: NSObject {
+        public enum Position {
+            case Top
+            case Bottom
+            case After(Int)
+        }
 
         let id: Int
 

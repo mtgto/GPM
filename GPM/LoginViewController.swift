@@ -50,6 +50,9 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
                 case .ParseError:
                     // TODO: l10n
                     self.alertTextField.stringValue = "Unknown error!"
+                case .NoTokenError:
+                    // TODO: l10n
+                    self.alertTextField.stringValue = "Unknown error!"
                 }
             }
         }

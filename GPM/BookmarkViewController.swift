@@ -51,7 +51,7 @@ class BookmarkViewController: NSViewController, NSTableViewDelegate, NSTableView
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
-        if let tableView = notification.object as? NSTableView {
+        if let tableView = notification.object as? NSTableView, tableView.selectedRow >= 0 {
             let kanban = KanbanService.sharedInstance.kanbans[tableView.selectedRow]
             self.delegate?.kanbanDidSelected(kanban)
         }

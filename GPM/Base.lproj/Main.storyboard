@@ -958,7 +958,7 @@ DQ
                                         <collectionView selectable="YES" id="Fwp-7t-Pg1">
                                             <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <collectionViewLayout key="collectionViewLayout" id="C2C-jQ-Pfi" customClass="KanbanCollectionViewLayout" customModule="GPM" customModuleProvider="target"/>
+                                            <collectionViewLayout key="collectionViewLayout" id="dmo-hP-zNm" customClass="KanbanCollectionViewLayout" customModule="GPM" customModuleProvider="target"/>
                                             <color key="primaryBackgroundColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="Lgg-aU-Ak6" id="3Ny-Ny-jbG"/>

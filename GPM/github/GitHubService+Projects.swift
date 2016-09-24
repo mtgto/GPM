@@ -26,6 +26,23 @@ public extension GitHubService {
         self.fetch(path: "repos/\(owner)/\(repo)/projects/columns/\(columnId)/cards", parser: self.parseProjectCardsResponse, handler: handler)
     }
 
+    // See https://developer.github.com/v3/repos/projects/#move-a-project-card
+    public func updateProjectCardPosition(owner: String, repo: String, cardId: Int, position: GitHubProject.Card.Position, columnId: Int?, handler: @escaping (GitHubResponse<Void>) -> Void) {
+        var parameters: [String: Any]
+        switch position {
+        case .Top:
+            parameters = ["position": "top"]
+        case .Bottom:
+            parameters = ["position": "bottom"]
+        case .After(let cardId):
+            parameters = ["position": "after:\(cardId)"]
+        }
+        if let columnId = columnId {
+            parameters.updateValue(columnId, forKey: "column_id")
+        }
+        self.post(path: "repos/\(owner)/\(repo)/projects/columns/cards/\(cardId)/moves", parameters: parameters, parser: { _ -> Void in }, handler: handler)
+    }
+
     func parseProjectsResponse(_ data: Any) -> [GitHubProject]? {
         if let array = data as? Array<[String:Any]> {
             return array.flatMap({ self.parseProjectResponse($0) })

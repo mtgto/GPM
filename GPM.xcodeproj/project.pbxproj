@@ -16,6 +16,7 @@
 		CE91FB521D92EF6C00D5079F /* response_user.json in Resources */ = {isa = PBXBuildFile; fileRef = CE91FB511D92EF6C00D5079F /* response_user.json */; };
 		CE91FB541D92F2A800D5079F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FB531D92F2A800D5079F /* LoginViewController.swift */; };
 		CE91FB561D9418E400D5079F /* GitHubScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FB551D9418E400D5079F /* GitHubScope.swift */; };
+		CE91FB5C1D960CF900D5079F /* GitHubServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FB5B1D960CF900D5079F /* GitHubServer.swift */; };
 		CE951D381D921743004D99F3 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE951D371D921743004D99F3 /* KeychainAccess.framework */; };
 		CE951D391D921743004D99F3 /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE951D371D921743004D99F3 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE951D3B1D92191F004D99F3 /* AccessTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */; };
@@ -86,6 +87,7 @@
 		CE91FB511D92EF6C00D5079F /* response_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_user.json; sourceTree = "<group>"; };
 		CE91FB531D92F2A800D5079F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE91FB551D9418E400D5079F /* GitHubScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubScope.swift; sourceTree = "<group>"; };
+		CE91FB5B1D960CF900D5079F /* GitHubServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubServer.swift; sourceTree = "<group>"; };
 		CE951D371D921743004D99F3 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/Mac/KeychainAccess.framework; sourceTree = "<group>"; };
 		CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenService.swift; sourceTree = "<group>"; };
 		CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		CEC9C5EB1D8CF40E002C218F /* github */ = {
 			isa = PBXGroup;
 			children = (
+				CE91FB5B1D960CF900D5079F /* GitHubServer.swift */,
 				CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */,
 				CEC9C5F11D8D7CFF002C218F /* GitHubService+Projects.swift */,
 				CEC9C6061D8E316F002C218F /* GitHubService+Issues.swift */,
@@ -348,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE91FB541D92F2A800D5079F /* LoginViewController.swift in Sources */,
+				CE91FB5C1D960CF900D5079F /* GitHubServer.swift in Sources */,
 				CE91FB4E1D92E9E000D5079F /* GitHubService+Users.swift in Sources */,
 				CEC9C6091D8E324A002C218F /* GitHubIssue.swift in Sources */,
 				CE951D3B1D92191F004D99F3 /* AccessTokenService.swift in Sources */,
