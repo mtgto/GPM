@@ -17,8 +17,8 @@ class KanbanCollectionViewLayout: NSCollectionViewLayout {
         if let collectionView = self.collectionView {
             let columns = collectionView.numberOfSections
             let rows = (0..<columns).map({collectionView.numberOfItems(inSection: $0)}).max() ?? 0
-            let width = CardViewItem.width * CGFloat(columns)
-            let height = CardViewItem.height * CGFloat(rows)
+            let width = max(0.0, CardViewItem.width * CGFloat(columns) + CardViewItem.marginWidth * CGFloat(columns - 1))
+            let height = max(0.0, CardViewItem.height * CGFloat(rows) + CardViewItem.marginHeight * CGFloat(rows - 1))
             // TODO: Support header size.
             return NSSize(width: width, height: height)
         } else {
@@ -53,7 +53,9 @@ class KanbanCollectionViewLayout: NSCollectionViewLayout {
 //        }
         //debugPrint("layoutAttributesForItem \(indexPath)")
         let attributes = NSCollectionViewLayoutAttributes(forItemWith: indexPath)
-        attributes.frame = NSRect(x: CardViewItem.width * CGFloat(indexPath.section), y: CardViewItem.height * CGFloat(indexPath.item), width: CardViewItem.width, height: CardViewItem.height)
+        let x = max(0.0, CardViewItem.width * CGFloat(indexPath.section) + CardViewItem.marginWidth * CGFloat(indexPath.section - 1))
+        let y = max(0.0, CardViewItem.height * CGFloat(indexPath.item) + CardViewItem.marginHeight * CGFloat(indexPath.item - 1))
+        attributes.frame = NSRect(x: x, y: y, width: CardViewItem.width, height: CardViewItem.height)
         attributes.zIndex = indexPath.item
         return attributes
     }

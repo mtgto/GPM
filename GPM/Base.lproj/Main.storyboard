@@ -959,7 +959,7 @@ DQ
                                             <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <collectionViewLayout key="collectionViewLayout" id="dmo-hP-zNm" customClass="KanbanCollectionViewLayout" customModule="GPM" customModuleProvider="target"/>
-                                            <color key="primaryBackgroundColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="primaryBackgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="Lgg-aU-Ak6" id="3Ny-Ny-jbG"/>
                                                 <outlet property="delegate" destination="Lgg-aU-Ak6" id="S3h-jn-gvj"/>

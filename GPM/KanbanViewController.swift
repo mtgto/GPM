@@ -22,6 +22,8 @@ class KanbanViewController: NSViewController, NSCollectionViewDelegate, NSCollec
         super.viewDidLoad()
         // Do view setup here.
         self.collectionView.register(forDraggedTypes: [NSURLPboardType])
+        self.collectionView.setDraggingSourceOperationMask(.every, forLocal: true)
+        self.collectionView.setDraggingSourceOperationMask(.every, forLocal: false)
     }
 
     // MARK: - KanbanDelegate
@@ -49,6 +51,7 @@ class KanbanViewController: NSViewController, NSCollectionViewDelegate, NSCollec
         if proposedDropOperation.pointee == NSCollectionViewDropOperation.on {
             proposedDropOperation.pointee = NSCollectionViewDropOperation.before
         }
+        proposedDropOperation.pointee = NSCollectionViewDropOperation.before
         // CAUTION: proposedDropIndexPath might be nil (macOS 10.11.6)
         return NSDragOperation.move
     }
