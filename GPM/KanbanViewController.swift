@@ -15,8 +15,7 @@ protocol KanbanDelegate {
 class KanbanViewController: NSViewController, KanbanDelegate {
     private var kanban: Kanban? = nil
     private var columnCards: [(Column, [Card])] = []
-    private var tableViewControllers: [KanbanColumnTableViewController] = []
-    
+
     @IBOutlet weak var stackView: NSStackView!
     
     override func viewDidLoad() {
@@ -27,7 +26,10 @@ class KanbanViewController: NSViewController, KanbanDelegate {
     // MARK: - KanbanDelegate
     func kanbanDidSelected(_ kanban: Kanban) {
         self.kanban = kanban
-        self.tableViewControllers = []
+        self.childViewControllers.forEach({ viewController in
+            self.stackView.removeView(viewController.view)
+            viewController.removeFromParentViewController()
+        })
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
 //        KanbanService.sharedInstance.fetchKanban(kanban) { (columnCards) in
 //            self.columnCards = columnCards
@@ -40,9 +42,9 @@ class KanbanViewController: NSViewController, KanbanDelegate {
 //        }
         for _ in 1...3 {
             if let viewController = storyboard.instantiateController(withIdentifier: "KanbanColumnTableViewController") as? KanbanColumnTableViewController {
-                    self.tableViewControllers.append(viewController)
-                    self.stackView.addArrangedSubview(viewController.view)
-                }
+                self.addChildViewController(viewController)
+                self.stackView.addArrangedSubview(viewController.view)
+            }
         }
     }
 

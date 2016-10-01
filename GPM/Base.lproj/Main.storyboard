@@ -950,18 +950,17 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="406" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="67" horizontalPageScroll="10" verticalLineScroll="67" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfR-Zt-dKu">
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="73" horizontalPageScroll="10" verticalLineScroll="73" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfR-Zt-dKu">
                                 <rect key="frame" x="0.0" y="0.0" width="406" height="300"/>
                                 <clipView key="contentView" id="DmC-Z5-lXm">
-                                    <rect key="frame" x="1" y="1" width="404" height="298"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="406" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="65" rowSizeStyle="automatic" viewBased="YES" id="caA-dt-vN6">
-                                            <rect key="frame" x="0.0" y="0.0" width="404" height="298"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="406" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
+                                            <size key="intercellSpacing" width="3" height="8"/>
+                                            <color key="backgroundColor" white="0.94481438758389258" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="400" minWidth="40" maxWidth="1000" id="dgA-D4-ENo">
@@ -978,7 +977,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="CardCellView" id="mvl-tA-Rcz" customClass="CardCellView" customModule="GPM" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="400" height="65"/>
+                                                            <rect key="frame" x="1" y="4" width="400" height="65"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5gQ-XQ-lDn">
@@ -993,20 +992,32 @@ DQ
                                                                     <rect key="frame" x="56" y="28" width="343" height="34"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん" id="5Py-bh-noU">
                                                                         <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="umY-OA-bCA">
+                                                                    <rect key="frame" x="56" y="3" width="343" height="17"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Additionals" id="vnn-qU-bPp">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstItem="umY-OA-bCA" firstAttribute="top" secondItem="5TF-WA-VPe" secondAttribute="bottom" constant="8" symbolic="YES" id="1BA-c7-adt"/>
                                                                 <constraint firstItem="5gQ-XQ-lDn" firstAttribute="top" secondItem="mvl-tA-Rcz" secondAttribute="top" constant="3" id="9hL-Be-SWA"/>
                                                                 <constraint firstItem="5gQ-XQ-lDn" firstAttribute="leading" secondItem="mvl-tA-Rcz" secondAttribute="leading" constant="3" id="LAT-hS-o3G"/>
+                                                                <constraint firstItem="umY-OA-bCA" firstAttribute="trailing" secondItem="5TF-WA-VPe" secondAttribute="trailing" id="VqV-jR-yOz"/>
                                                                 <constraint firstItem="5TF-WA-VPe" firstAttribute="leading" secondItem="5gQ-XQ-lDn" secondAttribute="trailing" constant="23" id="ZD7-X6-MC9"/>
                                                                 <constraint firstAttribute="trailing" secondItem="5TF-WA-VPe" secondAttribute="trailing" constant="3" id="pRc-zc-sot"/>
+                                                                <constraint firstItem="umY-OA-bCA" firstAttribute="leading" secondItem="5TF-WA-VPe" secondAttribute="leading" id="rmw-eQ-RPL"/>
                                                                 <constraint firstItem="5TF-WA-VPe" firstAttribute="top" secondItem="mvl-tA-Rcz" secondAttribute="top" constant="3" id="uWb-V5-Amk"/>
                                                                 <constraint firstAttribute="bottom" secondItem="5TF-WA-VPe" secondAttribute="bottom" constant="28" id="wTG-Ay-aub"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="additionalTextField" destination="umY-OA-bCA" id="n94-0e-NS3"/>
                                                                 <outlet property="imageView" destination="5gQ-XQ-lDn" id="jb2-3J-3x8"/>
                                                                 <outlet property="textField" destination="5TF-WA-VPe" id="Jb4-7h-Jei"/>
                                                             </connections>
@@ -1041,6 +1052,9 @@ DQ
                             <constraint firstAttribute="trailing" secondItem="JfR-Zt-dKu" secondAttribute="trailing" id="YuV-Es-Bud"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="caA-dt-vN6" id="rdu-xw-nc2"/>
+                    </connections>
                 </viewController>
                 <customObject id="7MV-R8-kNd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1054,7 +1068,7 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fillProportionally" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ifi-hI-gtx">
+                            <stackView distribution="fillProportionally" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ifi-hI-gtx">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                             </stackView>
                         </subviews>
