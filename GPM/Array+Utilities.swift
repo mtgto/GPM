@@ -9,6 +9,12 @@
 import Foundation
 
 extension Array {
+    mutating func remove(at: IndexSet) {
+        for i: Int in at.sorted().reversed() {
+            self.remove(at: i)
+        }
+    }
+
     /**
      * Move items to the new position.
      */

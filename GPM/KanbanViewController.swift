@@ -23,6 +23,10 @@ class KanbanViewController: NSViewController, KanbanDelegate {
         // Do view setup here.
     }
 
+    func columnTableViewControllerAtIndex(_ columnIndex: Int) -> KanbanColumnTableViewController {
+        return self.childViewControllers[columnIndex] as! KanbanColumnTableViewController
+    }
+
     // MARK: - KanbanDelegate
     func kanbanDidSelected(_ kanban: Kanban) {
         self.kanban = kanban
@@ -40,7 +44,7 @@ class KanbanViewController: NSViewController, KanbanDelegate {
 //                }
 //            }
 //        }
-        for columnIndex in 1...3 {
+        for columnIndex in 0..<3 {
             if let viewController = storyboard.instantiateController(withIdentifier: "KanbanColumnTableViewController") as? KanbanColumnTableViewController {
                 viewController.columnIndex = columnIndex
                 self.addChildViewController(viewController)

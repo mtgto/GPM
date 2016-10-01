@@ -43,9 +43,17 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
         super.viewDidLoad()
         // Do view setup here.
         cards = cards.enumerated().map({ (offset, element) -> String in
-            return String(repeating: "\(offset) あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん", count: offset + 1)
+            return String(repeating: "\(offset),\(self.columnIndex) あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん", count: offset + 1)
         })
+        self.tableView.draggingDestinationFeedbackStyle = .gap
         self.tableView.register(forDraggedTypes: [KanbanColumnTableViewController.CardsType])
+    }
+
+    func removeAtIndexSet(_ indexSet: IndexSet) -> [String] {
+        let removed = indexSet.map({self.cards[$0]})
+        self.tableView.removeRows(at: indexSet, withAnimation: NSTableViewAnimationOptions.slideUp)
+        self.cards.remove(at: indexSet)
+        return removed
     }
 
     // MARK: - NSTableViewDataSource
@@ -76,7 +84,7 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
         if let data = pboard.data(forType: KanbanColumnTableViewController.CardsType) {
             if let cardPosition = NSKeyedUnarchiver.unarchiveObject(with: data) as? CardPosition {
                 if cardPosition.columnIndex == self.columnIndex {
-                    // Move
+                    // Move from same tableView.
                     self.tableView.beginUpdates()
                     self.cards = self.cards.moveItems(from: cardPosition.rowIndexes, to: row)
                     var oldOffset = 0
@@ -91,6 +99,19 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
                         }
                     }
                     self.tableView.endUpdates()
+                    return true
+                } else {
+                    // Move from other tableView.
+                    self.tableView.beginUpdates()
+                    if let parentViewController = self.parent as? KanbanViewController {
+                        let sourceViewController = parentViewController.columnTableViewControllerAtIndex(cardPosition.columnIndex)
+                        let items = sourceViewController.removeAtIndexSet(cardPosition.rowIndexes)
+                        self.cards.insert(contentsOf: items, at: row)
+                        let addedIndexSet = IndexSet(integersIn: row..<row+items.count)
+                        self.tableView.insertRows(at: addedIndexSet, withAnimation: NSTableViewAnimationOptions.slideDown)
+                    }
+                    self.tableView.endUpdates()
+                    return true
                 }
             }
         }
