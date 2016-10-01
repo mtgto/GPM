@@ -40,8 +40,9 @@ class KanbanViewController: NSViewController, KanbanDelegate {
 //                }
 //            }
 //        }
-        for _ in 1...3 {
+        for columnIndex in 1...3 {
             if let viewController = storyboard.instantiateController(withIdentifier: "KanbanColumnTableViewController") as? KanbanColumnTableViewController {
+                viewController.columnIndex = columnIndex
                 self.addChildViewController(viewController)
                 self.stackView.addArrangedSubview(viewController.view)
             }

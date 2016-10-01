@@ -23,6 +23,8 @@
 		CE951D391D921743004D99F3 /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE951D371D921743004D99F3 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE951D3B1D92191F004D99F3 /* AccessTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */; };
 		CEB662931D9F98AC003D8458 /* CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB662921D9F98AC003D8458 /* CardTests.swift */; };
+		CEB662951D9FF18D003D8458 /* Array+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB662941D9FF18D003D8458 /* Array+Utilities.swift */; };
+		CEB662971D9FF1CE003D8458 /* ArrayUtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB662961D9FF1CE003D8458 /* ArrayUtilitiesTests.swift */; };
 		CEC9C5ED1D8CF42B002C218F /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */; };
 		CEC9C5EF1D8CF53C002C218F /* GitHubProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C5EE1D8CF53C002C218F /* GitHubProject.swift */; };
 		CEC9C5F21D8D7CFF002C218F /* GitHubService+Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C5F11D8D7CFF002C218F /* GitHubService+Projects.swift */; };
@@ -93,6 +95,8 @@
 		CE951D371D921743004D99F3 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/Mac/KeychainAccess.framework; sourceTree = "<group>"; };
 		CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenService.swift; sourceTree = "<group>"; };
 		CEB662921D9F98AC003D8458 /* CardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTests.swift; sourceTree = "<group>"; };
+		CEB662941D9FF18D003D8458 /* Array+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utilities.swift"; sourceTree = "<group>"; };
+		CEB662961D9FF1CE003D8458 /* ArrayUtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayUtilitiesTests.swift; sourceTree = "<group>"; };
 		CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		CEC9C5EE1D8CF53C002C218F /* GitHubProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubProject.swift; sourceTree = "<group>"; };
 		CEC9C5F11D8D7CFF002C218F /* GitHubService+Projects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubService+Projects.swift"; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				CE5901A81D998C1B00659FFC /* CardCellView.swift */,
 				CEC9C6141D8E4154002C218F /* KanbanService.swift */,
 				CEC9C6121D8E3B2C002C218F /* Kanban.swift */,
+				CEB662941D9FF18D003D8458 /* Array+Utilities.swift */,
 				CE891A981D8CC7EB000A9711 /* Assets.xcassets */,
 				CE891A9A1D8CC7EB000A9711 /* Main.storyboard */,
 				CE891A9D1D8CC7EB000A9711 /* Info.plist */,
@@ -186,8 +191,9 @@
 			children = (
 				CEC9C5F31D8D94C7002C218F /* github */,
 				CE891AA61D8CC7EB000A9711 /* GPMTests.swift */,
-				CE891AA81D8CC7EB000A9711 /* Info.plist */,
 				CEB662921D9F98AC003D8458 /* CardTests.swift */,
+				CE891AA81D8CC7EB000A9711 /* Info.plist */,
+				CEB662961D9FF1CE003D8458 /* ArrayUtilitiesTests.swift */,
 			);
 			path = GPMTests;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				CEC9C6271D903749002C218F /* KanbanRegisterViewController.swift in Sources */,
 				CE5901A91D998C1B00659FFC /* CardCellView.swift in Sources */,
 				CEC9C5EF1D8CF53C002C218F /* GitHubProject.swift in Sources */,
+				CEB662951D9FF18D003D8458 /* Array+Utilities.swift in Sources */,
 				CEC9C5F21D8D7CFF002C218F /* GitHubService+Projects.swift in Sources */,
 				CEC9C61D1D8EC968002C218F /* Card.swift in Sources */,
 				CE91FB811D997C4600D5079F /* KanbanColumnTableViewController.swift in Sources */,
@@ -383,6 +390,7 @@
 				CE891AA71D8CC7EB000A9711 /* GPMTests.swift in Sources */,
 				CEC9C5F71D8D9708002C218F /* GitHubTestsSupport.swift in Sources */,
 				CEB662931D9F98AC003D8458 /* CardTests.swift in Sources */,
+				CEB662971D9FF1CE003D8458 /* ArrayUtilitiesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
