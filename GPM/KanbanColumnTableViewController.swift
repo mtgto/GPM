@@ -50,20 +50,31 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
         self.tableView.register(forDraggedTypes: [KanbanColumnTableViewController.CardsType])
     }
 
-    func removeAtIndexSet(_ indexSet: IndexSet) -> [Card] {
-        let removed = indexSet.map({self.cards[$0]})
-        self.tableView.removeRows(at: indexSet, withAnimation: NSTableViewAnimationOptions.slideUp)
-        self.cards.remove(at: indexSet)
+    /**
+     * Remove items from cards parameter and table rows.
+     *
+     * - rowIndexes: Set of the TableRow.
+     */
+    func removeAtRowIndexes(_ rowIndexes: IndexSet) -> [Card] {
+        let itemIndexes = IndexSet(rowIndexes.map({$0-1}))
+        let removed = itemIndexes.map({self.cards[$0]})
+        self.tableView.removeRows(at: rowIndexes, withAnimation: NSTableViewAnimationOptions.slideUp)
+        self.cards.remove(at: itemIndexes)
         return removed
     }
 
     // MARK: - NSTableViewDataSource
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.cards.count
+        return self.cards.count + 1
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        return self.cards[row]
+        if row == 0 {
+            return self.column
+        } else {
+            let cardIndex = row - 1
+            return self.cards[cardIndex]
+        }
     }
 
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
@@ -82,14 +93,15 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
 
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
         let pboard = info.draggingPasteboard()
+        let cardIndex = row - 1
         if let data = pboard.data(forType: KanbanColumnTableViewController.CardsType) {
             if let cardPosition = NSKeyedUnarchiver.unarchiveObject(with: data) as? CardPosition {
-                let position = row == 0 ? GitHubProject.Card.Position.Top : GitHubProject.Card.Position.After(self.cards[row-1].id)
+                let position = cardIndex == 0 ? GitHubProject.Card.Position.Top : GitHubProject.Card.Position.After(self.cards[cardIndex-1].id)
                 if cardPosition.columnIndex == self.columnIndex {
                     // Move from same tableView.
                     self.tableView.beginUpdates()
                     let items = self.cards[cardPosition.rowIndexes]
-                    self.cards = self.cards.moveItems(from: cardPosition.rowIndexes, to: row)
+                    self.cards = self.cards.moveItems(from: IndexSet(cardPosition.rowIndexes.map({$0-1})), to: cardIndex)
                     var oldOffset = 0
                     var newOffset = 0
                     for index in Array(cardPosition.rowIndexes).sorted().reversed() {
@@ -114,10 +126,10 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
                     self.tableView.beginUpdates()
                     let parentViewController = self.parent as! KanbanViewController
                     let sourceViewController = parentViewController.columnTableViewControllerAtIndex(cardPosition.columnIndex)
-                    let items = sourceViewController.removeAtIndexSet(cardPosition.rowIndexes)
-                    self.cards.insert(contentsOf: items, at: row)
-                    let addedIndexSet = IndexSet(integersIn: row..<row+items.count)
-                    self.tableView.insertRows(at: addedIndexSet, withAnimation: NSTableViewAnimationOptions.slideDown)
+                    let items = sourceViewController.removeAtRowIndexes(cardPosition.rowIndexes)
+                    self.cards.insert(contentsOf: items, at: cardIndex)
+                    let addedRowIndexes = IndexSet(integersIn: row..<row+items.count)
+                    self.tableView.insertRows(at: addedRowIndexes, withAnimation: NSTableViewAnimationOptions.slideDown)
                     self.tableView.endUpdates()
                     if let kanban = self.kanban, let column = self.column {
                         for item in items.reversed() {
@@ -137,24 +149,43 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
     // MARK: - NSTableViewDelegate
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         //debugPrint("tableView.width = \(tableView.frame.size.width)")
-        if let cardCellView = tableView.make(withIdentifier: "CardCellView", owner: self) as? CardCellView {
-            cardCellView.textField?.stringValue = self.cards[row].title!
-            return cardCellView
+        if row == 0 {
+            // header
+            if let headerCellView = tableView.make(withIdentifier: "HeaderCellView", owner: self) as? HeaderCellView {
+                headerCellView.textField?.stringValue = self.column!.name
+                return headerCellView
+            }
         } else {
-            debugPrint("AAAAAAAAAAAAAAAAAA")
-            return nil
+            // cards
+            let cardIndex = row - 1
+            if let cardCellView = tableView.make(withIdentifier: "CardCellView", owner: self) as? CardCellView {
+                cardCellView.textField?.stringValue = self.cards[cardIndex].title!
+                return cardCellView
+            }
         }
+        print("ERROR: no reachable.")
+        return nil
     }
 
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         //debugPrint("heightOfRow:\(row)")
-        if let view = tableView.make(withIdentifier: "CardCellView", owner: self) as? CardCellView {
-            view.textField?.stringValue = self.cards[row].title!
-            //view.textField?.preferredMaxLayoutWidth = 50
-            return view.fittingSize.height
+        if row == 0 {
+            // header
+            if let view = tableView.make(withIdentifier: "HeaderCellView", owner: self) as? HeaderCellView {
+                view.textField?.stringValue = self.column!.name
+                return view.fittingSize.height
+            }
         } else {
-            return 0.0
+            // cards
+            let cardIndex = row - 1
+            if let view = tableView.make(withIdentifier: "CardCellView", owner: self) as? CardCellView {
+                view.textField?.stringValue = self.cards[cardIndex].title!
+                //view.textField?.preferredMaxLayoutWidth = 50
+                return view.fittingSize.height
+            }
         }
+        print("ERROR: no reachable.")
+        return 0.0
     }
 
     func tableViewColumnDidResize(_ notification: Notification) {

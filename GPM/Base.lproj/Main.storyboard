@@ -976,8 +976,31 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
+                                                        <tableCellView identifier="HeaderCellView" id="Uru-Yu-LX6" customClass="HeaderCellView" customModule="GPM" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="4" width="400" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="mWy-eb-pRr">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="400" height="17"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="bK2-ao-NRs">
+                                                                        <font key="font" metaFont="systemBold"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="mWy-eb-pRr" firstAttribute="leading" secondItem="Uru-Yu-LX6" secondAttribute="leading" constant="2" id="5Ck-8f-s3k"/>
+                                                                <constraint firstAttribute="trailing" secondItem="mWy-eb-pRr" secondAttribute="trailing" constant="2" id="ay0-cV-NZo"/>
+                                                                <constraint firstItem="mWy-eb-pRr" firstAttribute="top" secondItem="Uru-Yu-LX6" secondAttribute="top" id="uxA-v0-ruN"/>
+                                                                <constraint firstAttribute="bottom" secondItem="mWy-eb-pRr" secondAttribute="bottom" id="yJt-K6-Fbe"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="textField" destination="mWy-eb-pRr" id="rXp-0I-5N5"/>
+                                                            </connections>
+                                                        </tableCellView>
                                                         <tableCellView identifier="CardCellView" id="mvl-tA-Rcz" customClass="CardCellView" customModule="GPM" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="4" width="400" height="65"/>
+                                                            <rect key="frame" x="1" y="29" width="400" height="65"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5gQ-XQ-lDn">
