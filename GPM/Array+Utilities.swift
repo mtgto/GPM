@@ -33,4 +33,8 @@ extension Array {
         }
         return left + center + right
     }
+
+    subscript(indexSet: IndexSet) -> [Element] {
+        return indexSet.map({self[$0]})
+    }
 }

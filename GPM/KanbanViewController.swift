@@ -35,20 +35,17 @@ class KanbanViewController: NSViewController, KanbanDelegate {
             viewController.removeFromParentViewController()
         })
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
-//        KanbanService.sharedInstance.fetchKanban(kanban) { (columnCards) in
-//            self.columnCards = columnCards
-//            //self.collectionView.reloadData()
-//            for _ in columnCards {
-//                if let viewController = storyboard.instantiateController(withIdentifier: "KanbanColumnTableViewController") as? KanbanColumnTableViewController {
-//                    self.stackView.addArrangedSubview(viewController.view)
-//                }
-//            }
-//        }
-        for columnIndex in 0..<3 {
-            if let viewController = storyboard.instantiateController(withIdentifier: "KanbanColumnTableViewController") as? KanbanColumnTableViewController {
-                viewController.columnIndex = columnIndex
-                self.addChildViewController(viewController)
-                self.stackView.addArrangedSubview(viewController.view)
+        KanbanService.sharedInstance.fetchKanban(kanban) { (columnCards) in
+            self.columnCards = columnCards
+            for (columnIndex, (column, cards)) in columnCards.enumerated() {
+                if let viewController = storyboard.instantiateController(withIdentifier: "KanbanColumnTableViewController") as? KanbanColumnTableViewController {
+                    viewController.kanban = kanban
+                    viewController.columnIndex = columnIndex
+                    viewController.column = column
+                    viewController.cards = cards
+                    self.addChildViewController(viewController)
+                    self.stackView.addArrangedSubview(viewController.view)
+                }
             }
         }
     }

@@ -33,23 +33,24 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
 
     @IBOutlet weak var tableView: NSTableView!
 
+    var kanban: Kanban? = nil
+
+    var column: Column? = nil
+
     var columnIndex: Int = -1
 
-    var cards: [String] = Array(repeating: "", count: 10)
+    var cards: [Card] = []
 
     static let CardsType = "net.mtgto.GPM.KanbanColumnTableViewController.cards"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        cards = cards.enumerated().map({ (offset, element) -> String in
-            return String(repeating: "\(offset),\(self.columnIndex) あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん", count: offset + 1)
-        })
         self.tableView.draggingDestinationFeedbackStyle = .gap
         self.tableView.register(forDraggedTypes: [KanbanColumnTableViewController.CardsType])
     }
 
-    func removeAtIndexSet(_ indexSet: IndexSet) -> [String] {
+    func removeAtIndexSet(_ indexSet: IndexSet) -> [Card] {
         let removed = indexSet.map({self.cards[$0]})
         self.tableView.removeRows(at: indexSet, withAnimation: NSTableViewAnimationOptions.slideUp)
         self.cards.remove(at: indexSet)
@@ -83,9 +84,11 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
         let pboard = info.draggingPasteboard()
         if let data = pboard.data(forType: KanbanColumnTableViewController.CardsType) {
             if let cardPosition = NSKeyedUnarchiver.unarchiveObject(with: data) as? CardPosition {
+                let position = row == 0 ? GitHubProject.Card.Position.Top : GitHubProject.Card.Position.After(self.cards[row-1].id)
                 if cardPosition.columnIndex == self.columnIndex {
                     // Move from same tableView.
                     self.tableView.beginUpdates()
+                    let items = self.cards[cardPosition.rowIndexes]
                     self.cards = self.cards.moveItems(from: cardPosition.rowIndexes, to: row)
                     var oldOffset = 0
                     var newOffset = 0
@@ -99,18 +102,31 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
                         }
                     }
                     self.tableView.endUpdates()
+                    if let kanban = self.kanban {
+                        for item in items.reversed() {
+                            GitHubService.sharedInstance.updateProjectCardPosition(owner: kanban.owner, repo: kanban.repo, cardId: item.id, position: position, columnId: nil) { response in
+                            }
+                        }
+                    }
                     return true
                 } else {
                     // Move from other tableView.
                     self.tableView.beginUpdates()
-                    if let parentViewController = self.parent as? KanbanViewController {
-                        let sourceViewController = parentViewController.columnTableViewControllerAtIndex(cardPosition.columnIndex)
-                        let items = sourceViewController.removeAtIndexSet(cardPosition.rowIndexes)
-                        self.cards.insert(contentsOf: items, at: row)
-                        let addedIndexSet = IndexSet(integersIn: row..<row+items.count)
-                        self.tableView.insertRows(at: addedIndexSet, withAnimation: NSTableViewAnimationOptions.slideDown)
-                    }
+                    let parentViewController = self.parent as! KanbanViewController
+                    let sourceViewController = parentViewController.columnTableViewControllerAtIndex(cardPosition.columnIndex)
+                    let items = sourceViewController.removeAtIndexSet(cardPosition.rowIndexes)
+                    self.cards.insert(contentsOf: items, at: row)
+                    let addedIndexSet = IndexSet(integersIn: row..<row+items.count)
+                    self.tableView.insertRows(at: addedIndexSet, withAnimation: NSTableViewAnimationOptions.slideDown)
                     self.tableView.endUpdates()
+                    if let kanban = self.kanban, let column = self.column {
+                        for item in items.reversed() {
+                            GitHubService.sharedInstance.updateProjectCardPosition(owner: kanban.owner, repo: kanban.repo, cardId: item.id, position: position, columnId: column.id) { response in
+                                // TODO: error
+                                debugPrint("response: \(response)")
+                            }
+                        }
+                    }
                     return true
                 }
             }
@@ -122,7 +138,7 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         //debugPrint("tableView.width = \(tableView.frame.size.width)")
         if let cardCellView = tableView.make(withIdentifier: "CardCellView", owner: self) as? CardCellView {
-            cardCellView.textField?.stringValue = self.cards[row]
+            cardCellView.textField?.stringValue = self.cards[row].title!
             return cardCellView
         } else {
             debugPrint("AAAAAAAAAAAAAAAAAA")
@@ -133,13 +149,12 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         //debugPrint("heightOfRow:\(row)")
         if let view = tableView.make(withIdentifier: "CardCellView", owner: self) as? CardCellView {
-            view.textField?.stringValue = self.cards[row]
+            view.textField?.stringValue = self.cards[row].title!
             //view.textField?.preferredMaxLayoutWidth = 50
             return view.fittingSize.height
         } else {
             return 0.0
         }
-//        return 76.0
     }
 
     func tableViewColumnDidResize(_ notification: Notification) {
