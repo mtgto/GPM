@@ -8,7 +8,11 @@
 
 import Cocoa
 
-class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+protocol ColumnDelegate: class {
+    func addCard(_ card: Card)
+}
+
+class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, ColumnDelegate {
 
     class CardPosition: NSObject, NSCoding {
         let columnIndex: Int
@@ -33,9 +37,9 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
 
     @IBOutlet weak var tableView: NSTableView!
 
-    var kanban: Kanban? = nil
+    var kanban: Kanban! = nil
 
-    var column: Column? = nil
+    var column: Column! = nil
 
     var columnIndex: Int = -1
 
@@ -61,6 +65,23 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
         self.tableView.removeRows(at: rowIndexes, withAnimation: NSTableViewAnimationOptions.slideUp)
         self.cards.remove(at: itemIndexes)
         return removed
+    }
+
+    @IBAction func addNote(_ sender: AnyObject) {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        if let viewController = storyboard.instantiateController(withIdentifier: "KanbanColumnNoteRegisterViewController") as? KanbanColumnNoteRegisterViewController {
+            viewController.kanban = self.kanban
+            viewController.column = self.column
+            viewController.columnDelegate = self
+            debugPrint("self.view.frame: \(self.view.frame), self.view.bounds: \(self.view.bounds), sender.frame: \(sender.frame)")
+            self.presentViewController(viewController, asPopoverRelativeTo: self.view.bounds, of: self.view, preferredEdge: NSRectEdge.maxY, behavior: NSPopoverBehavior.transient)
+        }
+    }
+
+    // MARK: - ColumnDelegate
+    func addCard(_ card: Card) {
+        self.cards.insert(card, at: 0)
+        self.tableView.insertRows(at: IndexSet(integer: 1), withAnimation: .effectGap)
     }
 
     // MARK: - NSTableViewDataSource
@@ -100,8 +121,9 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
                 if cardPosition.columnIndex == self.columnIndex {
                     // Move from same tableView.
                     self.tableView.beginUpdates()
-                    let items = self.cards[cardPosition.rowIndexes]
-                    self.cards = self.cards.moveItems(from: IndexSet(cardPosition.rowIndexes.map({$0-1})), to: cardIndex)
+                    let itemIndexes = IndexSet(cardPosition.rowIndexes.map({$0-1}))
+                    let items = self.cards[itemIndexes]
+                    self.cards = self.cards.moveItems(from: itemIndexes, to: cardIndex)
                     var oldOffset = 0
                     var newOffset = 0
                     for index in Array(cardPosition.rowIndexes).sorted().reversed() {
@@ -114,10 +136,8 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
                         }
                     }
                     self.tableView.endUpdates()
-                    if let kanban = self.kanban {
-                        for item in items.reversed() {
-                            GitHubService.sharedInstance.updateProjectCardPosition(owner: kanban.owner, repo: kanban.repo, cardId: item.id, position: position, columnId: nil) { response in
-                            }
+                    for item in items.reversed() {
+                        GitHubService.sharedInstance.updateProjectCardPosition(owner: self.kanban.owner, repo: self.kanban.repo, cardId: item.id, position: position, columnId: nil) { response in
                         }
                     }
                     return true
@@ -131,12 +151,10 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
                     let addedRowIndexes = IndexSet(integersIn: row..<row+items.count)
                     self.tableView.insertRows(at: addedRowIndexes, withAnimation: NSTableViewAnimationOptions.slideDown)
                     self.tableView.endUpdates()
-                    if let kanban = self.kanban, let column = self.column {
-                        for item in items.reversed() {
-                            GitHubService.sharedInstance.updateProjectCardPosition(owner: kanban.owner, repo: kanban.repo, cardId: item.id, position: position, columnId: column.id) { response in
-                                // TODO: error
-                                debugPrint("response: \(response)")
-                            }
+                    for item in items.reversed() {
+                        GitHubService.sharedInstance.updateProjectCardPosition(owner: self.kanban.owner, repo: self.kanban.repo, cardId: item.id, position: position, columnId: self.column.id) { response in
+                            // TODO: error
+                            debugPrint("response: \(response)")
                         }
                     }
                     return true
@@ -152,7 +170,7 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
         if row == 0 {
             // header
             if let headerCellView = tableView.make(withIdentifier: "HeaderCellView", owner: self) as? HeaderCellView {
-                headerCellView.textField?.stringValue = self.column!.name
+                headerCellView.textField?.stringValue = self.column.name
                 return headerCellView
             }
         } else {

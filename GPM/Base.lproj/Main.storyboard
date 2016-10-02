@@ -981,17 +981,28 @@ DQ
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="mWy-eb-pRr">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="400" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="363" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="bK2-ao-NRs">
                                                                         <font key="font" metaFont="systemBold"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vmx-L8-8Eq">
+                                                                    <rect key="frame" x="369" y="0.0" width="28" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <buttonCell key="cell" type="inline" bezelStyle="inline" image="NSAddTemplate" imagePosition="overlaps" alignment="center" inset="2" id="0oW-DG-gB7">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="smallSystemBold"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="addNote:" target="046-9c-EYw" id="uP3-Ku-xzr"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="mWy-eb-pRr" firstAttribute="leading" secondItem="Uru-Yu-LX6" secondAttribute="leading" constant="2" id="5Ck-8f-s3k"/>
-                                                                <constraint firstAttribute="trailing" secondItem="mWy-eb-pRr" secondAttribute="trailing" constant="2" id="ay0-cV-NZo"/>
+                                                                <constraint firstAttribute="trailing" secondItem="mWy-eb-pRr" secondAttribute="trailing" constant="39" id="ay0-cV-NZo"/>
                                                                 <constraint firstItem="mWy-eb-pRr" firstAttribute="top" secondItem="Uru-Yu-LX6" secondAttribute="top" id="uxA-v0-ruN"/>
                                                                 <constraint firstAttribute="bottom" secondItem="mWy-eb-pRr" secondAttribute="bottom" id="yJt-K6-Fbe"/>
                                                             </constraints>
@@ -1082,6 +1093,54 @@ DQ
                 <customObject id="7MV-R8-kNd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="105" y="1380"/>
+        </scene>
+        <!--Kanban Column Note Register View Controller-->
+        <scene sceneID="TgZ-vL-FnS">
+            <objects>
+                <viewController storyboardIdentifier="KanbanColumnNoteRegisterViewController" id="VOq-J7-5DY" customClass="KanbanColumnNoteRegisterViewController" customModule="GPM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Ujc-Zy-lgd">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="154"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vmh-am-6IA">
+                                <rect key="frame" x="20" y="45" width="410" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Oax-uQ-MOl">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RiJ-nb-Ca2">
+                                <rect key="frame" x="18" y="18" width="332" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="qS1-d7-KpH">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uZS-m3-hFj">
+                                <rect key="frame" x="350" y="9" width="86" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Add note" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MsK-eQ-qlJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addNote:" target="VOq-J7-5DY" id="eF7-OH-hQd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="alertTextField" destination="RiJ-nb-Ca2" id="YZT-eM-rAf"/>
+                        <outlet property="textField" destination="Vmh-am-6IA" id="Ypd-UC-AXa"/>
+                    </connections>
+                </viewController>
+                <customObject id="2Y2-qF-5NI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="105" y="1731"/>
         </scene>
         <!--Kanban View Controller-->
         <scene sceneID="vke-iW-1Ye">

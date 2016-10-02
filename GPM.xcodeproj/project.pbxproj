@@ -26,6 +26,8 @@
 		CEB662951D9FF18D003D8458 /* Array+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB662941D9FF18D003D8458 /* Array+Utilities.swift */; };
 		CEB662971D9FF1CE003D8458 /* ArrayUtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB662961D9FF1CE003D8458 /* ArrayUtilitiesTests.swift */; };
 		CEB6629C1DA15CAB003D8458 /* HeaderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6629B1DA15CAB003D8458 /* HeaderCellView.swift */; };
+		CEB6629E1DA16D4C003D8458 /* KanbanColumnNoteRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6629D1DA16D4C003D8458 /* KanbanColumnNoteRegisterViewController.swift */; };
+		CEB662A01DA17002003D8458 /* response_repos_owner_repo_projects_columns_column_id_card.json in Resources */ = {isa = PBXBuildFile; fileRef = CEB6629F1DA17002003D8458 /* response_repos_owner_repo_projects_columns_column_id_card.json */; };
 		CEC9C5ED1D8CF42B002C218F /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */; };
 		CEC9C5EF1D8CF53C002C218F /* GitHubProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C5EE1D8CF53C002C218F /* GitHubProject.swift */; };
 		CEC9C5F21D8D7CFF002C218F /* GitHubService+Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9C5F11D8D7CFF002C218F /* GitHubService+Projects.swift */; };
@@ -99,6 +101,8 @@
 		CEB662941D9FF18D003D8458 /* Array+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utilities.swift"; sourceTree = "<group>"; };
 		CEB662961D9FF1CE003D8458 /* ArrayUtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayUtilitiesTests.swift; sourceTree = "<group>"; };
 		CEB6629B1DA15CAB003D8458 /* HeaderCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderCellView.swift; path = GPM/HeaderCellView.swift; sourceTree = SOURCE_ROOT; };
+		CEB6629D1DA16D4C003D8458 /* KanbanColumnNoteRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KanbanColumnNoteRegisterViewController.swift; path = GPM/KanbanColumnNoteRegisterViewController.swift; sourceTree = SOURCE_ROOT; };
+		CEB6629F1DA17002003D8458 /* response_repos_owner_repo_projects_columns_column_id_card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_repos_owner_repo_projects_columns_column_id_card.json; sourceTree = "<group>"; };
 		CEC9C5EC1D8CF42B002C218F /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		CEC9C5EE1D8CF53C002C218F /* GitHubProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubProject.swift; sourceTree = "<group>"; };
 		CEC9C5F11D8D7CFF002C218F /* GitHubService+Projects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubService+Projects.swift"; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 				CEC9C60C1D8E3719002C218F /* BookmarkViewController.swift */,
 				CEC9C60E1D8E372B002C218F /* KanbanViewController.swift */,
 				CE91FB801D997C4600D5079F /* KanbanColumnTableViewController.swift */,
+				CEB6629D1DA16D4C003D8458 /* KanbanColumnNoteRegisterViewController.swift */,
 				CEC9C6261D903749002C218F /* KanbanRegisterViewController.swift */,
 				CE91FB531D92F2A800D5079F /* LoginViewController.swift */,
 				CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */,
@@ -234,6 +239,7 @@
 				CEC9C5F81D8D990F002C218F /* response_repos_owner_repo_projects.json */,
 				CEC9C6021D8DA845002C218F /* response_repos_owner_repo_projects_project_number_columns.json */,
 				CEC9C6041D8DB441002C218F /* response_repos_owner_repo_projects_columns_column_id_cards.json */,
+				CEB6629F1DA17002003D8458 /* response_repos_owner_repo_projects_columns_column_id_card.json */,
 				CEC9C60A1D8E3373002C218F /* response_repos_owner_repo_issues_number.json */,
 				CE91FB511D92EF6C00D5079F /* response_user.json */,
 			);
@@ -348,6 +354,7 @@
 				CE91FB521D92EF6C00D5079F /* response_user.json in Resources */,
 				CEC9C5F91D8D990F002C218F /* response_repos_owner_repo_projects.json in Resources */,
 				CEC9C6031D8DA845002C218F /* response_repos_owner_repo_projects_project_number_columns.json in Resources */,
+				CEB662A01DA17002003D8458 /* response_repos_owner_repo_projects_columns_column_id_card.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +371,7 @@
 				CEC9C6091D8E324A002C218F /* GitHubIssue.swift in Sources */,
 				CE951D3B1D92191F004D99F3 /* AccessTokenService.swift in Sources */,
 				CE91FB501D92EB2300D5079F /* GitHubUser.swift in Sources */,
+				CEB6629E1DA16D4C003D8458 /* KanbanColumnNoteRegisterViewController.swift in Sources */,
 				CEC9C6071D8E316F002C218F /* GitHubService+Issues.swift in Sources */,
 				CE891A931D8CC7EB000A9711 /* AppDelegate.swift in Sources */,
 				CEC9C6211D8EF045002C218F /* Column.swift in Sources */,

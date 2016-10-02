@@ -8,7 +8,7 @@
 
 import Cocoa
 
-protocol KanbanDelegate {
+protocol KanbanDelegate: class {
     func kanbanDidSelected(_ kanban: Kanban)
 }
 

@@ -43,6 +43,14 @@ public extension GitHubService {
         self.post(path: "repos/\(owner)/\(repo)/projects/columns/cards/\(cardId)/moves", parameters: parameters, parser: { _ -> Void in }, handler: handler)
     }
 
+    public func addProjectCard(owner: String, repo: String, columnId: Int, note: String?, contentId: GitHubIssueId?, handler: @escaping (GitHubResponse<GitHubProject.Card>) -> Void) {
+        var parameters: [String: Any] = [:]
+        if let note = note {
+            parameters["note"] = note
+        }
+        self.post(path: "repos/\(owner)/\(repo)/projects/columns/\(columnId)/cards", parameters: parameters, parser: self.parseProjectCardResponse, handler: handler)
+    }
+
     func parseProjectsResponse(_ data: Any) -> [GitHubProject]? {
         if let array = data as? Array<[String:Any]> {
             return array.flatMap({ self.parseProjectResponse($0) })
@@ -78,28 +86,31 @@ public extension GitHubService {
 
     func parseProjectCardsResponse(_ data: Any) -> [GitHubProject.Card]? {
         if let array = data as? Array<[String:Any]> {
-            return array.flatMap({ (card) -> GitHubProject.Card? in
-                if let id = card["id"] as? Int {
-                    let note = card["note"] as? String
-                    let contentURL = (card["content_url"] as? String).flatMap({NSURL(string: $0)})
-                    let issueId = contentURL.flatMap({ (contentURL) -> GitHubIssueId? in
-                        if let pathComponents = contentURL.pathComponents {
-                            let count = pathComponents.count
-                            if count >= 5 && pathComponents[count - 5] == "repos" {
-                                let owner = pathComponents[count - 4]
-                                let repo = pathComponents[count - 3]
-                                let number = Int(pathComponents[count - 1])!
-                                return GitHubIssueId(owner: owner, repo: repo, number: number)
-                            }
-                        }
-                        return nil
-                    })
-                    return GitHubProject.Card(id: id, note: note, issueId: issueId)
-                } else {
-                    return nil
-                }
-            })
+            return array.flatMap({self.parseProjectCardResponse($0)})
+        } else {
+            return []
         }
-        return []
+    }
+
+    func parseProjectCardResponse(_ data: Any) -> GitHubProject.Card? {
+        if let card = data as? [String:Any], let id = card["id"] as? Int {
+            let note = card["note"] as? String
+            let contentURL = (card["content_url"] as? String).flatMap({NSURL(string: $0)})
+            let issueId = contentURL.flatMap({ (contentURL) -> GitHubIssueId? in
+                if let pathComponents = contentURL.pathComponents {
+                    let count = pathComponents.count
+                    if count >= 5 && pathComponents[count - 5] == "repos" {
+                        let owner = pathComponents[count - 4]
+                        let repo = pathComponents[count - 3]
+                        let number = Int(pathComponents[count - 1])!
+                        return GitHubIssueId(owner: owner, repo: repo, number: number)
+                    }
+                }
+                return nil
+            })
+            return GitHubProject.Card(id: id, note: note, issueId: issueId)
+        } else {
+            return nil
+        }
     }
 }

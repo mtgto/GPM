@@ -9,7 +9,7 @@
 import Cocoa
 
 class BookmarkViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
-    var delegate: KanbanDelegate? = nil
+    weak var delegate: KanbanDelegate! = nil
 
     @IBOutlet weak var tableView: NSTableView!
     
@@ -53,7 +53,7 @@ class BookmarkViewController: NSViewController, NSTableViewDelegate, NSTableView
     func tableViewSelectionDidChange(_ notification: Notification) {
         if let tableView = notification.object as? NSTableView, tableView.selectedRow >= 0 {
             let kanban = KanbanService.sharedInstance.kanbans[tableView.selectedRow]
-            self.delegate?.kanbanDidSelected(kanban)
+            self.delegate.kanbanDidSelected(kanban)
         }
     }
 
