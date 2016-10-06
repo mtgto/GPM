@@ -27,6 +27,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
 
     @IBAction func addAccessToken(_ sender: AnyObject) {
+        self.alertTextField.stringValue = "Checking the access token..."
         let accessToken = self.tokenTextField.stringValue
         let service = GitHubService()
         service.accessToken = accessToken

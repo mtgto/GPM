@@ -43,10 +43,13 @@ public extension GitHubService {
         self.post(path: "repos/\(owner)/\(repo)/projects/columns/cards/\(cardId)/moves", parameters: parameters, parser: { _ -> Void in }, handler: handler)
     }
 
-    public func addProjectCard(owner: String, repo: String, columnId: Int, note: String?, contentId: GitHubIssueId?, handler: @escaping (GitHubResponse<GitHubProject.Card>) -> Void) {
+    public func addProjectCard(owner: String, repo: String, columnId: Int, note: String?, contentId: GitHubIssueId?, contentType: GitHubIssueType?, handler: @escaping (GitHubResponse<GitHubProject.Card>) -> Void) {
         var parameters: [String: Any] = [:]
         if let note = note {
             parameters["note"] = note
+        } else if let contentId = contentId, let contentType = contentType {
+            parameters["content_id"] = contentId.number
+            parameters["content_type"] = contentType.rawValue
         }
         self.post(path: "repos/\(owner)/\(repo)/projects/columns/\(columnId)/cards", parameters: parameters, parser: self.parseProjectCardResponse, handler: handler)
     }

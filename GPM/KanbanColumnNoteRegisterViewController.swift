@@ -29,7 +29,7 @@ class KanbanColumnNoteRegisterViewController: NSViewController {
         let service = GitHubService.sharedInstance
         let note = self.textField.stringValue
         self.alertTextField.stringValue = "Adding..."
-        service.addProjectCard(owner: kanban.owner, repo: kanban.repo, columnId: column.id, note: note, contentId: nil) { (response) in
+        service.addProjectCard(owner: kanban.owner, repo: kanban.repo, columnId: column.id, note: note, contentId: nil, contentType: nil) { (response) in
             switch response.result {
             case GitHubResult.Success(let githubCard):
                 let card = Card(id: githubCard.id, note: githubCard.note, issue: nil)
