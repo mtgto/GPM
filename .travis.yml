@@ -1,0 +1,8 @@
+language: objective-c
+osx_image: xcode8
+before_install:
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
+script:
+  - carthage bootstrap --platform Mac
+  - xcodebuild -project GPM.xcodeproj -scheme GPM build test
