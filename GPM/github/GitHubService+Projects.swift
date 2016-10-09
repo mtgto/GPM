@@ -54,6 +54,11 @@ public extension GitHubService {
         self.post(path: "repos/\(owner)/\(repo)/projects/columns/\(columnId)/cards", parameters: parameters, parser: self.parseProjectCardResponse, handler: handler)
     }
 
+    public func updateProjectCard(owner: String, repo: String, cardId: Int, note: String, handler: @escaping (GitHubResponse<GitHubProject.Card>) -> Void) {
+        let parameters = ["note": note]
+        self.post(path: "repos/\(owner)/\(repo)/projects/columns/cards/\(cardId)", method: .patch, parameters: parameters, parser: self.parseProjectCardResponse, handler: handler)
+    }
+
     func parseProjectsResponse(_ data: Any) -> [GitHubProject]? {
         if let array = data as? Array<[String:Any]> {
             return array.flatMap({ self.parseProjectResponse($0) })

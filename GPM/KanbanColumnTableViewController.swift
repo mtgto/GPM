@@ -10,6 +10,8 @@ import Cocoa
 
 protocol ColumnDelegate: class {
     func addCard(_ card: Card)
+
+    func updateCard(_ newCard: Card)
 }
 
 class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, ColumnDelegate {
@@ -78,10 +80,39 @@ class KanbanColumnTableViewController: NSViewController, NSTableViewDataSource, 
         }
     }
 
+    @IBAction func doubleClicked(_ sender: AnyObject) {
+        let clickedRow = self.tableView.clickedRow
+        if clickedRow >= 1 {
+            let card = self.cards[clickedRow - 1]
+            if card.note != nil {
+                let storyboard = NSStoryboard(name: "Main", bundle: nil)
+                if let viewController = storyboard.instantiateController(withIdentifier: "KanbanColumnNoteUpdateViewController") as? KanbanColumnNoteUpdateViewController {
+                    viewController.kanban = self.kanban
+                    viewController.column = self.column
+                    viewController.card = card
+                    viewController.columnDelegate = self
+                    debugPrint("self.view.frame: \(self.view.frame), self.view.bounds: \(self.view.bounds), sender.frame: \(sender.frame)")
+                    self.presentViewController(viewController, asPopoverRelativeTo: self.view.bounds, of: self.view, preferredEdge: NSRectEdge.maxY, behavior: NSPopoverBehavior.transient)
+                }
+            }
+        }
+    }
+
     // MARK: - ColumnDelegate
     func addCard(_ card: Card) {
         self.cards.insert(card, at: 0)
         self.tableView.insertRows(at: IndexSet(integer: 1), withAnimation: .effectGap)
+    }
+
+    func updateCard(_ newCard: Card) {
+        for (index, card) in self.cards.enumerated() {
+            if card.id == newCard.id {
+                self.cards[index] = newCard
+                self.tableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index + 1))
+                self.tableView.reloadData(forRowIndexes: IndexSet(integer: index + 1), columnIndexes: IndexSet(integer: 0))
+                break
+            }
+        }
     }
 
     // MARK: - NSTableViewDataSource

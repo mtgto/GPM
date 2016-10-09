@@ -43,34 +43,19 @@ public class GitHubService: NSObject {
     }
 
     internal func fetch<T>(path: String, parser: @escaping (Any) -> T?, handler: @escaping (GitHubResponse<T>) -> Void) {
-        guard let accessToken = self.accessToken else {
-            handler(GitHubResponse(scopes: [], result: GitHubResult.Failure(.NoTokenError)))
-            return
-        }
-        Alamofire.request(self.server.apiBaseURL.appendingPathComponent(path)!, headers: self.authenticateHeaders(accessToken))
-            .responseJSON { response in
-                let scopes = self.parseScopesFromResponse(response.response)
-                switch response.result {
-                case .success(let value):
-                    // TODO: Check status code (200 or other)
-                    if let parsedValue = parser(value) {
-                        handler(GitHubResponse(scopes: scopes, result: GitHubResult.Success(parsedValue)))
-                    } else {
-                        handler(GitHubResponse(scopes: scopes, result: GitHubResult.Failure(GitHubError.ParseError)))
-                    }
-                case .failure(let error):
-                    print(error)
-                    handler(GitHubResponse(scopes: scopes, result: GitHubResult.Failure(GitHubError.NetworkError)))
-                }
-        }
+        self.request(path: path, method: .get, parser: parser, handler: handler)
     }
 
-    internal func post<T>(path: String, parameters: [String:Any]? = nil, parser: @escaping (Any) -> T?, handler: @escaping (GitHubResponse<T>) -> Void) {
+    internal func post<T>(path: String, method: Alamofire.HTTPMethod = .post, parameters: [String:Any]? = nil, parser: @escaping (Any) -> T?, handler: @escaping (GitHubResponse<T>) -> Void) {
+        self.request(path: path, method: method, parameters: parameters, encoding: JSONEncoding.default, parser: parser, handler: handler)
+    }
+
+    fileprivate func request<T>(path: String, method: Alamofire.HTTPMethod, parameters: [String:Any]? = nil, encoding: ParameterEncoding = URLEncoding.default, parser: @escaping (Any) -> T?, handler: @escaping (GitHubResponse<T>) -> Void) {
         guard let accessToken = self.accessToken else {
             handler(GitHubResponse(scopes: [], result: GitHubResult.Failure(.NoTokenError)))
             return
         }
-        Alamofire.request(self.server.apiBaseURL.appendingPathComponent(path)!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: self.authenticateHeaders(accessToken))
+        Alamofire.request(self.server.apiBaseURL.appendingPathComponent(path)!, method: method, parameters: parameters, encoding: encoding, headers: self.authenticateHeaders(accessToken))
             .responseJSON { response in
                 let scopes = self.parseScopesFromResponse(response.response)
                 switch response.result {

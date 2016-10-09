@@ -989,7 +989,7 @@ DQ
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vmx-L8-8Eq">
-                                                                    <rect key="frame" x="369" y="0.0" width="28" height="16"/>
+                                                                    <rect key="frame" x="369" y="0.0" width="28" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <buttonCell key="cell" type="inline" bezelStyle="inline" image="NSAddTemplate" imagePosition="overlaps" alignment="center" inset="2" id="0oW-DG-gB7">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1060,6 +1060,7 @@ DQ
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <action trigger="doubleAction" selector="doubleClicked:" target="046-9c-EYw" id="bkg-rH-B5J"/>
                                                 <outlet property="dataSource" destination="046-9c-EYw" id="b3G-IA-5M9"/>
                                                 <outlet property="delegate" destination="046-9c-EYw" id="Ta8-sY-jX4"/>
                                             </connections>
@@ -1091,8 +1092,15 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="7MV-R8-kNd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="tS9-Q5-OKw">
+                    <items>
+                        <menuItem title="Edit note" id="oSb-a7-cCX">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
-            <point key="canvasLocation" x="105" y="1380"/>
+            <point key="canvasLocation" x="38" y="1379"/>
         </scene>
         <!--Kanban Column Note Register View Controller-->
         <scene sceneID="TgZ-vL-FnS">
@@ -1105,7 +1113,7 @@ DQ
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vmh-am-6IA">
                                 <rect key="frame" x="20" y="45" width="410" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Oax-uQ-MOl">
+                                <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Oax-uQ-MOl">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1141,6 +1149,55 @@ DQ
                 <customObject id="2Y2-qF-5NI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="105" y="1731"/>
+        </scene>
+        <!--Kanban Column Note Update View Controller-->
+        <scene sceneID="1Yb-DA-Ko1">
+            <objects>
+                <viewController storyboardIdentifier="KanbanColumnNoteUpdateViewController" id="Vrk-YN-w6D" customClass="KanbanColumnNoteUpdateViewController" customModule="GPM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="D6n-KH-gKB">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="154"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJ3-4C-hBY">
+                                <rect key="frame" x="20" y="43" width="410" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="IfG-bk-gKO">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftk-jT-UPH">
+                                <rect key="frame" x="18" y="16" width="303" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="lAk-OB-NOA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXt-zW-pEv">
+                                <rect key="frame" x="321" y="7" width="115" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Update note" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VTJ-fY-MXC">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="updateNote:" target="Vrk-YN-w6D" id="Kia-Th-5Qu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="alertTextField" destination="ftk-jT-UPH" id="afJ-hC-xqF"/>
+                        <outlet property="textField" destination="IJ3-4C-hBY" id="9dG-6G-OPc"/>
+                        <outlet property="updateNote" destination="bXt-zW-pEv" id="a0x-Zx-2o6"/>
+                    </connections>
+                </viewController>
+                <customObject id="qgU-aC-jWz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="566" y="1731"/>
         </scene>
         <!--Kanban View Controller-->
         <scene sceneID="vke-iW-1Ye">

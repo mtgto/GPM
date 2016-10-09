@@ -22,7 +22,7 @@
 		CE951D381D921743004D99F3 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE951D371D921743004D99F3 /* KeychainAccess.framework */; };
 		CE951D391D921743004D99F3 /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE951D371D921743004D99F3 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE951D3B1D92191F004D99F3 /* AccessTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */; };
-		CEB662931D9F98AC003D8458 /* CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB662921D9F98AC003D8458 /* CardTests.swift */; };
+		CEA02D841DA94CB30092DEE9 /* KanbanColumnNoteUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA02D821DA94CB30092DEE9 /* KanbanColumnNoteUpdateViewController.swift */; };
 		CEB662951D9FF18D003D8458 /* Array+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB662941D9FF18D003D8458 /* Array+Utilities.swift */; };
 		CEB662971D9FF1CE003D8458 /* ArrayUtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB662961D9FF1CE003D8458 /* ArrayUtilitiesTests.swift */; };
 		CEB6629C1DA15CAB003D8458 /* HeaderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6629B1DA15CAB003D8458 /* HeaderCellView.swift */; };
@@ -97,7 +97,7 @@
 		CE91FB801D997C4600D5079F /* KanbanColumnTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanbanColumnTableViewController.swift; sourceTree = "<group>"; };
 		CE951D371D921743004D99F3 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/Mac/KeychainAccess.framework; sourceTree = "<group>"; };
 		CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenService.swift; sourceTree = "<group>"; };
-		CEB662921D9F98AC003D8458 /* CardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTests.swift; sourceTree = "<group>"; };
+		CEA02D821DA94CB30092DEE9 /* KanbanColumnNoteUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanbanColumnNoteUpdateViewController.swift; sourceTree = "<group>"; };
 		CEB662941D9FF18D003D8458 /* Array+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utilities.swift"; sourceTree = "<group>"; };
 		CEB662961D9FF1CE003D8458 /* ArrayUtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayUtilitiesTests.swift; sourceTree = "<group>"; };
 		CEB6629B1DA15CAB003D8458 /* HeaderCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderCellView.swift; path = GPM/HeaderCellView.swift; sourceTree = SOURCE_ROOT; };
@@ -176,6 +176,7 @@
 				CEC9C60E1D8E372B002C218F /* KanbanViewController.swift */,
 				CE91FB801D997C4600D5079F /* KanbanColumnTableViewController.swift */,
 				CEB6629D1DA16D4C003D8458 /* KanbanColumnNoteRegisterViewController.swift */,
+				CEA02D821DA94CB30092DEE9 /* KanbanColumnNoteUpdateViewController.swift */,
 				CEC9C6261D903749002C218F /* KanbanRegisterViewController.swift */,
 				CE91FB531D92F2A800D5079F /* LoginViewController.swift */,
 				CE951D3A1D92191F004D99F3 /* AccessTokenService.swift */,
@@ -199,7 +200,6 @@
 			children = (
 				CEC9C5F31D8D94C7002C218F /* github */,
 				CE891AA61D8CC7EB000A9711 /* GPMTests.swift */,
-				CEB662921D9F98AC003D8458 /* CardTests.swift */,
 				CEB662961D9FF1CE003D8458 /* ArrayUtilitiesTests.swift */,
 				CE891AA81D8CC7EB000A9711 /* Info.plist */,
 			);
@@ -368,6 +368,7 @@
 				CE91FB541D92F2A800D5079F /* LoginViewController.swift in Sources */,
 				CE91FB5C1D960CF900D5079F /* GitHubServer.swift in Sources */,
 				CE91FB4E1D92E9E000D5079F /* GitHubService+Users.swift in Sources */,
+				CEA02D841DA94CB30092DEE9 /* KanbanColumnNoteUpdateViewController.swift in Sources */,
 				CEC9C6091D8E324A002C218F /* GitHubIssue.swift in Sources */,
 				CE951D3B1D92191F004D99F3 /* AccessTokenService.swift in Sources */,
 				CE91FB501D92EB2300D5079F /* GitHubUser.swift in Sources */,
@@ -401,7 +402,6 @@
 				CEC9C5F51D8D9635002C218F /* GitHubServiceTests.swift in Sources */,
 				CE891AA71D8CC7EB000A9711 /* GPMTests.swift in Sources */,
 				CEC9C5F71D8D9708002C218F /* GitHubTestsSupport.swift in Sources */,
-				CEB662931D9F98AC003D8458 /* CardTests.swift in Sources */,
 				CEB662971D9FF1CE003D8458 /* ArrayUtilitiesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
