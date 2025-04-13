@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CEFCD06D2DAB9773003BCD96 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = CEFCD06C2DAB9773003BCD96 /* Apollo */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CEFCD04F2DAB683C003BCD96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEFCD06D2DAB9773003BCD96 /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,7 @@
 			);
 			name = GPM;
 			packageProductDependencies = (
+				CEFCD06C2DAB9773003BCD96 /* Apollo */,
 			);
 			productName = GPM;
 			productReference = CEFCD03E2DAB683A003BCD96 /* GPM.app */;
@@ -146,6 +152,9 @@
 			);
 			mainGroup = CEFCD0352DAB683A003BCD96;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CEFCD06B2DAB9773003BCD96 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CEFCD03F2DAB683A003BCD96 /* Products */;
 			projectDirPath = "";
@@ -443,6 +452,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEFCD06B2DAB9773003BCD96 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.19.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEFCD06C2DAB9773003BCD96 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEFCD06B2DAB9773003BCD96 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEFCD0362DAB683A003BCD96 /* Project object */;
 }
