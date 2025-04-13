@@ -42,7 +42,7 @@ struct DeviceFlowClient {
 
     func requestStart() async throws -> DeviceFlowStartResponse {
         let request: URLRequest = {
-            var url = URL(string: "https://github.com/login/device/code")?.appending(
+            let url = URL(string: "https://github.com/login/device/code")?.appending(
                 queryItems: [
                     URLQueryItem(name: "client_id", value: Self.clientId),
                     URLQueryItem(name: "scope", value: Self.scope)

@@ -26,5 +26,9 @@ struct GPMApp: App {
                 }
         }
         .modelContainer(sharedModelContainer)
+
+        Window("Authorize", id: "authorize") {
+            AuthorizeView()
+        }
     }
 }
