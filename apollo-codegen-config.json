@@ -1,0 +1,29 @@
+{
+  "schemaNamespace" : "API",
+  "input" : {
+    "operationSearchPaths" : [
+      "operations/*.graphql"
+    ],
+    "schemaSearchPaths" : [
+      "schema.graphqls"
+    ]
+  },
+  "output" : {
+    "testMocks" : {
+      "none" : {
+      }
+    },
+    "schemaTypes" : {
+      "path" : "./API",
+      "moduleType" : {
+        "swiftPackage" : {
+          "apolloSDKDependency" : {}
+        }
+      }
+    },
+    "operations" : {
+      "inSchemaModule" : {
+      }
+    }
+  }
+}

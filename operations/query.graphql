@@ -1,0 +1,20 @@
+query Me {
+  viewer {
+    login
+  }
+}
+
+query Projects($after: String) {
+  repository(owner: "mtgto", name: "GPM") {
+    projectsV2(after: $after) {
+      nodes {
+        id
+        title
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

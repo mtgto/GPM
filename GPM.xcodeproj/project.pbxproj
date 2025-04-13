@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CEFCD06D2DAB9773003BCD96 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = CEFCD06C2DAB9773003BCD96 /* Apollo */; };
+		CEFCD07C2DABA504003BCD96 /* API in Frameworks */ = {isa = PBXBuildFile; productRef = CEFCD07B2DABA504003BCD96 /* API */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEFCD06D2DAB9773003BCD96 /* Apollo in Frameworks */,
+				CEFCD07C2DABA504003BCD96 /* API in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +98,7 @@
 			name = GPM;
 			packageProductDependencies = (
 				CEFCD06C2DAB9773003BCD96 /* Apollo */,
+				CEFCD07B2DABA504003BCD96 /* API */,
 			);
 			productName = GPM;
 			productReference = CEFCD03E2DAB683A003BCD96 /* GPM.app */;
@@ -154,6 +157,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				CEFCD06B2DAB9773003BCD96 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				CEFCD07A2DABA504003BCD96 /* XCLocalSwiftPackageReference "API" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CEFCD03F2DAB683A003BCD96 /* Products */;
@@ -453,6 +457,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		CEFCD07A2DABA504003BCD96 /* XCLocalSwiftPackageReference "API" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = API;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		CEFCD06B2DAB9773003BCD96 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -469,6 +480,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEFCD06B2DAB9773003BCD96 /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
+		};
+		CEFCD07B2DABA504003BCD96 /* API */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = API;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
