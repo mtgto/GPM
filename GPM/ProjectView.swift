@@ -4,7 +4,14 @@ import SwiftUI
 
 struct ProjectView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HSplitView {
+            Rectangle()
+                .fill(Color.red)
+            Rectangle()
+                .fill(Color.green)
+            Rectangle()
+                .fill(Color.blue)
+        }
     }
 }
 

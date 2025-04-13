@@ -21,6 +21,9 @@ struct GPMApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onOpenURL { url in
+
+                }
         }
         .modelContainer(sharedModelContainer)
     }

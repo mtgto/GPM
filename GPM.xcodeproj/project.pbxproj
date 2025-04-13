@@ -27,7 +27,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		CEFCD0402DAB683A003BCD96 /* GPM */ = {
+		CED1BF242DABE81D009E600D /* GPM */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = GPM;
 			sourceTree = "<group>";
@@ -62,7 +62,7 @@
 		CEFCD0352DAB683A003BCD96 = {
 			isa = PBXGroup;
 			children = (
-				CEFCD0402DAB683A003BCD96 /* GPM */,
+				CED1BF242DABE81D009E600D /* GPM */,
 				CEFCD0512DAB683C003BCD96 /* GPMTests */,
 				CEFCD03F2DAB683A003BCD96 /* Products */,
 			);
@@ -96,7 +96,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				CEFCD0402DAB683A003BCD96 /* GPM */,
+				CED1BF242DABE81D009E600D /* GPM */,
 			);
 			name = GPM;
 			packageProductDependencies = (
