@@ -66,7 +66,10 @@
 				CEFCD0512DAB683C003BCD96 /* GPMTests */,
 				CEFCD03F2DAB683A003BCD96 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		CEFCD03F2DAB683A003BCD96 /* Products */ = {
 			isa = PBXGroup;
