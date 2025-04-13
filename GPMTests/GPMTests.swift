@@ -1,9 +1,4 @@
-//
-//  GPMTests.swift
-//  GPMTests
-//
-//  Created by mtgto on 2025/04/13.
-//
+// SPDX-License-Identifier: MIT
 
 import Testing
 @testable import GPM

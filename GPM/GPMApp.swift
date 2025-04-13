@@ -1,9 +1,4 @@
-//
-//  GPMApp.swift
-//  GPM
-//
-//  Created by mtgto on 2025/04/13.
-//
+// SPDX-License-Identifier: MIT
 
 import SwiftUI
 import SwiftData

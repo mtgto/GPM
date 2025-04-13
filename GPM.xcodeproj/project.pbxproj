@@ -14,19 +14,11 @@
 			remoteGlobalIDString = CEFCD03D2DAB683A003BCD96;
 			remoteInfo = GPM;
 		};
-		CEFCD0592DAB683C003BCD96 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CEFCD0362DAB683A003BCD96 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CEFCD03D2DAB683A003BCD96;
-			remoteInfo = GPM;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CEFCD03E2DAB683A003BCD96 /* GPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFCD04E2DAB683C003BCD96 /* GPMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEFCD0582DAB683C003BCD96 /* GPMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,11 +30,6 @@
 		CEFCD0512DAB683C003BCD96 /* GPMTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = GPMTests;
-			sourceTree = "<group>";
-		};
-		CEFCD05B2DAB683C003BCD96 /* GPMUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = GPMUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -62,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEFCD0552DAB683C003BCD96 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,7 +57,6 @@
 			children = (
 				CEFCD0402DAB683A003BCD96 /* GPM */,
 				CEFCD0512DAB683C003BCD96 /* GPMTests */,
-				CEFCD05B2DAB683C003BCD96 /* GPMUITests */,
 				CEFCD03F2DAB683A003BCD96 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +66,6 @@
 			children = (
 				CEFCD03E2DAB683A003BCD96 /* GPM.app */,
 				CEFCD04E2DAB683C003BCD96 /* GPMTests.xctest */,
-				CEFCD0582DAB683C003BCD96 /* GPMUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,29 +118,6 @@
 			productReference = CEFCD04E2DAB683C003BCD96 /* GPMTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CEFCD0572DAB683C003BCD96 /* GPMUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CEFCD0682DAB683C003BCD96 /* Build configuration list for PBXNativeTarget "GPMUITests" */;
-			buildPhases = (
-				CEFCD0542DAB683C003BCD96 /* Sources */,
-				CEFCD0552DAB683C003BCD96 /* Frameworks */,
-				CEFCD0562DAB683C003BCD96 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CEFCD05A2DAB683C003BCD96 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CEFCD05B2DAB683C003BCD96 /* GPMUITests */,
-			);
-			name = GPMUITests;
-			packageProductDependencies = (
-			);
-			productName = GPMUITests;
-			productReference = CEFCD0582DAB683C003BCD96 /* GPMUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,10 +132,6 @@
 						CreatedOnToolsVersion = 16.3;
 					};
 					CEFCD04D2DAB683C003BCD96 = {
-						CreatedOnToolsVersion = 16.3;
-						TestTargetID = CEFCD03D2DAB683A003BCD96;
-					};
-					CEFCD0572DAB683C003BCD96 = {
 						CreatedOnToolsVersion = 16.3;
 						TestTargetID = CEFCD03D2DAB683A003BCD96;
 					};
@@ -202,7 +153,6 @@
 			targets = (
 				CEFCD03D2DAB683A003BCD96 /* GPM */,
 				CEFCD04D2DAB683C003BCD96 /* GPMTests */,
-				CEFCD0572DAB683C003BCD96 /* GPMUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,13 +166,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CEFCD04C2DAB683C003BCD96 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEFCD0562DAB683C003BCD96 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,13 +189,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEFCD0542DAB683C003BCD96 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -260,11 +196,6 @@
 			isa = PBXTargetDependency;
 			target = CEFCD03D2DAB683A003BCD96 /* GPM */;
 			targetProxy = CEFCD04F2DAB683C003BCD96 /* PBXContainerItemProxy */;
-		};
-		CEFCD05A2DAB683C003BCD96 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CEFCD03D2DAB683A003BCD96 /* GPM */;
-			targetProxy = CEFCD0592DAB683C003BCD96 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -481,38 +412,6 @@
 			};
 			name = Release;
 		};
-		CEFCD0692DAB683C003BCD96 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W3A6B7FDC7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.mtgto.GPMUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = GPM;
-			};
-			name = Debug;
-		};
-		CEFCD06A2DAB683C003BCD96 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W3A6B7FDC7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.mtgto.GPMUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = GPM;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -539,15 +438,6 @@
 			buildConfigurations = (
 				CEFCD0662DAB683C003BCD96 /* Debug */,
 				CEFCD0672DAB683C003BCD96 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CEFCD0682DAB683C003BCD96 /* Build configuration list for PBXNativeTarget "GPMUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CEFCD0692DAB683C003BCD96 /* Debug */,
-				CEFCD06A2DAB683C003BCD96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
