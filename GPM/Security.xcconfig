@@ -1,0 +1,4 @@
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+GITHUB_CLIENT_ID = Iv23li2yrtFAg5H5hoTp
+GITHUB_CLIENT_SECRET = FIXIT

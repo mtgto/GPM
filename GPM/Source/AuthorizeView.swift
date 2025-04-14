@@ -16,24 +16,47 @@ struct AuthorizeView: View {
             Button {
                 isStarting = true
                 Task {
+                    guard let clientId = Bundle.main.infoDictionary?["GITHUB_CLIENT_ID"] as? String else {
+                        didFailed = true
+                        return
+                    }
                     state = generateRandomString()
-                    let url = URL(string: "https://github.com/login/oauth/authorize")?.appending(queryItems: [
-                        URLQueryItem(name: "client_id", value: "Iv23li2yrtFAg5H5hoTp"),
+                    let authorizeUrl = URL(string: "https://github.com/login/oauth/authorize")?.appending(queryItems: [
+                        URLQueryItem(name: "client_id", value: clientId),
                         URLQueryItem(name: "redirect_uri", value: "net.mtgto.gpm://callback"),
                         URLQueryItem(name: "state", value: state),
                     ])
+                    defer {
+                        isStarting = false
+                    }
                     do {
                         let urlWithToken = try await webAuthenticationSession.authenticate(
-                            using: url!,
+                            using: authorizeUrl!,
                             callbackURLScheme: "net.mtgto.gpm"
                         )
                         // Retrieve code and state params from callback url
-                        debugPrint("Success! url = \(urlWithToken)")
+                        guard let urlComponents = URLComponents(url: urlWithToken, resolvingAgainstBaseURL: false),
+                              let queryItems = urlComponents.queryItems,
+                              let code = queryItems.first(where: { $0.name == "code" })?.value,
+                              let state = queryItems.first(where: { $0.name == "state" })?.value else {
+                            didFailed = true
+                            return
+                        }
+                        guard state == self.state else {
+                            debugPrint("State mismatch!")
+                            didFailed = true
+                            return
+                        }
+                        guard let clientSecret = Bundle.main.infoDictionary?["GITHUB_CLIENT_SECRET"] as? String else {
+                            didFailed = true
+                            return
+                        }
+                        let accessToken = try await GithubClient().generateAccessToken(clientId: clientId, clientSecret: clientSecret, code: code)
+                        debugPrint("Access token: \(accessToken)")
                     } catch {
                         debugPrint("Failed to authorize: \(error)")
                         didFailed = true
                     }
-                    isStarting = false
                 }
             } label: {
                 Text("Authorize")
