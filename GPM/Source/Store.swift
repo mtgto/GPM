@@ -4,5 +4,5 @@ import Foundation
 import Observation
 
 @Observable class Store {
-
+    var accessToken: String?
 }
