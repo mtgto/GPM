@@ -1,5 +1,5 @@
 {
-  "originHash" : "f1a2f574fca8a2ca9032a47a332a7dcb4e31adf68f12f215bece8d39f58105f8",
+  "originHash" : "ffaf0ed658f38be824444905614cfaf6fcf10e01bc77465786b31679eca005a5",
   "pins" : [
     {
       "identity" : "apollo-ios",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "4d0845f9f2901ed657d680c874ffc68d12704cd4",
         "version" : "1.19.0"
+      }
+    },
+    {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess.git",
+      "state" : {
+        "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
+        "version" : "4.2.2"
       }
     },
     {

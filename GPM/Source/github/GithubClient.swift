@@ -39,7 +39,30 @@ struct GithubClient {
             return request
         }()
         let (data, response) = try await URLSession.shared.data(for: request)
-        guard let response = response as? HTTPURLResponse else {
+        guard let _ = response as? HTTPURLResponse else {
+            throw AccessTokenError.invalidResponse
+        }
+        return try decoder.decode(AccessTokenResponse.self, from: data)
+    }
+
+    func generateAccessToken(clientId: String, clientSecret: String, refreshToken: String) async throws -> AccessTokenResponse {
+        let request: URLRequest = {
+            let url = URL(string: "https://github.com/login/oauth/access_token")?.appending(
+                queryItems: [
+                    URLQueryItem(name: "client_id", value: clientId),
+                    URLQueryItem(name: "client_secret", value: clientSecret),
+                    URLQueryItem(name: "grant_type", value: "refresh_token"),
+                    URLQueryItem(name: "refresh_token", value: refreshToken),
+                ])
+            var request = URLRequest(url: url!)
+            request.httpMethod = "POST"
+            request.allHTTPHeaderFields = [
+                "Accept": "application/json",
+            ]
+            return request
+        }()
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let _ = response as? HTTPURLResponse else {
             throw AccessTokenError.invalidResponse
         }
         return try decoder.decode(AccessTokenResponse.self, from: data)

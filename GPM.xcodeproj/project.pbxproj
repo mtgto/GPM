@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEF16D6B2DC26CD200EF20A3 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = CEF16D6A2DC26CD200EF20A3 /* KeychainAccess */; };
 		CEFCD06D2DAB9773003BCD96 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = CEFCD06C2DAB9773003BCD96 /* Apollo */; };
 		CEFCD07C2DABA504003BCD96 /* API in Frameworks */ = {isa = PBXBuildFile; productRef = CEFCD07B2DABA504003BCD96 /* API */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 			files = (
 				CEFCD06D2DAB9773003BCD96 /* Apollo in Frameworks */,
 				CEFCD07C2DABA504003BCD96 /* API in Frameworks */,
+				CEF16D6B2DC26CD200EF20A3 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +117,7 @@
 			packageProductDependencies = (
 				CEFCD06C2DAB9773003BCD96 /* Apollo */,
 				CEFCD07B2DABA504003BCD96 /* API */,
+				CEF16D6A2DC26CD200EF20A3 /* KeychainAccess */,
 			);
 			productName = GPM;
 			productReference = CEFCD03E2DAB683A003BCD96 /* GPM.app */;
@@ -174,6 +177,7 @@
 			packageReferences = (
 				CEFCD06B2DAB9773003BCD96 /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				CEFCD07A2DABA504003BCD96 /* XCLocalSwiftPackageReference "API" */,
+				CEF16D692DC26CD200EF20A3 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CEFCD03F2DAB683A003BCD96 /* Products */;
@@ -487,6 +491,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CEF16D692DC26CD200EF20A3 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
 		CEFCD06B2DAB9773003BCD96 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
@@ -498,6 +510,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CEF16D6A2DC26CD200EF20A3 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEF16D692DC26CD200EF20A3 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		CEFCD06C2DAB9773003BCD96 /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CEFCD06B2DAB9773003BCD96 /* XCRemoteSwiftPackageReference "apollo-ios" */;

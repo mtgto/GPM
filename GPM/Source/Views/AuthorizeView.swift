@@ -8,6 +8,7 @@ struct AuthorizeView: View {
     @State var didFailed = false
     @State var state: String = ""
     @Environment(\.webAuthenticationSession) private var webAuthenticationSession
+    @Environment(Store.self) private var store: Store
 
     var body: some View {
         VStack {
@@ -53,6 +54,7 @@ struct AuthorizeView: View {
                         }
                         let accessToken = try await GithubClient().generateAccessToken(clientId: clientId, clientSecret: clientSecret, code: code)
                         Logger.standard.debug("Access token: \(accessToken.accessToken)")
+                        store.storeRefreshToken(accessToken.refreshToken)
                     } catch {
                         Logger.standard.log("Failed to authorize: \(error)")
                         didFailed = true
@@ -78,4 +80,5 @@ struct AuthorizeView: View {
 
 #Preview {
     AuthorizeView()
+        .environment(Store())
 }
