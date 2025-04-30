@@ -3,6 +3,6 @@
 import Foundation
 import os
 
-enum Logger {
-    static let standard = os.Logger(subsystem: Bundle.main.bundleIdentifier!, category: "main")
+public enum Logger {
+    public static let standard = os.Logger(subsystem: Bundle.main.bundleIdentifier!, category: "main")
 }

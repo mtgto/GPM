@@ -52,9 +52,9 @@ struct AuthorizeView: View {
                             return
                         }
                         let accessToken = try await GithubClient().generateAccessToken(clientId: clientId, clientSecret: clientSecret, code: code)
-                        debugPrint("Access token: \(accessToken)")
+                        Logger.standard.debug("Access token: \(accessToken.accessToken)")
                     } catch {
-                        debugPrint("Failed to authorize: \(error)")
+                        Logger.standard.log("Failed to authorize: \(error)")
                         didFailed = true
                     }
                 }

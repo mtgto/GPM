@@ -3,6 +3,21 @@
   "strings" : {
     "Authorize" : {
       "extractionState" : "manual"
+    },
+    "Error" : {
+
+    },
+    "Failed to start authorization" : {
+
+    },
+    "GitHub Projectの情報の取得・操作のためにGitHub Appをインストールします。Authorizeをクリックすると続行します" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Open Authorize Window" : {
+
     }
   },
   "version" : "1.0"
