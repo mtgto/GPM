@@ -3,6 +3,9 @@
 import SwiftUI
 import AuthenticationServices
 
+/**
+ * Show Authorize button if no refresh token is stored in Keychain.
+ */
 struct AuthorizeView: View {
     @State var isStarting = false
     @State var didFailed = false
@@ -55,6 +58,7 @@ struct AuthorizeView: View {
                         let accessToken = try await GithubClient().generateAccessToken(clientId: clientId, clientSecret: clientSecret, code: code)
                         Logger.standard.debug("Access token: \(accessToken.accessToken)")
                         store.storeRefreshToken(accessToken.refreshToken)
+                        store.accessToken = accessToken.accessToken
                     } catch {
                         Logger.standard.log("Failed to authorize: \(error)")
                         didFailed = true

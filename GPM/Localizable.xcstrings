@@ -1,8 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Add Project" : {
+
+    },
     "Authorize" : {
       "extractionState" : "manual"
+    },
+    "Cancel" : {
+
+    },
+    "Done" : {
+
     },
     "Error" : {
 
@@ -13,10 +22,10 @@
     "GitHub Projectの情報の取得・操作のためにGitHub Appをインストールします。Authorizeをクリックすると続行します" : {
 
     },
-    "Hello, World!" : {
+    "Open Authorize Window" : {
 
     },
-    "Open Authorize Window" : {
+    "Project URL" : {
 
     }
   },

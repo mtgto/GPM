@@ -5,6 +5,8 @@ import SwiftData
 
 @main
 struct GPMApp: App {
+    let store = Store()
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -21,11 +23,14 @@ struct GPMApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(store)
         }
         .modelContainer(sharedModelContainer)
+        .environment(store)
 
         Window("Authorize", id: "authorize") {
             AuthorizeView()
+                .environment(store)
         }
     }
 }

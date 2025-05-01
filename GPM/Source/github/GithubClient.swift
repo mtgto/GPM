@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: MIT
 
 import Foundation
+import API
+import Apollo
+import ApolloAPI
 
 struct GithubClient {
     struct AccessTokenResponse: Decodable {
@@ -66,5 +69,21 @@ struct GithubClient {
             throw AccessTokenError.invalidResponse
         }
         return try decoder.decode(AccessTokenResponse.self, from: data)
+    }
+
+    func me() async throws -> String {
+        let apolloClient = setupApolloClient()
+        let result = try await apolloClient.fetch(query: API.MeQuery())
+        return result.viewer.login
+    }
+
+    func setupApolloClient() -> ApolloClient {
+        let client = URLSessionClient()
+        let cache = InMemoryNormalizedCache()
+        let store = ApolloStore(cache: cache)
+        let provider = NetworkInterceptorProvider(client: client, store: store)
+        let url = URL(string: "https://api.github.com/graphql")!
+        let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url)
+        return ApolloClient(networkTransport: transport, store: store)
     }
 }
