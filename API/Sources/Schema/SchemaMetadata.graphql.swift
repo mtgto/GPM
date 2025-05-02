@@ -156,7 +156,6 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "PackageFile": return API.Objects.PackageFile
     case "PackageTag": return API.Objects.PackageTag
     case "PackageVersion": return API.Objects.PackageVersion
-    case "PageInfo": return API.Objects.PageInfo
     case "ParentIssueAddedEvent": return API.Objects.ParentIssueAddedEvent
     case "ParentIssueRemovedEvent": return API.Objects.ParentIssueRemovedEvent
     case "PinnedDiscussion": return API.Objects.PinnedDiscussion
@@ -169,8 +168,8 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "ProjectCard": return API.Objects.ProjectCard
     case "ProjectColumn": return API.Objects.ProjectColumn
     case "ProjectV2": return API.Objects.ProjectV2
-    case "ProjectV2Connection": return API.Objects.ProjectV2Connection
     case "ProjectV2Field": return API.Objects.ProjectV2Field
+    case "ProjectV2FieldConfigurationConnection": return API.Objects.ProjectV2FieldConfigurationConnection
     case "ProjectV2Item": return API.Objects.ProjectV2Item
     case "ProjectV2ItemFieldDateValue": return API.Objects.ProjectV2ItemFieldDateValue
     case "ProjectV2ItemFieldIterationValue": return API.Objects.ProjectV2ItemFieldIterationValue
@@ -181,6 +180,7 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "ProjectV2SingleSelectField": return API.Objects.ProjectV2SingleSelectField
     case "ProjectV2StatusUpdate": return API.Objects.ProjectV2StatusUpdate
     case "ProjectV2View": return API.Objects.ProjectV2View
+    case "ProjectV2ViewConnection": return API.Objects.ProjectV2ViewConnection
     case "ProjectV2Workflow": return API.Objects.ProjectV2Workflow
     case "PublicKey": return API.Objects.PublicKey
     case "PullRequest": return API.Objects.PullRequest

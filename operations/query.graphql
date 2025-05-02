@@ -4,16 +4,37 @@ query Me {
   }
 }
 
-query Projects($after: String) {
-  repository(owner: "mtgto", name: "GPM") {
-    projectsV2(after: $after) {
-      nodes {
-        id
-        title
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
+query OrganizationProjectOverview($login: String!, $number: Int!) {
+  organization(login: $login) {
+    projectV2(number: $number) {
+      ...ProjectOverview
+    }
+  }
+}
+
+query ViewerProjectOverview($number: Int!) {
+  viewer {
+    projectV2(number: $number) {
+      ...ProjectOverview
+    }
+  }
+}
+
+fragment ProjectOverview on ProjectV2 {
+  id
+  title
+  url
+  views(first: 100) {
+    nodes {
+      id
+      name
+      layout
+      verticalGroupByFields(first: 100) {
+        nodes {
+          ... on ProjectV2FieldCommon {
+            name # Default is "Status", but can be overridden
+          }
+        }
       }
     }
   }

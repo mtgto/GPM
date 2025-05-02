@@ -22,15 +22,10 @@ struct GPMApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(store)
+            WelcomeView()
         }
+        .windowStyle(.hiddenTitleBar)
         .modelContainer(sharedModelContainer)
         .environment(store)
-
-        Window("Authorize", id: "authorize") {
-            AuthorizeView()
-                .environment(store)
-        }
     }
 }

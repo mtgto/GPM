@@ -15,8 +15,16 @@ struct GithubClient {
         let tokenType: String
     }
 
+    // https://docs.github.com/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-oauth-app-access-token-request-errors
+    struct AccessTokenErrorResponse: Decodable {
+        let error: String
+        let errorDescription: String?
+        let errorUri: String?
+    }
+
     enum AccessTokenError: Error {
         case invalidResponse
+        case reason(AccessTokenErrorResponse)
     }
 
     let decoder: JSONDecoder = {
@@ -68,13 +76,39 @@ struct GithubClient {
         guard let _ = response as? HTTPURLResponse else {
             throw AccessTokenError.invalidResponse
         }
-        return try decoder.decode(AccessTokenResponse.self, from: data)
+        do {
+            return try decoder.decode(AccessTokenResponse.self, from: data)
+        } catch let error as DecodingError {
+            if case .keyNotFound = error {
+                let response = try decoder.decode(AccessTokenErrorResponse.self, from: data)
+                throw AccessTokenError.reason(response)
+            }
+            throw error
+        } catch {
+            throw error
+        }
     }
 
     func me() async throws -> String {
         let apolloClient = setupApolloClient()
         let result = try await apolloClient.fetch(query: API.MeQuery())
         return result.viewer.login
+    }
+
+    func projectOverview(owner: GithubProjectOwner, number: Int) async throws -> GithubProject? {
+        let apolloClient = setupApolloClient()
+        if case .organization(let name) = owner {
+            let result = try await apolloClient.fetch(query: API.OrganizationProjectOverviewQuery(login: name, number: number))
+            if let projectV2 = result.organization?.projectV2 {
+                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title)
+            }
+        } else {
+            let result = try await apolloClient.fetch(query: API.ViewerProjectOverviewQuery(number: number))
+            if let projectV2 = result.viewer.projectV2 {
+                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title)
+            }
+        }
+        return nil
     }
 
     func setupApolloClient() -> ApolloClient {

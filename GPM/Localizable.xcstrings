@@ -1,8 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Add Project" : {
-
+    "%@/%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@/%2$lld"
+          }
+        }
+      }
     },
     "Authorize" : {
       "extractionState" : "manual"
@@ -13,19 +20,28 @@
     "Done" : {
 
     },
+    "Enter the URL of the GitHub Project to open:" : {
+
+    },
     "Error" : {
 
     },
     "Failed to start authorization" : {
 
     },
-    "GitHub Projectの情報の取得・操作のためにGitHub Appをインストールします。Authorizeをクリックすると続行します" : {
+    "GPM" : {
 
     },
     "Open Authorize Window" : {
 
     },
+    "Open Project" : {
+
+    },
     "Project URL" : {
+
+    },
+    "v0.0.0" : {
 
     }
   },

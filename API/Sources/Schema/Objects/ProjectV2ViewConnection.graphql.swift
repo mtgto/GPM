@@ -4,9 +4,9 @@
 import ApolloAPI
 
 public extension Objects {
-  /// The connection type for ProjectV2.
-  static let ProjectV2Connection = ApolloAPI.Object(
-    typename: "ProjectV2Connection",
+  /// The connection type for ProjectV2View.
+  static let ProjectV2ViewConnection = ApolloAPI.Object(
+    typename: "ProjectV2ViewConnection",
     implementedInterfaces: [],
     keyFields: nil
   )

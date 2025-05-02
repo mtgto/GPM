@@ -22,4 +22,14 @@ final class GithubProject {
 enum GithubProjectOwner: Codable {
     case organization(login: String)
     case user(login: String)
+
+    var login: String {
+        switch self {
+        case .organization(login: let login):
+            return login
+        case .user(login: let login):
+            return login
+        }
+    }
 }
+
