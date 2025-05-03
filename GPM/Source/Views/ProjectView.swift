@@ -3,6 +3,8 @@
 import SwiftUI
 
 struct ProjectView: View {
+    let project: GithubProject
+
     var body: some View {
         HSplitView {
             Rectangle()
@@ -16,5 +18,5 @@ struct ProjectView: View {
 }
 
 #Preview {
-    ProjectView()
+    ProjectView(project: GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "Example Project"))
 }

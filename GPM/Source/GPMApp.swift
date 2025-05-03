@@ -9,7 +9,7 @@ struct GPMApp: App {
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            GithubProject.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -27,5 +27,23 @@ struct GPMApp: App {
         .windowStyle(.hiddenTitleBar)
         .modelContainer(sharedModelContainer)
         .environment(store)
+
+        WindowGroup(id: "project", for: String.self) { $id in
+            if let id, let project = getProjectById(id) {
+                ProjectView(project: project)
+                    .navigationTitle(project.title)
+            } else {
+                EmptyView()
+            }
+        }
+    }
+
+    func getProjectById(_ id: String) -> GithubProject? {
+        let predicate = #Predicate<GithubProject> { $0.id == id }
+        do {
+            return try sharedModelContainer.mainContext.fetch(FetchDescriptor(predicate: predicate)).first
+        } catch {
+            return nil
+        }
     }
 }

@@ -8,6 +8,7 @@ struct OpenProjectView: View {
     @Binding var editing: Bool
     @State var currentProject: (owner: GithubProjectOwner, number: Int)?
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.openWindow) private var openWindow
     static let projectUrlPattern = /^https:\/\/github\.com\/(orgs|users)\/([^\/]+)\/projects\/(\d+)/
 
     var body: some View {
@@ -35,18 +36,24 @@ struct OpenProjectView: View {
                     if let currentProject {
                         let client = GithubClient()
                         Task {
-                            guard let projectOverview = try await client.projectOverview(owner: currentProject.owner, number: currentProject.number) else {
-                                // TODO: Show error message
-                                Logger.standard.error("Error: Failed to fetch project overview")
-                                return
+                            do {
+                                guard let projectOverview = try await client.projectOverview(owner: currentProject.owner, number: currentProject.number) else {
+                                    // TODO: Show error message
+                                    Logger.standard.error("Error: Failed to fetch project overview")
+                                    return
+                                }
+                                let newProject = GithubProject(id: projectOverview.id,
+                                                               number: currentProject.number,
+                                                               owner: currentProject.owner,
+                                                               title: projectOverview.title)
+                                modelContext.insert(newProject)
+                                try modelContext.save()
+                                project = currentProject
+                                editing = false
+                                openWindow(id: "project", value: newProject.id)
+                            } catch {
+                                Logger.standard.warning("Failed to fetch project overview: \(error)")
                             }
-                            let newProject = GithubProject(id: projectOverview.id,
-                                                           number: currentProject.number,
-                                                           owner: currentProject.owner,
-                                                           title: projectOverview.title)
-                            modelContext.insert(newProject)
-                            project = currentProject
-                            editing = false
                         }
                     }
                 }
