@@ -7,6 +7,7 @@ struct OpenProjectView: View {
     @Binding var project: (owner: GithubProjectOwner, number: Int)?
     @Binding var editing: Bool
     @State var currentProject: (owner: GithubProjectOwner, number: Int)?
+    @Environment(\.modelContext) private var modelContext
     static let projectUrlPattern = /^https:\/\/github\.com\/(orgs|users)\/([^\/]+)\/projects\/(\d+)/
 
     var body: some View {
@@ -31,9 +32,23 @@ struct OpenProjectView: View {
                 }
                 Button("Open Project") {
                     // TODO: Fetch a project by using GitHub API & Add a project to SwiftData
-                    let client = GithubClient()
-                    project = currentProject
-                    editing = false
+                    if let currentProject {
+                        let client = GithubClient()
+                        Task {
+                            guard let projectOverview = try await client.projectOverview(owner: currentProject.owner, number: currentProject.number) else {
+                                // TODO: Show error message
+                                Logger.standard.error("Error: Failed to fetch project overview")
+                                return
+                            }
+                            let newProject = GithubProject(id: projectOverview.id,
+                                                           number: currentProject.number,
+                                                           owner: currentProject.owner,
+                                                           title: projectOverview.title)
+                            modelContext.insert(newProject)
+                            project = currentProject
+                            editing = false
+                        }
+                    }
                 }
                 .keyboardShortcut(.defaultAction)
                 .disabled(currentProject == nil)

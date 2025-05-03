@@ -8,9 +8,11 @@ import SwiftData
  * Show Authorize button if no refresh token is stored in Keychain.
  */
 struct WelcomeView: View {
-    @State var isStarting = false
+    @State var starting = false
     @State var didFailed = false
     @State var state: String = ""
+    @State var project: (owner: GithubProjectOwner, number: Int)?
+    @State var showingAddProject: Bool = false
     @Environment(\.webAuthenticationSession) private var webAuthenticationSession
     @Environment(Store.self) private var store: Store
     @Query private var projects: [GithubProject]
@@ -29,7 +31,7 @@ struct WelcomeView: View {
                 Text("v0.0.0")
                 Spacer()
                 WelcomeActionView(iconName: "lock", title: "Authorize") {
-                    isStarting = true
+                    starting = true
                     Task {
                         guard let clientId = Bundle.main.infoDictionary?["GITHUB_CLIENT_ID"] as? String else {
                             didFailed = true
@@ -42,7 +44,7 @@ struct WelcomeView: View {
                             URLQueryItem(name: "state", value: state),
                         ])
                         defer {
-                            isStarting = false
+                            starting = false
                         }
                         do {
                             let urlWithToken = try await webAuthenticationSession.authenticate(
@@ -83,7 +85,7 @@ struct WelcomeView: View {
                 }
                 if store.accessToken != nil {
                     WelcomeActionView(iconName: "plus.app", title: "Add Project") {
-
+                        showingAddProject = true
                     }
                 }
                 Spacer()
@@ -102,6 +104,9 @@ struct WelcomeView: View {
             .background(.thickMaterial) // Use .containerBackground(.thickMaterial, for: .window) for macOS 15+
         }
         .frame(width: 740, height: 460)
+        .sheet(isPresented: $showingAddProject) {
+            OpenProjectView(project: $project, editing: $showingAddProject)
+        }
     }
 
     func generateRandomString() -> String {
@@ -115,25 +120,6 @@ struct WelcomeView: View {
         let store = Store()
         store.accessToken = "12345"
         return store
-    }()
-
-    @Previewable @State var previewContainer = {
-        do {
-            let container = try ModelContainer(
-                for: GithubProject.self,
-                configurations: ModelConfiguration(isStoredInMemoryOnly: true)
-            )
-            let modelContext = container.mainContext
-            if try modelContext.fetch(FetchDescriptor<GithubProject>()).isEmpty {
-                [
-                    GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "User Project"),
-                    GithubProject(id: "2", number: 2, owner: .organization(login: "example"), title: "Org Project"),
-                ].forEach { container.mainContext.insert($0) }
-            }
-            return container
-        } catch {
-            fatalError("Failed to create container")
-        }
     }()
 
     WelcomeView()

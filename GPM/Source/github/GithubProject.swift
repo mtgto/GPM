@@ -4,7 +4,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class GithubProject {
+final class GithubProject: Sendable {
     @Attribute(.unique)
     var id: String
     var number: Int
