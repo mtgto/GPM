@@ -6,13 +6,21 @@ import Apollo
 import ApolloAPI
 
 struct GithubClient {
-    struct AccessTokenResponse: Decodable {
+    // For GitHub App
+    struct GitHubAppAccessTokenResponse: Decodable {
         let accessToken: String
         let expiresIn: Int
         let refreshToken: String
         let refreshTokenExpiresIn: Int
         let scope: String
         let tokenType: String
+    }
+
+    // For OAuth2 App
+    struct AccessTokenResponse: Decodable {
+        let accessToken: String
+        let tokenType: String
+        let scope: String
     }
 
     // https://docs.github.com/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-oauth-app-access-token-request-errors

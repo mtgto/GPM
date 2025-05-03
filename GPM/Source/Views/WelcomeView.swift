@@ -42,6 +42,7 @@ struct WelcomeView: View {
                             URLQueryItem(name: "client_id", value: clientId),
                             URLQueryItem(name: "redirect_uri", value: "net.mtgto.gpm://callback"),
                             URLQueryItem(name: "state", value: state),
+                            URLQueryItem(name: "scope", value: "project"),
                         ])
                         defer {
                             starting = false
@@ -70,7 +71,7 @@ struct WelcomeView: View {
                             }
                             let accessToken = try await GithubClient().generateAccessToken(clientId: clientId, clientSecret: clientSecret, code: code)
                             Logger.standard.debug("Access token: \(accessToken.accessToken)")
-                            store.storeRefreshToken(accessToken.refreshToken)
+                            store.storeAccessToken(accessToken.accessToken)
                             store.accessToken = accessToken.accessToken
                         } catch {
                             Logger.standard.log("Failed to authorize: \(error)")
