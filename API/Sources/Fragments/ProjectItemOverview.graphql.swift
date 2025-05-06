@@ -5,7 +5,7 @@
 
 public struct ProjectItemOverview: API.SelectionSet, Fragment {
   public static var fragmentDefinition: StaticString {
-    #"fragment ProjectItemOverview on ProjectV2Item { __typename id content { __typename ... on DraftIssue { title } ... on Issue { title issueState: state number repository { __typename name } } ... on PullRequest { title pullRequestState: state number repository { __typename name } } } fieldValueByName(name: $columnField) { __typename ...ColumnField } }"#
+    #"fragment ProjectItemOverview on ProjectV2Item { __typename id content { __typename ... on DraftIssue { title } ... on Issue { title issueState: state number repository { __typename name } } ... on PullRequest { title pullRequestState: state number repository { __typename name } } } status: fieldValueByName(name: "Status") { __typename ...ColumnField } }"#
   }
 
   public let __data: DataDict
@@ -16,7 +16,7 @@ public struct ProjectItemOverview: API.SelectionSet, Fragment {
     .field("__typename", String.self),
     .field("id", API.ID.self),
     .field("content", Content?.self),
-    .field("fieldValueByName", FieldValueByName?.self, arguments: ["name": .variable("columnField")]),
+    .field("fieldValueByName", alias: "status", Status?.self, arguments: ["name": "Status"]),
   ] }
 
   /// The Node ID of the ProjectV2Item object
@@ -24,7 +24,7 @@ public struct ProjectItemOverview: API.SelectionSet, Fragment {
   /// The content of the referenced draft issue, issue, or pull request
   public var content: Content? { __data["content"] }
   /// The field value of the first project field which matches the 'name' argument that is set on the item.
-  public var fieldValueByName: FieldValueByName? { __data["fieldValueByName"] }
+  public var status: Status? { __data["status"] }
 
   /// Content
   ///
@@ -149,10 +149,10 @@ public struct ProjectItemOverview: API.SelectionSet, Fragment {
     }
   }
 
-  /// FieldValueByName
+  /// Status
   ///
   /// Parent Type: `ProjectV2ItemFieldValue`
-  public struct FieldValueByName: API.SelectionSet {
+  public struct Status: API.SelectionSet {
     public let __data: DataDict
     public init(_dataDict: DataDict) { __data = _dataDict }
 
@@ -171,17 +171,17 @@ public struct ProjectItemOverview: API.SelectionSet, Fragment {
       public var columnField: ColumnField { _toFragment() }
     }
 
-    /// FieldValueByName.AsProjectV2ItemFieldSingleSelectValue
+    /// Status.AsProjectV2ItemFieldSingleSelectValue
     ///
     /// Parent Type: `ProjectV2ItemFieldSingleSelectValue`
     public struct AsProjectV2ItemFieldSingleSelectValue: API.InlineFragment, ApolloAPI.CompositeInlineFragment {
       public let __data: DataDict
       public init(_dataDict: DataDict) { __data = _dataDict }
 
-      public typealias RootEntityType = ProjectItemOverview.FieldValueByName
+      public typealias RootEntityType = ProjectItemOverview.Status
       public static var __parentType: any ApolloAPI.ParentType { API.Objects.ProjectV2ItemFieldSingleSelectValue }
       public static var __mergedSources: [any ApolloAPI.SelectionSet.Type] { [
-        ProjectItemOverview.FieldValueByName.self,
+        ProjectItemOverview.Status.self,
         ColumnField.AsProjectV2ItemFieldSingleSelectValue.self
       ] }
 

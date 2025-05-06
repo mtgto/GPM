@@ -59,11 +59,13 @@ final class GithubProjectItem: Sendable {
     var id: String
     var title: String
     var itemType: GithubItemType
+    var statusField: GithubProjectItemField?
 
-    init(id: String, title: String, itemType: GithubItemType) {
+    init(id: String, title: String, itemType: GithubItemType, statusField: GithubProjectItemField?) {
         self.id = id
         self.title = title
         self.itemType = itemType
+        self.statusField = statusField
     }
 }
 
@@ -71,4 +73,10 @@ enum GithubItemType: Codable {
     case draftIssue
     case issue(number: Int, repository: String)
     case pullRequest(number: Int, repository: String)
+}
+
+struct GithubProjectItemField: Codable {
+    var name: String?
+    var description: String?
+    var color: String
 }

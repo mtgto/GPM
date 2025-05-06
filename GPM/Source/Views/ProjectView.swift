@@ -6,13 +6,25 @@ struct ProjectView: View {
     let project: GithubProject
 
     var body: some View {
-        HSplitView {
-            Rectangle()
-                .fill(Color.red)
-            Rectangle()
-                .fill(Color.green)
-            Rectangle()
-                .fill(Color.blue)
+        TabView {
+            ForEach(project.views) { project in
+                BoardView()
+                    .tabItem {
+                        Text(project.name)
+                    }
+            }
+        }
+        .task {
+            // Fetch items of project
+            let client = GithubClient()
+            do {
+                let items = try await client.projectItems(owner: project.owner, number: project.number)
+                items.forEach { item in
+                    Logger.standard.info("Item: \(item.title)")
+                }
+            } catch {
+                Logger.standard.error("Failed to fetch items: \(error)")
+            }
         }
     }
 }

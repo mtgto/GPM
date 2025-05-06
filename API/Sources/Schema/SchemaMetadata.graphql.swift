@@ -186,6 +186,7 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "ProjectV2ItemFieldUserValue": return API.Objects.ProjectV2ItemFieldUserValue
     case "ProjectV2IterationField": return API.Objects.ProjectV2IterationField
     case "ProjectV2SingleSelectField": return API.Objects.ProjectV2SingleSelectField
+    case "ProjectV2SingleSelectFieldOption": return API.Objects.ProjectV2SingleSelectFieldOption
     case "ProjectV2StatusUpdate": return API.Objects.ProjectV2StatusUpdate
     case "ProjectV2View": return API.Objects.ProjectV2View
     case "ProjectV2ViewConnection": return API.Objects.ProjectV2ViewConnection

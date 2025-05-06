@@ -7,31 +7,27 @@ public class OrganizationProjectItemsQuery: GraphQLQuery {
   public static let operationName: String = "OrganizationProjectItems"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query OrganizationProjectItems($login: String!, $number: Int!, $columnField: String!, $after: String) { organization(login: $login) { __typename projectV2(number: $number) { __typename items(after: $after) { __typename nodes { __typename ...ProjectItemOverview } pageInfo { __typename hasNextPage endCursor } } } } }"#,
+      #"query OrganizationProjectItems($login: String!, $number: Int!, $after: String) { organization(login: $login) { __typename projectV2(number: $number) { __typename items(after: $after, first: 100) { __typename nodes { __typename ...ProjectItemOverview } pageInfo { __typename hasNextPage endCursor } } } } }"#,
       fragments: [ColumnField.self, ProjectItemOverview.self]
     ))
 
   public var login: String
   public var number: Int
-  public var columnField: String
   public var after: GraphQLNullable<String>
 
   public init(
     login: String,
     number: Int,
-    columnField: String,
     after: GraphQLNullable<String>
   ) {
     self.login = login
     self.number = number
-    self.columnField = columnField
     self.after = after
   }
 
   public var __variables: Variables? { [
     "login": login,
     "number": number,
-    "columnField": columnField,
     "after": after
   ] }
 
@@ -73,7 +69,10 @@ public class OrganizationProjectItemsQuery: GraphQLQuery {
         public static var __parentType: any ApolloAPI.ParentType { API.Objects.ProjectV2 }
         public static var __selections: [ApolloAPI.Selection] { [
           .field("__typename", String.self),
-          .field("items", Items.self, arguments: ["after": .variable("after")]),
+          .field("items", Items.self, arguments: [
+            "after": .variable("after"),
+            "first": 100
+          ]),
         ] }
 
         /// List of items in the project
@@ -116,7 +115,7 @@ public class OrganizationProjectItemsQuery: GraphQLQuery {
             /// The content of the referenced draft issue, issue, or pull request
             public var content: Content? { __data["content"] }
             /// The field value of the first project field which matches the 'name' argument that is set on the item.
-            public var fieldValueByName: FieldValueByName? { __data["fieldValueByName"] }
+            public var status: Status? { __data["status"] }
 
             public struct Fragments: FragmentContainer {
               public let __data: DataDict
@@ -127,7 +126,7 @@ public class OrganizationProjectItemsQuery: GraphQLQuery {
 
             public typealias Content = ProjectItemOverview.Content
 
-            public typealias FieldValueByName = ProjectItemOverview.FieldValueByName
+            public typealias Status = ProjectItemOverview.Status
           }
 
           /// Organization.ProjectV2.Items.PageInfo

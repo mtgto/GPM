@@ -133,6 +133,66 @@ struct GithubClient {
         return nil
     }
 
+    func projectItems(owner: GithubProjectOwner, number: Int) async throws -> [GithubProjectItem] {
+        let apolloClient = setupApolloClient()
+        if case .organization(let name) = owner {
+            let result = try await apolloClient.fetch(query: API.OrganizationProjectItemsQuery(login: name, number: number, after: nil))
+            if let project = result.organization?.projectV2, let items = project.items.nodes?.compactMap({ $0 }) {
+                return items.map { item in
+                    let itemType: GithubItemType
+                    let title: String
+                    let statusField: GithubProjectItemField?
+                    if let draftIssue = item.content?.asDraftIssue {
+                        itemType = .draftIssue
+                        title = draftIssue.title
+                    } else if let issue = item.content?.asIssue {
+                        itemType = .issue(number: issue.number, repository: issue.repository.name)
+                        title = issue.title
+                    } else if let pullRequest = item.content?.asPullRequest {
+                        itemType = .pullRequest(number: pullRequest.number, repository: pullRequest.repository.name)
+                        title = pullRequest.title
+                    } else {
+                        fatalError("Unsupported item type")
+                    }
+                    if let status = item.status?.fragments.columnField.asProjectV2ItemFieldSingleSelectValue {
+                        statusField = GithubProjectItemField(name: status.name, description: status.description, color: status.color.rawValue)
+                    } else {
+                        statusField = nil
+                    }
+                    return GithubProjectItem(id: item.id, title: title, itemType: itemType, statusField: statusField)
+                }
+            }
+        } else {
+            let result = try await apolloClient.fetch(query: API.ViewerProjectItemsQuery(number: number, after: nil))
+            if let project = result.viewer.projectV2, let items = project.items.nodes?.compactMap({ $0 }) {
+                return items.map { item in
+                    let itemType: GithubItemType
+                    let title: String
+                    let statusField: GithubProjectItemField?
+                    if let draftIssue = item.content?.asDraftIssue {
+                        itemType = .draftIssue
+                        title = draftIssue.title
+                    } else if let issue = item.content?.asIssue {
+                        itemType = .issue(number: issue.number, repository: issue.repository.name)
+                        title = issue.title
+                    } else if let pullRequest = item.content?.asPullRequest {
+                        itemType = .pullRequest(number: pullRequest.number, repository: pullRequest.repository.name)
+                        title = pullRequest.title
+                    } else {
+                        fatalError("Unsupported item type")
+                    }
+                    if let status = item.status?.fragments.columnField.asProjectV2ItemFieldSingleSelectValue {
+                        statusField = GithubProjectItemField(name: status.name, description: status.description, color: status.color.rawValue)
+                    } else {
+                        statusField = nil
+                    }
+                    return GithubProjectItem(id: item.id, title: title, itemType: itemType, statusField: statusField)
+                }
+            }
+        }
+        return []
+    }
+
     func setupApolloClient() -> ApolloClient {
         let client = URLSessionClient()
         let cache = InMemoryNormalizedCache()

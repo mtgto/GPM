@@ -34,6 +34,16 @@ fragment ProjectOverview on ProjectV2 {
   id
   title
   url
+  # TODO: Support other column field
+  field(name: "Status") {
+    ... on ProjectV2SingleSelectField {
+      options {
+        name
+        description
+        color
+      }
+    }
+  }
 }
 
 fragment ProjectViewOverview on ProjectV2View {

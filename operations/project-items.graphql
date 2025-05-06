@@ -1,7 +1,7 @@
-query OrganizationProjectItems($login: String!, $number: Int!, $columnField: String!, $after: String) {
+query OrganizationProjectItems($login: String!, $number: Int!, $after: String) {
   organization(login: $login) {
     projectV2(number: $number) {
-      items(after: $after) {
+      items(after: $after, first: 100) {
         nodes {
           ...ProjectItemOverview
         }
@@ -14,10 +14,10 @@ query OrganizationProjectItems($login: String!, $number: Int!, $columnField: Str
   }
 }
 
-query ViewerProjectItems($number: Int!, $columnField: String!, $after: String) {
+query ViewerProjectItems($number: Int!, $after: String) {
   viewer {
     projectV2(number: $number) {
-      items(after: $after) {
+      items(after: $after, first: 100) {
         nodes {
           ...ProjectItemOverview
         }
@@ -54,7 +54,8 @@ fragment ProjectItemOverview on ProjectV2Item {
       }
     }
   }
-  fieldValueByName(name: $columnField) {
+  # TODO: Support other column field
+  status: fieldValueByName(name: "Status") {
     ...ColumnField
   }
 }

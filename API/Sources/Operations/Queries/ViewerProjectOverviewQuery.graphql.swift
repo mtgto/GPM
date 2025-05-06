@@ -69,6 +69,8 @@ public class ViewerProjectOverviewQuery: GraphQLQuery {
         public var title: String { __data["title"] }
         /// The HTTP URL for this project
         public var url: API.URI { __data["url"] }
+        /// A field of the project
+        public var field: Field? { __data["field"] }
 
         public struct Fragments: FragmentContainer {
           public let __data: DataDict
@@ -125,6 +127,8 @@ public class ViewerProjectOverviewQuery: GraphQLQuery {
             public typealias VerticalGroupByFields = ProjectViewOverview.VerticalGroupByFields
           }
         }
+
+        public typealias Field = ProjectOverview.Field
       }
     }
   }
