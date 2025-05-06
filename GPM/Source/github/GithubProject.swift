@@ -30,7 +30,7 @@ final class GithubProject: Sendable, Identifiable {
     }
 
     var itemsPerStatus: [(GithubProjectStatusField, [GithubProjectItem])] {
-        statusFields.map { statusField in
+        statusFields.sorted(by: { $0.order < $1.order }).map { statusField in
             (statusField, items.filter { $0.statusField?.name == statusField.name })
         }
     }
