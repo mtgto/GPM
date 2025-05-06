@@ -115,7 +115,7 @@ struct GithubClient {
                         return nil
                     }
                 }
-                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title, views: views)
+                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title, url: projectV2.url, views: views)
             }
         } else {
             let result = try await apolloClient.fetch(query: API.ViewerProjectOverviewQuery(number: number))
@@ -127,7 +127,7 @@ struct GithubClient {
                         return nil
                     }
                 }
-                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title, views: views)
+                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title, url: projectV2.url, views: views)
             }
         }
         return nil

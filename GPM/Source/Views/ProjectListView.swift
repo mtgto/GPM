@@ -8,6 +8,7 @@ struct ProjectListView: View {
     @State private var selectedProject: GithubProject?
     @Environment(\.modelContext) private var modelContext
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
         List(projects, id: \.self, selection: $selectedProject) { project in
@@ -19,7 +20,10 @@ struct ProjectListView: View {
             }
         }
         .contextMenu(forSelectionType: GithubProject.self, menu: { projects in
-            if let project = projects.first {
+            if let project = projects.first, let url = URL(string: project.url) {
+                Button("Show in Web Browser") {
+                    openURL(url)
+                }
                 Button("Delete", role: .destructive) {
                     modelContext.delete(project)
                     // TODO: Close window already opened

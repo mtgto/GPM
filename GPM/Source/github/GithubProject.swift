@@ -10,14 +10,16 @@ final class GithubProject: Sendable, Identifiable {
     var number: Int
     var owner: GithubProjectOwner
     var title: String
+    var url: String
     @Relationship(deleteRule: .cascade, inverse: \GithubProjectView.project)
     var views: [GithubProjectView]
 
-    init(id: String, number: Int, owner: GithubProjectOwner, title: String, views: [GithubProjectView]) {
+    init(id: String, number: Int, owner: GithubProjectOwner, title: String, url: String, views: [GithubProjectView]) {
         self.id = id
         self.number = number
         self.owner = owner
         self.title = title
+        self.url = url
         self.views = views
     }
 }

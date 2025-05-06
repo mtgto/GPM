@@ -4,10 +4,10 @@
 import SwiftData
 
 let sampleProjects = [
-    GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "User Project", views: [
+    GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "User Project", url: "https://example.com", views: [
         GithubProjectView(id: "11", name: "My Board", varticalFieldName: "Status")
     ]),
-    GithubProject(id: "2", number: 2, owner: .organization(login: "example"), title: "Org Project", views: [
+    GithubProject(id: "2", number: 2, owner: .organization(login: "example"), title: "Org Project", url: "https://example.com", views: [
         GithubProjectView(id: "21", name: "My Board", varticalFieldName: "Status")
     ]),
 ]
