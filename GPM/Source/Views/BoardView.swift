@@ -12,7 +12,19 @@ struct BoardView: View {
                 VStack {
                     Text(statusField.name)
                     List(items) { item in
-                        Text(item.title)
+                        VStack(alignment: .leading) {
+                            if case .draftIssue = item.itemType {
+                                Text("Draft")
+                                    .font(.subheadline)
+                            } else if case .issue(let number, let repository) = item.itemType {
+                                Text("Issue \(repository) #\(number)")
+                                    .font(.subheadline)
+                            } else if case .pullRequest(let number, let repository) = item.itemType {
+                                Text("PR \(repository) #\(number)")
+                                    .font(.subheadline)
+                            }
+                            Text(item.title)
+                        }
                     }
                 }
             }

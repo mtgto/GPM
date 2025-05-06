@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 import SwiftUI
+import SwiftData
 
 struct ProjectView: View {
     let project: GithubProject
@@ -24,7 +25,8 @@ struct ProjectView: View {
                     Logger.standard.info("Item: \(item.title)")
                 }
                 project.items = items
-                try modelContext.save()
+                // Use new ModelContext for no main thread
+                try ModelContext(modelContext.container).save()
             } catch {
                 Logger.standard.error("Failed to fetch items: \(error)")
             }

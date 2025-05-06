@@ -25,8 +25,9 @@ let sampleProjects = [
                   ],
                   items: [
                     GithubProjectItem(id: "11", title: "TODO Issue", itemType: .draftIssue, statusField: GithubProjectItemField(name: sampleStatusFields[0].name, fieldDescription: sampleStatusFields[0].fieldDescription, color: sampleStatusFields[0].color)),
-                    GithubProjectItem(id: "12", title: "Doing Issue", itemType: .draftIssue, statusField: GithubProjectItemField(name: sampleStatusFields[1].name, fieldDescription: sampleStatusFields[1].fieldDescription, color: sampleStatusFields[1].color)),
-                    GithubProjectItem(id: "13", title: "Done Issue", itemType: .draftIssue, statusField: GithubProjectItemField(name: sampleStatusFields[2].name, fieldDescription: sampleStatusFields[2].fieldDescription, color: sampleStatusFields[2].color)),
+                    GithubProjectItem(id: "12", title: "Doing Issue", itemType: .issue(number: 123, repository: "dummy"), statusField: GithubProjectItemField(name: sampleStatusFields[1].name, fieldDescription: sampleStatusFields[1].fieldDescription, color: sampleStatusFields[1].color)),
+                    GithubProjectItem(id: "13", title: "Done Issue", itemType: .pullRequest(number: 123, repository: "dummy"), statusField: GithubProjectItemField(name: sampleStatusFields[2].name, fieldDescription: sampleStatusFields[2].fieldDescription, color: sampleStatusFields[2].color)),
+                    GithubProjectItem(id: "14", title: "TODO Issue 2", itemType: .issue(number: 123, repository: "dummy"), statusField: GithubProjectItemField(name: sampleStatusFields[0].name, fieldDescription: sampleStatusFields[0].fieldDescription, color: sampleStatusFields[0].color)),
                   ]),
     GithubProject(id: "2",
                   number: 2,
@@ -39,8 +40,9 @@ let sampleProjects = [
                   ],
                   items: [
                     GithubProjectItem(id: "11", title: "TODO Issue", itemType: .draftIssue, statusField: GithubProjectItemField(name: sampleStatusFields[0].name, fieldDescription: sampleStatusFields[0].fieldDescription, color: sampleStatusFields[0].color)),
-                    GithubProjectItem(id: "12", title: "Doing Issue", itemType: .draftIssue, statusField: GithubProjectItemField(name: sampleStatusFields[1].name, fieldDescription: sampleStatusFields[1].fieldDescription, color: sampleStatusFields[1].color)),
-                    GithubProjectItem(id: "13", title: "Done Issue", itemType: .draftIssue, statusField: GithubProjectItemField(name: sampleStatusFields[2].name, fieldDescription: sampleStatusFields[2].fieldDescription, color: sampleStatusFields[2].color)),
+                    GithubProjectItem(id: "12", title: "Doing Issue", itemType: .issue(number: 123, repository: "dummy"), statusField: GithubProjectItemField(name: sampleStatusFields[1].name, fieldDescription: sampleStatusFields[1].fieldDescription, color: sampleStatusFields[1].color)),
+                    GithubProjectItem(id: "13", title: "Done Issue", itemType: .pullRequest(number: 123, repository: "dummy"), statusField: GithubProjectItemField(name: sampleStatusFields[2].name, fieldDescription: sampleStatusFields[2].fieldDescription, color: sampleStatusFields[2].color)),
+                    GithubProjectItem(id: "14", title: "TODO Issue 2", itemType: .issue(number: 123, repository: "dummy"), statusField: GithubProjectItemField(name: sampleStatusFields[0].name, fieldDescription: sampleStatusFields[0].fieldDescription, color: sampleStatusFields[0].color)),
                   ]),
 ]
 
