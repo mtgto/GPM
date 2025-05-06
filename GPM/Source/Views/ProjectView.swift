@@ -4,13 +4,14 @@ import SwiftUI
 
 struct ProjectView: View {
     let project: GithubProject
+    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         TabView {
-            ForEach(project.views) { project in
-                BoardView()
+            ForEach(project.views) { view in
+                BoardView(project: project)
                     .tabItem {
-                        Text(project.name)
+                        Text(view.name)
                     }
             }
         }
@@ -22,6 +23,9 @@ struct ProjectView: View {
                 items.forEach { item in
                     Logger.standard.info("Item: \(item.title)")
                 }
+                project.items = items
+                modelContext.insert(project)
+                try modelContext.save()
             } catch {
                 Logger.standard.error("Failed to fetch items: \(error)")
             }
@@ -31,8 +35,6 @@ struct ProjectView: View {
 
 #Preview {
     ProjectView(
-        project: GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "Example Project", url: "https://example.com", views: [
-            GithubProjectView(id: "1", name: "My Board", varticalFieldName: "Status")
-        ])
+        project: sampleProjects[0]
     )
 }

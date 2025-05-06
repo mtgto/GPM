@@ -4,18 +4,20 @@ import SwiftUI
 
 // Board Layout for GitHub Project's View
 struct BoardView: View {
+    let project: GithubProject
+
     var body: some View {
         HSplitView {
-            Rectangle()
-                .fill(Color.red)
-            Rectangle()
-                .fill(Color.green)
-            Rectangle()
-                .fill(Color.blue)
+            ForEach(project.statusFields) { statusField in
+                VStack {
+                    Text(statusField.name)
+                    Rectangle()
+                }
+            }
         }
     }
 }
 
 #Preview {
-    BoardView()
+    BoardView(project: sampleProjects[0])
 }

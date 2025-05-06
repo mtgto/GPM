@@ -4,12 +4,34 @@
 import SwiftData
 
 let sampleProjects = [
-    GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "User Project", url: "https://example.com", views: [
-        GithubProjectView(id: "11", name: "My Board", varticalFieldName: "Status")
-    ]),
-    GithubProject(id: "2", number: 2, owner: .organization(login: "example"), title: "Org Project", url: "https://example.com", views: [
-        GithubProjectView(id: "21", name: "My Board", varticalFieldName: "Status")
-    ]),
+    GithubProject(id: "1",
+                  number: 1,
+                  owner: .user(login: "mtgto"),
+                  title: "User Project",
+                  url: "https://example.com",
+                  statusFields: [
+                    GithubProjectStatusField(name: "TODO", fieldDescription: "This item hasn't been started", color: "GREEN", order: 0),
+                    GithubProjectStatusField(name: "In Progress", fieldDescription: "In Progress", color: "YELLOW", order: 1),
+                    GithubProjectStatusField(name: "Done", fieldDescription: "This has been completed", color: "PURPLE", order: 2),
+                  ],
+                  views: [
+                    GithubProjectView(id: "11", name: "My Board", varticalFieldName: "Status")
+                  ],
+                  items: []),
+    GithubProject(id: "2",
+                  number: 2,
+                  owner: .organization(login: "example"),
+                  title: "Org Project",
+                  url: "https://example.com",
+                  statusFields: [
+                    GithubProjectStatusField(name: "TODO", fieldDescription: "This item hasn't been started", color: "GREEN", order: 0),
+                    GithubProjectStatusField(name: "In Progress", fieldDescription: "In Progress", color: "YELLOW", order: 1),
+                    GithubProjectStatusField(name: "Done", fieldDescription: "This has been completed", color: "PURPLE", order: 2),
+                  ],
+                  views: [
+                    GithubProjectView(id: "21", name: "My Board", varticalFieldName: "Status")
+                  ],
+                  items: []),
 ]
 
 @MainActor

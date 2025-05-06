@@ -105,32 +105,48 @@ struct GithubClient {
 
     func projectOverview(owner: GithubProjectOwner, number: Int) async throws -> GithubProject? {
         let apolloClient = setupApolloClient()
+        let projectOverview: ProjectOverview
+        let viewOverviews: [ProjectViewOverview]
         if case .organization(let name) = owner {
             let result = try await apolloClient.fetch(query: API.OrganizationProjectOverviewQuery(login: name, number: number))
-            if let projectV2 = result.organization?.projectV2, let views = projectV2.views.nodes?.compactMap({ $0 }) {
-                let views = views.compactMap { view in
-                    if let verticalField = view.verticalGroupByFields?.nodes?.first??.asProjectV2FieldCommon?.name {
-                        return GithubProjectView(id: view.id, name: view.name, varticalFieldName: verticalField)
-                    } else {
-                        return nil
-                    }
-                }
-                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title, url: projectV2.url, views: views)
+            if let projectV2 = result.organization?.projectV2, let views = projectV2.views.nodes?.compactMap({ $0?.fragments.projectViewOverview }) {
+                projectOverview = projectV2.fragments.projectOverview
+                viewOverviews = views
+            } else {
+                return nil
             }
         } else {
             let result = try await apolloClient.fetch(query: API.ViewerProjectOverviewQuery(number: number))
-            if let projectV2 = result.viewer.projectV2, let views = projectV2.views.nodes?.compactMap({ $0 }) {
-                let views = views.compactMap { view in
-                    if let verticalField = view.verticalGroupByFields?.nodes?.first??.asProjectV2FieldCommon?.name {
-                        return GithubProjectView(id: view.id, name: view.name, varticalFieldName: verticalField)
-                    } else {
-                        return nil
-                    }
-                }
-                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title, url: projectV2.url, views: views)
+            if let projectV2 = result.viewer.projectV2, let views = projectV2.views.nodes?.compactMap({ $0?.fragments.projectViewOverview }) {
+                projectOverview = projectV2.fragments.projectOverview
+                viewOverviews = views
+            } else {
+                return nil
             }
         }
-        return nil
+        let views = viewOverviews.compactMap { view in
+            if let verticalField = view.verticalGroupByFields?.nodes?.first??.asProjectV2FieldCommon?.name {
+                return GithubProjectView(id: view.id, name: view.name, varticalFieldName: verticalField)
+            } else {
+                return nil
+            }
+        }
+        let statusFields: [GithubProjectStatusField]
+        if let options = projectOverview.field?.asProjectV2SingleSelectField?.options {
+            statusFields = options.enumerated().map { (index, option) in
+                GithubProjectStatusField(name: option.name, fieldDescription: option.description, color: option.color.rawValue, order: index)
+            }
+        } else {
+            statusFields = []
+        }
+        return GithubProject(id: projectOverview.id,
+                             number: number,
+                             owner: owner,
+                             title: projectOverview.title,
+                             url: projectOverview.url,
+                             statusFields: statusFields,
+                             views: views,
+                             items: [])
     }
 
     func projectItems(owner: GithubProjectOwner, number: Int) async throws -> [GithubProjectItem] {
@@ -155,7 +171,7 @@ struct GithubClient {
                         fatalError("Unsupported item type")
                     }
                     if let status = item.status?.fragments.columnField.asProjectV2ItemFieldSingleSelectValue {
-                        statusField = GithubProjectItemField(name: status.name, description: status.description, color: status.color.rawValue)
+                        statusField = GithubProjectItemField(name: status.name, fieldDescription: status.description, color: status.color.rawValue)
                     } else {
                         statusField = nil
                     }
@@ -182,7 +198,7 @@ struct GithubClient {
                         fatalError("Unsupported item type")
                     }
                     if let status = item.status?.fragments.columnField.asProjectV2ItemFieldSingleSelectValue {
-                        statusField = GithubProjectItemField(name: status.name, description: status.description, color: status.color.rawValue)
+                        statusField = GithubProjectItemField(name: status.name, fieldDescription: status.description, color: status.color.rawValue)
                     } else {
                         statusField = nil
                     }
