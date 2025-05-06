@@ -16,6 +16,7 @@ struct WelcomeView: View {
     @Environment(\.webAuthenticationSession) private var webAuthenticationSession
     @Environment(Store.self) private var store: Store
     @Query private var projects: [GithubProject]
+    @State private var selectedProject: GithubProject?
 
     var body: some View {
         HStack(spacing: 0) {
@@ -93,16 +94,9 @@ struct WelcomeView: View {
             }
             .padding()
             .frame(width: 460)
-            List(projects) { project in
-                VStack(alignment: .leading) {
-                    Text(project.title)
-                        .font(.title3)
-                    Text("\(project.owner.login)/\(project.number)")
-                        .font(.subheadline)
-                }
-            }
-            .frame(width: 280)
-            .background(.thickMaterial) // Use .containerBackground(.thickMaterial, for: .window) for macOS 15+
+            ProjectListView()
+                .frame(width: 280)
+                .background(.thickMaterial) // Use .containerBackground(.thickMaterial, for: .window) for macOS 15+
         }
         .frame(width: 740, height: 460)
         .sheet(isPresented: $showingAddProject) {

@@ -3,6 +3,15 @@
 
 import SwiftData
 
+let sampleProjects = [
+    GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "User Project", views: [
+        GithubProjectView(id: "11", name: "My Board", varticalFieldName: "Status")
+    ]),
+    GithubProject(id: "2", number: 2, owner: .organization(login: "example"), title: "Org Project", views: [
+        GithubProjectView(id: "21", name: "My Board", varticalFieldName: "Status")
+    ]),
+]
+
 @MainActor
 let previewContainer = {
     do {
@@ -12,14 +21,7 @@ let previewContainer = {
         )
         let modelContext = container.mainContext
         if try modelContext.fetch(FetchDescriptor<GithubProject>()).isEmpty {
-            [
-                GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "User Project", views: [
-                    GithubProjectView(id: "11", name: "My Board", varticalFieldName: "Status")
-                ]),
-                GithubProject(id: "2", number: 2, owner: .organization(login: "example"), title: "Org Project", views: [
-                    GithubProjectView(id: "21", name: "My Board", varticalFieldName: "Status")
-                ]),
-            ].forEach { container.mainContext.insert($0) }
+            sampleProjects.forEach { container.mainContext.insert($0) }
         }
         return container
     } catch {
