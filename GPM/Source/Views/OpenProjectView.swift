@@ -42,15 +42,11 @@ struct OpenProjectView: View {
                                     Logger.standard.error("Error: Failed to fetch project overview")
                                     return
                                 }
-                                let newProject = GithubProject(id: projectOverview.id,
-                                                               number: currentProject.number,
-                                                               owner: currentProject.owner,
-                                                               title: projectOverview.title)
-                                modelContext.insert(newProject)
+                                modelContext.insert(projectOverview)
                                 try modelContext.save()
                                 project = currentProject
                                 editing = false
-                                openWindow(id: "project", value: newProject.id)
+                                openWindow(id: "project", value: projectOverview.id)
                             } catch {
                                 Logger.standard.warning("Failed to fetch project overview: \(error)")
                             }

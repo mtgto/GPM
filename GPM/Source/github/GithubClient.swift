@@ -107,13 +107,27 @@ struct GithubClient {
         let apolloClient = setupApolloClient()
         if case .organization(let name) = owner {
             let result = try await apolloClient.fetch(query: API.OrganizationProjectOverviewQuery(login: name, number: number))
-            if let projectV2 = result.organization?.projectV2 {
-                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title)
+            if let projectV2 = result.organization?.projectV2, let views = projectV2.views.nodes?.compactMap({ $0 }) {
+                let views = views.compactMap { view in
+                    if let verticalField = view.verticalGroupByFields?.nodes?.first??.asProjectV2FieldCommon?.name {
+                        return GithubProjectView(id: view.id, name: view.name, varticalFieldName: verticalField)
+                    } else {
+                        return nil
+                    }
+                }
+                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title, views: views)
             }
         } else {
             let result = try await apolloClient.fetch(query: API.ViewerProjectOverviewQuery(number: number))
-            if let projectV2 = result.viewer.projectV2 {
-                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title)
+            if let projectV2 = result.viewer.projectV2, let views = projectV2.views.nodes?.compactMap({ $0 }) {
+                let views = views.compactMap { view in
+                    if let verticalField = view.verticalGroupByFields?.nodes?.first??.asProjectV2FieldCommon?.name {
+                        return GithubProjectView(id: view.id, name: view.name, varticalFieldName: verticalField)
+                    } else {
+                        return nil
+                    }
+                }
+                return GithubProject(id: projectV2.id, number: number, owner: owner, title: projectV2.title, views: views)
             }
         }
         return nil

@@ -1,0 +1,69 @@
+query OrganizationProjectItems($login: String!, $number: Int!, $columnField: String!, $after: String) {
+  organization(login: $login) {
+    projectV2(number: $number) {
+      items(after: $after) {
+        nodes {
+          ...ProjectItemOverview
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}
+
+query ViewerProjectItems($number: Int!, $columnField: String!, $after: String) {
+  viewer {
+    projectV2(number: $number) {
+      items(after: $after) {
+        nodes {
+          ...ProjectItemOverview
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+}
+
+fragment ProjectItemOverview on ProjectV2Item {
+  id
+  content {
+    __typename
+    ... on DraftIssue {
+      title
+    }
+    ... on Issue {
+      title
+      issueState: state
+      number
+      repository {
+        name
+      }
+    }
+    ... on PullRequest {
+      title
+      pullRequestState: state
+      number
+      repository {
+        name
+      }
+    }
+  }
+  fieldValueByName(name: $columnField) {
+    ...ColumnField
+  }
+}
+
+fragment ColumnField on ProjectV2ItemFieldValue {
+  ... on ProjectV2ItemFieldSingleSelectValue {
+    id
+    color
+    name
+    description
+  }
+}

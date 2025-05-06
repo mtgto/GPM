@@ -8,6 +8,11 @@ query OrganizationProjectOverview($login: String!, $number: Int!) {
   organization(login: $login) {
     projectV2(number: $number) {
       ...ProjectOverview
+      views(first: 100) {
+        nodes {
+          ...ProjectViewOverview
+        }
+      }
     }
   }
 }
@@ -16,6 +21,11 @@ query ViewerProjectOverview($number: Int!) {
   viewer {
     projectV2(number: $number) {
       ...ProjectOverview
+      views(first: 100) {
+        nodes {
+          ...ProjectViewOverview
+        }
+      }
     }
   }
 }
@@ -24,17 +34,16 @@ fragment ProjectOverview on ProjectV2 {
   id
   title
   url
-  views(first: 100) {
+}
+
+fragment ProjectViewOverview on ProjectV2View {
+  id
+  name
+  layout
+  verticalGroupByFields(first: 100) {
     nodes {
-      id
-      name
-      layout
-      verticalGroupByFields(first: 100) {
-        nodes {
-          ... on ProjectV2FieldCommon {
-            name # Default is "Status", but can be overridden
-          }
-        }
+      ... on ProjectV2FieldCommon {
+        name
       }
     }
   }

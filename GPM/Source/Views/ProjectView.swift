@@ -18,5 +18,9 @@ struct ProjectView: View {
 }
 
 #Preview {
-    ProjectView(project: GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "Example Project"))
+    ProjectView(
+        project: GithubProject(id: "1", number: 1, owner: .user(login: "mtgto"), title: "Example Project", views: [
+            GithubProjectView(id: "1", name: "My Board", varticalFieldName: "Status")
+        ])
+    )
 }

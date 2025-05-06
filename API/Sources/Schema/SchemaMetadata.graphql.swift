@@ -156,6 +156,7 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "PackageFile": return API.Objects.PackageFile
     case "PackageTag": return API.Objects.PackageTag
     case "PackageVersion": return API.Objects.PackageVersion
+    case "PageInfo": return API.Objects.PageInfo
     case "ParentIssueAddedEvent": return API.Objects.ParentIssueAddedEvent
     case "ParentIssueRemovedEvent": return API.Objects.ParentIssueRemovedEvent
     case "PinnedDiscussion": return API.Objects.PinnedDiscussion
@@ -171,11 +172,18 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "ProjectV2Field": return API.Objects.ProjectV2Field
     case "ProjectV2FieldConfigurationConnection": return API.Objects.ProjectV2FieldConfigurationConnection
     case "ProjectV2Item": return API.Objects.ProjectV2Item
+    case "ProjectV2ItemConnection": return API.Objects.ProjectV2ItemConnection
     case "ProjectV2ItemFieldDateValue": return API.Objects.ProjectV2ItemFieldDateValue
     case "ProjectV2ItemFieldIterationValue": return API.Objects.ProjectV2ItemFieldIterationValue
+    case "ProjectV2ItemFieldLabelValue": return API.Objects.ProjectV2ItemFieldLabelValue
+    case "ProjectV2ItemFieldMilestoneValue": return API.Objects.ProjectV2ItemFieldMilestoneValue
     case "ProjectV2ItemFieldNumberValue": return API.Objects.ProjectV2ItemFieldNumberValue
+    case "ProjectV2ItemFieldPullRequestValue": return API.Objects.ProjectV2ItemFieldPullRequestValue
+    case "ProjectV2ItemFieldRepositoryValue": return API.Objects.ProjectV2ItemFieldRepositoryValue
+    case "ProjectV2ItemFieldReviewerValue": return API.Objects.ProjectV2ItemFieldReviewerValue
     case "ProjectV2ItemFieldSingleSelectValue": return API.Objects.ProjectV2ItemFieldSingleSelectValue
     case "ProjectV2ItemFieldTextValue": return API.Objects.ProjectV2ItemFieldTextValue
+    case "ProjectV2ItemFieldUserValue": return API.Objects.ProjectV2ItemFieldUserValue
     case "ProjectV2IterationField": return API.Objects.ProjectV2IterationField
     case "ProjectV2SingleSelectField": return API.Objects.ProjectV2SingleSelectField
     case "ProjectV2StatusUpdate": return API.Objects.ProjectV2StatusUpdate
