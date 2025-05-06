@@ -8,10 +8,12 @@ struct BoardView: View {
 
     var body: some View {
         HSplitView {
-            ForEach(project.statusFields) { statusField in
+            ForEach(project.itemsPerStatus, id: \.0) { (statusField, items) in
                 VStack {
                     Text(statusField.name)
-                    Rectangle()
+                    List(items) { item in
+                        Text(item.title)
+                    }
                 }
             }
         }

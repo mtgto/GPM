@@ -24,7 +24,6 @@ struct ProjectView: View {
                     Logger.standard.info("Item: \(item.title)")
                 }
                 project.items = items
-                modelContext.insert(project)
                 try modelContext.save()
             } catch {
                 Logger.standard.error("Failed to fetch items: \(error)")

@@ -28,6 +28,12 @@ final class GithubProject: Sendable, Identifiable {
         self.views = views
         self.items = items
     }
+
+    var itemsPerStatus: [(GithubProjectStatusField, [GithubProjectItem])] {
+        statusFields.map { statusField in
+            (statusField, items.filter { $0.statusField?.name == statusField.name })
+        }
+    }
 }
 
 enum GithubProjectOwner: Codable {
