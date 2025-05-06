@@ -24,9 +24,13 @@ struct ProjectView: View {
                 items.forEach { item in
                     Logger.standard.info("Item: \(item.title)")
                 }
-                project.items = items
-                // Use new ModelContext for no main thread
-                try ModelContext(modelContext.container).save()
+                // `project.items = items` causes fatal error:
+                // "PersistentIdentifier PersistentIdentifier was remapped to a temporary identifier during save"
+                // TODO: Update old item
+                let newItems = items.filter { item in
+                    project.items.allSatisfy { $0.id != item.id }
+                }
+                project.items = project.items + newItems
             } catch {
                 Logger.standard.error("Failed to fetch items: \(error)")
             }

@@ -20,6 +20,9 @@
     "Delete" : {
 
     },
+    "Draft" : {
+
+    },
     "Enter the URL of the GitHub Project to open:" : {
 
     },
@@ -32,11 +35,31 @@
     "GPM" : {
 
     },
+    "Issue %@ #%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Issue %1$@ #%2$lld"
+          }
+        }
+      }
+    },
     "Open Authorize Window" : {
 
     },
     "Open Project" : {
 
+    },
+    "PR %@ #%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "PR %1$@ #%2$lld"
+          }
+        }
+      }
     },
     "Project URL" : {
 
